@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lps.mapper.GoodSkuMapper" >
+  <resultMap id="BaseResultMap" type="com.lps.po.GoodSku" >
+    <id column="sku_id" property="skuId" jdbcType="INTEGER" />
+    <result column="good_id" property="goodId" jdbcType="INTEGER" />
+    <result column="sku_num" property="skuNum" jdbcType="INTEGER" />
+    <result column="sku_price" property="skuPrice" jdbcType="DOUBLE" />
+    <result column="sku_stock" property="skuStock" jdbcType="INTEGER" />
+    <result column="sku_props" property="skuProps" jdbcType="VARCHAR" />
+    <result column="sku_pic" property="skuPic" jdbcType="VARCHAR" />
+    <result column="sku_state" property="skuState" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    sku_id, good_id, sku_num, sku_price, sku_stock, sku_props, sku_pic, sku_state
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lps.po.GoodSkuExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from good_sku
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from good_sku
+    where sku_id = #{skuId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from good_sku
+    where sku_id = #{skuId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lps.po.GoodSkuExample" >
+    delete from good_sku
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lps.po.GoodSku" >
+    insert into good_sku (sku_id, good_id, sku_num, 
+      sku_price, sku_stock, sku_props, 
+      sku_pic, sku_state)
+    values (#{skuId,jdbcType=INTEGER}, #{goodId,jdbcType=INTEGER}, #{skuNum,jdbcType=INTEGER}, 
+      #{skuPrice,jdbcType=DOUBLE}, #{skuStock,jdbcType=INTEGER}, #{skuProps,jdbcType=VARCHAR}, 
+      #{skuPic,jdbcType=VARCHAR}, #{skuState,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lps.po.GoodSku" >
+    insert into good_sku
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="skuId != null" >
+        sku_id,
+      </if>
+      <if test="goodId != null" >
+        good_id,
+      </if>
+      <if test="skuNum != null" >
+        sku_num,
+      </if>
+      <if test="skuPrice != null" >
+        sku_price,
+      </if>
+      <if test="skuStock != null" >
+        sku_stock,
+      </if>
+      <if test="skuProps != null" >
+        sku_props,
+      </if>
+      <if test="skuPic != null" >
+        sku_pic,
+      </if>
+      <if test="skuState != null" >
+        sku_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="skuId != null" >
+        #{skuId,jdbcType=INTEGER},
+      </if>
+      <if test="goodId != null" >
+        #{goodId,jdbcType=INTEGER},
+      </if>
+      <if test="skuNum != null" >
+        #{skuNum,jdbcType=INTEGER},
+      </if>
+      <if test="skuPrice != null" >
+        #{skuPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="skuStock != null" >
+        #{skuStock,jdbcType=INTEGER},
+      </if>
+      <if test="skuProps != null" >
+        #{skuProps,jdbcType=VARCHAR},
+      </if>
+      <if test="skuPic != null" >
+        #{skuPic,jdbcType=VARCHAR},
+      </if>
+      <if test="skuState != null" >
+        #{skuState,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lps.po.GoodSkuExample" resultType="java.lang.Integer" >
+    select count(*) from good_sku
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update good_sku
+    <set >
+      <if test="record.skuId != null" >
+        sku_id = #{record.skuId,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodId != null" >
+        good_id = #{record.goodId,jdbcType=INTEGER},
+      </if>
+      <if test="record.skuNum != null" >
+        sku_num = #{record.skuNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.skuPrice != null" >
+        sku_price = #{record.skuPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.skuStock != null" >
+        sku_stock = #{record.skuStock,jdbcType=INTEGER},
+      </if>
+      <if test="record.skuProps != null" >
+        sku_props = #{record.skuProps,jdbcType=VARCHAR},
+      </if>
+      <if test="record.skuPic != null" >
+        sku_pic = #{record.skuPic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.skuState != null" >
+        sku_state = #{record.skuState,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update good_sku
+    set sku_id = #{record.skuId,jdbcType=INTEGER},
+      good_id = #{record.goodId,jdbcType=INTEGER},
+      sku_num = #{record.skuNum,jdbcType=INTEGER},
+      sku_price = #{record.skuPrice,jdbcType=DOUBLE},
+      sku_stock = #{record.skuStock,jdbcType=INTEGER},
+      sku_props = #{record.skuProps,jdbcType=VARCHAR},
+      sku_pic = #{record.skuPic,jdbcType=VARCHAR},
+      sku_state = #{record.skuState,jdbcType=BIT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lps.po.GoodSku" >
+    update good_sku
+    <set >
+      <if test="goodId != null" >
+        good_id = #{goodId,jdbcType=INTEGER},
+      </if>
+      <if test="skuNum != null" >
+        sku_num = #{skuNum,jdbcType=INTEGER},
+      </if>
+      <if test="skuPrice != null" >
+        sku_price = #{skuPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="skuStock != null" >
+        sku_stock = #{skuStock,jdbcType=INTEGER},
+      </if>
+      <if test="skuProps != null" >
+        sku_props = #{skuProps,jdbcType=VARCHAR},
+      </if>
+      <if test="skuPic != null" >
+        sku_pic = #{skuPic,jdbcType=VARCHAR},
+      </if>
+      <if test="skuState != null" >
+        sku_state = #{skuState,jdbcType=BIT},
+      </if>
+    </set>
+    where sku_id = #{skuId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lps.po.GoodSku" >
+    update good_sku
+    set good_id = #{goodId,jdbcType=INTEGER},
+      sku_num = #{skuNum,jdbcType=INTEGER},
+      sku_price = #{skuPrice,jdbcType=DOUBLE},
+      sku_stock = #{skuStock,jdbcType=INTEGER},
+      sku_props = #{skuProps,jdbcType=VARCHAR},
+      sku_pic = #{skuPic,jdbcType=VARCHAR},
+      sku_state = #{skuState,jdbcType=BIT}
+    where sku_id = #{skuId,jdbcType=INTEGER}
+  </update>
+</mapper>

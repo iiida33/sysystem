@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lps.mapper.OrderDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.lps.po.OrderDetail" >
+    <id column="orderDtl_id" property="orderdtlId" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="sku_id" property="skuId" jdbcType="INTEGER" />
+    <result column="orderDtl_name" property="orderdtlName" jdbcType="VARCHAR" />
+    <result column="orderDtl_props" property="orderdtlProps" jdbcType="VARCHAR" />
+    <result column="orderDtl_count" property="orderdtlCount" jdbcType="INTEGER" />
+    <result column="orderDtl_price" property="orderdtlPrice" jdbcType="DOUBLE" />
+    <result column="orderDtl_money" property="orderdtlMoney" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    orderDtl_id, order_id, sku_id, orderDtl_name, orderDtl_props, orderDtl_count, orderDtl_price, 
+    orderDtl_money
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lps.po.OrderDetailExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from order_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_detail
+    where orderDtl_id = #{orderdtlId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from order_detail
+    where orderDtl_id = #{orderdtlId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lps.po.OrderDetailExample" >
+    delete from order_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lps.po.OrderDetail" >
+    insert into order_detail (orderDtl_id, order_id, sku_id, 
+      orderDtl_name, orderDtl_props, orderDtl_count, 
+      orderDtl_price, orderDtl_money)
+    values (#{orderdtlId,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{skuId,jdbcType=INTEGER}, 
+      #{orderdtlName,jdbcType=VARCHAR}, #{orderdtlProps,jdbcType=VARCHAR}, #{orderdtlCount,jdbcType=INTEGER}, 
+      #{orderdtlPrice,jdbcType=DOUBLE}, #{orderdtlMoney,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lps.po.OrderDetail" >
+    insert into order_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderdtlId != null" >
+        orderDtl_id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="skuId != null" >
+        sku_id,
+      </if>
+      <if test="orderdtlName != null" >
+        orderDtl_name,
+      </if>
+      <if test="orderdtlProps != null" >
+        orderDtl_props,
+      </if>
+      <if test="orderdtlCount != null" >
+        orderDtl_count,
+      </if>
+      <if test="orderdtlPrice != null" >
+        orderDtl_price,
+      </if>
+      <if test="orderdtlMoney != null" >
+        orderDtl_money,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderdtlId != null" >
+        #{orderdtlId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="skuId != null" >
+        #{skuId,jdbcType=INTEGER},
+      </if>
+      <if test="orderdtlName != null" >
+        #{orderdtlName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderdtlProps != null" >
+        #{orderdtlProps,jdbcType=VARCHAR},
+      </if>
+      <if test="orderdtlCount != null" >
+        #{orderdtlCount,jdbcType=INTEGER},
+      </if>
+      <if test="orderdtlPrice != null" >
+        #{orderdtlPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="orderdtlMoney != null" >
+        #{orderdtlMoney,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lps.po.OrderDetailExample" resultType="java.lang.Integer" >
+    select count(*) from order_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update order_detail
+    <set >
+      <if test="record.orderdtlId != null" >
+        orderDtl_id = #{record.orderdtlId,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderId != null" >
+        order_id = #{record.orderId,jdbcType=INTEGER},
+      </if>
+      <if test="record.skuId != null" >
+        sku_id = #{record.skuId,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderdtlName != null" >
+        orderDtl_name = #{record.orderdtlName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderdtlProps != null" >
+        orderDtl_props = #{record.orderdtlProps,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderdtlCount != null" >
+        orderDtl_count = #{record.orderdtlCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderdtlPrice != null" >
+        orderDtl_price = #{record.orderdtlPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.orderdtlMoney != null" >
+        orderDtl_money = #{record.orderdtlMoney,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update order_detail
+    set orderDtl_id = #{record.orderdtlId,jdbcType=INTEGER},
+      order_id = #{record.orderId,jdbcType=INTEGER},
+      sku_id = #{record.skuId,jdbcType=INTEGER},
+      orderDtl_name = #{record.orderdtlName,jdbcType=VARCHAR},
+      orderDtl_props = #{record.orderdtlProps,jdbcType=VARCHAR},
+      orderDtl_count = #{record.orderdtlCount,jdbcType=INTEGER},
+      orderDtl_price = #{record.orderdtlPrice,jdbcType=DOUBLE},
+      orderDtl_money = #{record.orderdtlMoney,jdbcType=DOUBLE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lps.po.OrderDetail" >
+    update order_detail
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="skuId != null" >
+        sku_id = #{skuId,jdbcType=INTEGER},
+      </if>
+      <if test="orderdtlName != null" >
+        orderDtl_name = #{orderdtlName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderdtlProps != null" >
+        orderDtl_props = #{orderdtlProps,jdbcType=VARCHAR},
+      </if>
+      <if test="orderdtlCount != null" >
+        orderDtl_count = #{orderdtlCount,jdbcType=INTEGER},
+      </if>
+      <if test="orderdtlPrice != null" >
+        orderDtl_price = #{orderdtlPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="orderdtlMoney != null" >
+        orderDtl_money = #{orderdtlMoney,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where orderDtl_id = #{orderdtlId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lps.po.OrderDetail" >
+    update order_detail
+    set order_id = #{orderId,jdbcType=INTEGER},
+      sku_id = #{skuId,jdbcType=INTEGER},
+      orderDtl_name = #{orderdtlName,jdbcType=VARCHAR},
+      orderDtl_props = #{orderdtlProps,jdbcType=VARCHAR},
+      orderDtl_count = #{orderdtlCount,jdbcType=INTEGER},
+      orderDtl_price = #{orderdtlPrice,jdbcType=DOUBLE},
+      orderDtl_money = #{orderdtlMoney,jdbcType=DOUBLE}
+    where orderDtl_id = #{orderdtlId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lps.mapper.OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.lps.po.Order" >
+    <id column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="order_num" property="orderNum" jdbcType="VARCHAR" />
+    <result column="cust_id" property="custId" jdbcType="INTEGER" />
+    <result column="admin_id" property="adminId" jdbcType="INTEGER" />
+    <result column="order_state" property="orderState" jdbcType="INTEGER" />
+    <result column="order_create" property="orderCreate" jdbcType="TIMESTAMP" />
+    <result column="order_pay" property="orderPay" jdbcType="TIMESTAMP" />
+    <result column="order_receive" property="orderReceive" jdbcType="TIMESTAMP" />
+    <result column="order_deliInfo" property="orderDeliinfo" jdbcType="VARCHAR" />
+    <result column="order_remark" property="orderRemark" jdbcType="VARCHAR" />
+    <result column="order_money" property="orderMoney" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    order_id, order_num, cust_id, admin_id, order_state, order_create, order_pay, order_receive, 
+    order_deliInfo, order_remark, order_money
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lps.po.OrderExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from order
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from order
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lps.po.OrderExample" >
+    delete from order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lps.po.Order" >
+    insert into order (order_id, order_num, cust_id, 
+      admin_id, order_state, order_create, 
+      order_pay, order_receive, order_deliInfo, 
+      order_remark, order_money)
+    values (#{orderId,jdbcType=INTEGER}, #{orderNum,jdbcType=VARCHAR}, #{custId,jdbcType=INTEGER}, 
+      #{adminId,jdbcType=INTEGER}, #{orderState,jdbcType=INTEGER}, #{orderCreate,jdbcType=TIMESTAMP}, 
+      #{orderPay,jdbcType=TIMESTAMP}, #{orderReceive,jdbcType=TIMESTAMP}, #{orderDeliinfo,jdbcType=VARCHAR}, 
+      #{orderRemark,jdbcType=VARCHAR}, #{orderMoney,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lps.po.Order" >
+    insert into order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="orderNum != null" >
+        order_num,
+      </if>
+      <if test="custId != null" >
+        cust_id,
+      </if>
+      <if test="adminId != null" >
+        admin_id,
+      </if>
+      <if test="orderState != null" >
+        order_state,
+      </if>
+      <if test="orderCreate != null" >
+        order_create,
+      </if>
+      <if test="orderPay != null" >
+        order_pay,
+      </if>
+      <if test="orderReceive != null" >
+        order_receive,
+      </if>
+      <if test="orderDeliinfo != null" >
+        order_deliInfo,
+      </if>
+      <if test="orderRemark != null" >
+        order_remark,
+      </if>
+      <if test="orderMoney != null" >
+        order_money,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="orderNum != null" >
+        #{orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="custId != null" >
+        #{custId,jdbcType=INTEGER},
+      </if>
+      <if test="adminId != null" >
+        #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="orderState != null" >
+        #{orderState,jdbcType=INTEGER},
+      </if>
+      <if test="orderCreate != null" >
+        #{orderCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderPay != null" >
+        #{orderPay,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderReceive != null" >
+        #{orderReceive,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderDeliinfo != null" >
+        #{orderDeliinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderRemark != null" >
+        #{orderRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="orderMoney != null" >
+        #{orderMoney,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lps.po.OrderExample" resultType="java.lang.Integer" >
+    select count(*) from order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update order
+    <set >
+      <if test="record.orderId != null" >
+        order_id = #{record.orderId,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderNum != null" >
+        order_num = #{record.orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.custId != null" >
+        cust_id = #{record.custId,jdbcType=INTEGER},
+      </if>
+      <if test="record.adminId != null" >
+        admin_id = #{record.adminId,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderState != null" >
+        order_state = #{record.orderState,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderCreate != null" >
+        order_create = #{record.orderCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.orderPay != null" >
+        order_pay = #{record.orderPay,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.orderReceive != null" >
+        order_receive = #{record.orderReceive,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.orderDeliinfo != null" >
+        order_deliInfo = #{record.orderDeliinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderRemark != null" >
+        order_remark = #{record.orderRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderMoney != null" >
+        order_money = #{record.orderMoney,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update order
+    set order_id = #{record.orderId,jdbcType=INTEGER},
+      order_num = #{record.orderNum,jdbcType=VARCHAR},
+      cust_id = #{record.custId,jdbcType=INTEGER},
+      admin_id = #{record.adminId,jdbcType=INTEGER},
+      order_state = #{record.orderState,jdbcType=INTEGER},
+      order_create = #{record.orderCreate,jdbcType=TIMESTAMP},
+      order_pay = #{record.orderPay,jdbcType=TIMESTAMP},
+      order_receive = #{record.orderReceive,jdbcType=TIMESTAMP},
+      order_deliInfo = #{record.orderDeliinfo,jdbcType=VARCHAR},
+      order_remark = #{record.orderRemark,jdbcType=VARCHAR},
+      order_money = #{record.orderMoney,jdbcType=DOUBLE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lps.po.Order" >
+    update order
+    <set >
+      <if test="orderNum != null" >
+        order_num = #{orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="custId != null" >
+        cust_id = #{custId,jdbcType=INTEGER},
+      </if>
+      <if test="adminId != null" >
+        admin_id = #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="orderState != null" >
+        order_state = #{orderState,jdbcType=INTEGER},
+      </if>
+      <if test="orderCreate != null" >
+        order_create = #{orderCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderPay != null" >
+        order_pay = #{orderPay,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderReceive != null" >
+        order_receive = #{orderReceive,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderDeliinfo != null" >
+        order_deliInfo = #{orderDeliinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderRemark != null" >
+        order_remark = #{orderRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="orderMoney != null" >
+        order_money = #{orderMoney,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lps.po.Order" >
+    update order
+    set order_num = #{orderNum,jdbcType=VARCHAR},
+      cust_id = #{custId,jdbcType=INTEGER},
+      admin_id = #{adminId,jdbcType=INTEGER},
+      order_state = #{orderState,jdbcType=INTEGER},
+      order_create = #{orderCreate,jdbcType=TIMESTAMP},
+      order_pay = #{orderPay,jdbcType=TIMESTAMP},
+      order_receive = #{orderReceive,jdbcType=TIMESTAMP},
+      order_deliInfo = #{orderDeliinfo,jdbcType=VARCHAR},
+      order_remark = #{orderRemark,jdbcType=VARCHAR},
+      order_money = #{orderMoney,jdbcType=DOUBLE}
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+</mapper>

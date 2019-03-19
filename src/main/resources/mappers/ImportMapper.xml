@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lps.mapper.ImportMapper" >
+  <resultMap id="BaseResultMap" type="com.lps.po.Import" >
+    <id column="import_id" property="importId" jdbcType="INTEGER" />
+    <result column="sku_id" property="skuId" jdbcType="INTEGER" />
+    <result column="import_cost" property="importCost" jdbcType="DOUBLE" />
+    <result column="import_count" property="importCount" jdbcType="INTEGER" />
+    <result column="import_bus" property="importBus" jdbcType="VARCHAR" />
+    <result column="admin_id" property="adminId" jdbcType="INTEGER" />
+    <result column="import_date" property="importDate" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    import_id, sku_id, import_cost, import_count, import_bus, admin_id, import_date
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lps.po.ImportExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from import
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from import
+    where import_id = #{importId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from import
+    where import_id = #{importId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lps.po.ImportExample" >
+    delete from import
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lps.po.Import" >
+    insert into import (import_id, sku_id, import_cost, 
+      import_count, import_bus, admin_id, 
+      import_date)
+    values (#{importId,jdbcType=INTEGER}, #{skuId,jdbcType=INTEGER}, #{importCost,jdbcType=DOUBLE}, 
+      #{importCount,jdbcType=INTEGER}, #{importBus,jdbcType=VARCHAR}, #{adminId,jdbcType=INTEGER}, 
+      #{importDate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lps.po.Import" >
+    insert into import
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="importId != null" >
+        import_id,
+      </if>
+      <if test="skuId != null" >
+        sku_id,
+      </if>
+      <if test="importCost != null" >
+        import_cost,
+      </if>
+      <if test="importCount != null" >
+        import_count,
+      </if>
+      <if test="importBus != null" >
+        import_bus,
+      </if>
+      <if test="adminId != null" >
+        admin_id,
+      </if>
+      <if test="importDate != null" >
+        import_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="importId != null" >
+        #{importId,jdbcType=INTEGER},
+      </if>
+      <if test="skuId != null" >
+        #{skuId,jdbcType=INTEGER},
+      </if>
+      <if test="importCost != null" >
+        #{importCost,jdbcType=DOUBLE},
+      </if>
+      <if test="importCount != null" >
+        #{importCount,jdbcType=INTEGER},
+      </if>
+      <if test="importBus != null" >
+        #{importBus,jdbcType=VARCHAR},
+      </if>
+      <if test="adminId != null" >
+        #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="importDate != null" >
+        #{importDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lps.po.ImportExample" resultType="java.lang.Integer" >
+    select count(*) from import
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update import
+    <set >
+      <if test="record.importId != null" >
+        import_id = #{record.importId,jdbcType=INTEGER},
+      </if>
+      <if test="record.skuId != null" >
+        sku_id = #{record.skuId,jdbcType=INTEGER},
+      </if>
+      <if test="record.importCost != null" >
+        import_cost = #{record.importCost,jdbcType=DOUBLE},
+      </if>
+      <if test="record.importCount != null" >
+        import_count = #{record.importCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.importBus != null" >
+        import_bus = #{record.importBus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adminId != null" >
+        admin_id = #{record.adminId,jdbcType=INTEGER},
+      </if>
+      <if test="record.importDate != null" >
+        import_date = #{record.importDate,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update import
+    set import_id = #{record.importId,jdbcType=INTEGER},
+      sku_id = #{record.skuId,jdbcType=INTEGER},
+      import_cost = #{record.importCost,jdbcType=DOUBLE},
+      import_count = #{record.importCount,jdbcType=INTEGER},
+      import_bus = #{record.importBus,jdbcType=VARCHAR},
+      admin_id = #{record.adminId,jdbcType=INTEGER},
+      import_date = #{record.importDate,jdbcType=DATE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lps.po.Import" >
+    update import
+    <set >
+      <if test="skuId != null" >
+        sku_id = #{skuId,jdbcType=INTEGER},
+      </if>
+      <if test="importCost != null" >
+        import_cost = #{importCost,jdbcType=DOUBLE},
+      </if>
+      <if test="importCount != null" >
+        import_count = #{importCount,jdbcType=INTEGER},
+      </if>
+      <if test="importBus != null" >
+        import_bus = #{importBus,jdbcType=VARCHAR},
+      </if>
+      <if test="adminId != null" >
+        admin_id = #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="importDate != null" >
+        import_date = #{importDate,jdbcType=DATE},
+      </if>
+    </set>
+    where import_id = #{importId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lps.po.Import" >
+    update import
+    set sku_id = #{skuId,jdbcType=INTEGER},
+      import_cost = #{importCost,jdbcType=DOUBLE},
+      import_count = #{importCount,jdbcType=INTEGER},
+      import_bus = #{importBus,jdbcType=VARCHAR},
+      admin_id = #{adminId,jdbcType=INTEGER},
+      import_date = #{importDate,jdbcType=DATE}
+    where import_id = #{importId,jdbcType=INTEGER}
+  </update>
+</mapper>

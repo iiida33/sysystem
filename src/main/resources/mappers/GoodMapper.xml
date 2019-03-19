@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lps.mapper.GoodMapper" >
+  <resultMap id="BaseResultMap" type="com.lps.po.Good" >
+    <id column="good_id" property="goodId" jdbcType="INTEGER" />
+    <result column="good_name" property="goodName" jdbcType="VARCHAR" />
+    <result column="cat_id" property="catId" jdbcType="INTEGER" />
+    <result column="good_brand" property="goodBrand" jdbcType="VARCHAR" />
+    <result column="good_describe" property="goodDescribe" jdbcType="VARCHAR" />
+    <result column="good_props" property="goodProps" jdbcType="VARCHAR" />
+    <result column="good_state" property="goodState" jdbcType="BIT" />
+    <result column="good_image" property="goodImage" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    good_id, good_name, cat_id, good_brand, good_describe, good_props, good_state, good_image
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lps.po.GoodExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from good
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from good
+    where good_id = #{goodId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from good
+    where good_id = #{goodId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lps.po.GoodExample" >
+    delete from good
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lps.po.Good" >
+    insert into good (good_id, good_name, cat_id, 
+      good_brand, good_describe, good_props, 
+      good_state, good_image)
+    values (#{goodId,jdbcType=INTEGER}, #{goodName,jdbcType=VARCHAR}, #{catId,jdbcType=INTEGER}, 
+      #{goodBrand,jdbcType=VARCHAR}, #{goodDescribe,jdbcType=VARCHAR}, #{goodProps,jdbcType=VARCHAR}, 
+      #{goodState,jdbcType=BIT}, #{goodImage,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lps.po.Good" >
+    insert into good
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="goodId != null" >
+        good_id,
+      </if>
+      <if test="goodName != null" >
+        good_name,
+      </if>
+      <if test="catId != null" >
+        cat_id,
+      </if>
+      <if test="goodBrand != null" >
+        good_brand,
+      </if>
+      <if test="goodDescribe != null" >
+        good_describe,
+      </if>
+      <if test="goodProps != null" >
+        good_props,
+      </if>
+      <if test="goodState != null" >
+        good_state,
+      </if>
+      <if test="goodImage != null" >
+        good_image,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="goodId != null" >
+        #{goodId,jdbcType=INTEGER},
+      </if>
+      <if test="goodName != null" >
+        #{goodName,jdbcType=VARCHAR},
+      </if>
+      <if test="catId != null" >
+        #{catId,jdbcType=INTEGER},
+      </if>
+      <if test="goodBrand != null" >
+        #{goodBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="goodDescribe != null" >
+        #{goodDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="goodProps != null" >
+        #{goodProps,jdbcType=VARCHAR},
+      </if>
+      <if test="goodState != null" >
+        #{goodState,jdbcType=BIT},
+      </if>
+      <if test="goodImage != null" >
+        #{goodImage,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lps.po.GoodExample" resultType="java.lang.Integer" >
+    select count(*) from good
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update good
+    <set >
+      <if test="record.goodId != null" >
+        good_id = #{record.goodId,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodName != null" >
+        good_name = #{record.goodName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.catId != null" >
+        cat_id = #{record.catId,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodBrand != null" >
+        good_brand = #{record.goodBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodDescribe != null" >
+        good_describe = #{record.goodDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodProps != null" >
+        good_props = #{record.goodProps,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodState != null" >
+        good_state = #{record.goodState,jdbcType=BIT},
+      </if>
+      <if test="record.goodImage != null" >
+        good_image = #{record.goodImage,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update good
+    set good_id = #{record.goodId,jdbcType=INTEGER},
+      good_name = #{record.goodName,jdbcType=VARCHAR},
+      cat_id = #{record.catId,jdbcType=INTEGER},
+      good_brand = #{record.goodBrand,jdbcType=VARCHAR},
+      good_describe = #{record.goodDescribe,jdbcType=VARCHAR},
+      good_props = #{record.goodProps,jdbcType=VARCHAR},
+      good_state = #{record.goodState,jdbcType=BIT},
+      good_image = #{record.goodImage,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lps.po.Good" >
+    update good
+    <set >
+      <if test="goodName != null" >
+        good_name = #{goodName,jdbcType=VARCHAR},
+      </if>
+      <if test="catId != null" >
+        cat_id = #{catId,jdbcType=INTEGER},
+      </if>
+      <if test="goodBrand != null" >
+        good_brand = #{goodBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="goodDescribe != null" >
+        good_describe = #{goodDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="goodProps != null" >
+        good_props = #{goodProps,jdbcType=VARCHAR},
+      </if>
+      <if test="goodState != null" >
+        good_state = #{goodState,jdbcType=BIT},
+      </if>
+      <if test="goodImage != null" >
+        good_image = #{goodImage,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where good_id = #{goodId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lps.po.Good" >
+    update good
+    set good_name = #{goodName,jdbcType=VARCHAR},
+      cat_id = #{catId,jdbcType=INTEGER},
+      good_brand = #{goodBrand,jdbcType=VARCHAR},
+      good_describe = #{goodDescribe,jdbcType=VARCHAR},
+      good_props = #{goodProps,jdbcType=VARCHAR},
+      good_state = #{goodState,jdbcType=BIT},
+      good_image = #{goodImage,jdbcType=VARCHAR}
+    where good_id = #{goodId,jdbcType=INTEGER}
+  </update>
+</mapper>
