@@ -178,4 +178,22 @@
       good_id = #{goodId,jdbcType=INTEGER}
     where collect_id = #{collectId,jdbcType=INTEGER}
   </update>
+
+  <!--自定义-->
+  <resultMap id="CollectShowMap" type="com.lps.vo.CollectShowModel">
+    <id column="collect_id" property="collectId" jdbcType="INTEGER"/>
+    <result column="good_id" property="goodId" jdbcType="INTEGER"/>
+    <result column="good_name" property="goodName" jdbcType="VARCHAR"/>
+    <result column="good_state" property="goodState" jdbcType="BIT"/>
+    <result column="good_image" property="goodImage" jdbcType="VARCHAR"/>
+    <result column="sku_price" property="Price" jdbcType="DOUBLE"/>
+  </resultMap>
+
+  <!--根据用户ID查询收藏夹展示信息列表
+  sql:SELECT collect_id,collect.good_id, good_name,good_state,good_image,MIN(sku_price) FROM collect
+             LEFT JOIN good ON collect.good_id = good.good_id LEFT
+             JOIN good_sku ON collect.collect_id=good_sku.good_id GROUP BY good_id;-->
+  <select id="" parameterType="java.lang.Integer" resultMap="CollectShowMap">
+
+  </select>
 </mapper>

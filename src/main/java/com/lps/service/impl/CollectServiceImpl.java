@@ -1,7 +1,9 @@
 package com.lps.service.impl;
 
+import com.lps.mapper.CollectMapper;
 import com.lps.service.ICollectService;
 import com.lps.vo.CollectShowModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +16,10 @@ import java.util.List;
  **/
 @Service
 public class CollectServiceImpl implements ICollectService {
+
+    @Autowired
+    private CollectMapper collectMapper;
+
     @Override
     public List<CollectShowModel> findByUserId(int custId) {
         return null;
