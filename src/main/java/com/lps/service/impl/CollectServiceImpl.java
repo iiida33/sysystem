@@ -1,6 +1,8 @@
 package com.lps.service.impl;
 
 import com.lps.mapper.CollectMapper;
+import com.lps.po.Collect;
+import com.lps.po.CollectExample;
 import com.lps.service.ICollectService;
 import com.lps.vo.CollectShowModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,21 +24,22 @@ public class CollectServiceImpl implements ICollectService {
 
     @Override
     public List<CollectShowModel> findByUserId(int custId) {
-        return null;
+        return collectMapper.selectByCustIdShow(custId);
     }
 
     @Override
     public void deleteByCollcetId(int collcetId) {
-
+        collectMapper.deleteByPrimaryKey(collcetId);
     }
 
     @Override
     public void deleteByCustId(int custId) {
-
+        collectMapper.deleteByCustId(custId);
     }
 
     @Override
-    public void insertCollect(int custId, int goodId) {
-
+    public void insertCollect(Collect collect) {
+//        如果前台不能设置已收藏效果 需要判断是否已收藏
+        collectMapper.insertSelective(collect);
     }
 }

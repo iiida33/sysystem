@@ -14,11 +14,17 @@ public class ShoppingCartGoodSku extends ShoppingCart {
 
     private double money;
 
+    private String props;
+
+    private String goodName;
+
     @Override
     public String toString() {
         return "ShoppingCartGoodSku{" +
                 "goodSku=" + goodSku +
                 ", money=" + money +
+                ", props='" + props + '\'' +
+                ", goodName='" + goodName + '\'' +
                 '}';
     }
 
@@ -30,11 +36,27 @@ public class ShoppingCartGoodSku extends ShoppingCart {
         this.goodSku = goodSku;
     }
 
-    public double getMoney() { ;
-        return goodSku.getSkuPrice()*getCartCount();
+    public double getMoney() {
+        return money;
     }
 
     public void setMoney(double money) {
         this.money = money;
+    }
+
+    public String getProps() {
+        return props;
+    }
+
+    public void setProps(String props) {
+        this.props = props;
+    }
+
+    public String getGoodName() {
+        return goodName;
+    }
+
+    public void setGoodName(String goodName) {
+        this.goodName = goodName;
     }
 }

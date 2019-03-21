@@ -13,7 +13,7 @@ public class CustomerShowModel {
 
     private String custUsername;
 
-    private Date custCreat;
+    private Date custCreate;
 
     private Date orderCreate;
 
@@ -34,11 +34,11 @@ public class CustomerShowModel {
     }
 
     public Date getCustCreat() {
-        return custCreat;
+        return custCreate;
     }
 
     public void setCustCreat(Date custCreat) {
-        this.custCreat = custCreat;
+        this.custCreate = custCreat;
     }
 
     public Date getOrderCreate() {
@@ -54,7 +54,7 @@ public class CustomerShowModel {
         return "CustomerShowModel{" +
                 "custId=" + custId +
                 ", custUsername='" + custUsername + '\'' +
-                ", custCreat=" + custCreat +
+                ", custCreat=" + custCreate +
                 ", orderCreate=" + orderCreate +
                 '}';
     }

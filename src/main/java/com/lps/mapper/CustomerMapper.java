@@ -3,6 +3,8 @@ package com.lps.mapper;
 import com.lps.po.Customer;
 import com.lps.po.CustomerExample;
 import java.util.List;
+
+import com.lps.vo.CustomerShowModel;
 import org.apache.ibatis.annotations.Param;
 
 public interface CustomerMapper {
@@ -27,4 +29,7 @@ public interface CustomerMapper {
     int updateByPrimaryKeySelective(Customer record);
 
     int updateByPrimaryKey(Customer record);
+
+// -------------自定义部分-------------------------------------------------------------------
+    List<CustomerShowModel> findAllToShow();
 }

@@ -1,11 +1,11 @@
 package com.lps.po;
 
 public class Collect {
-    private Integer collectId;
+        private Integer collectId;
 
-    private Integer custId;
+        private Integer custId;
 
-    private Integer goodId;
+        private Integer goodId;
 
     public Integer getCollectId() {
         return collectId;

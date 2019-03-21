@@ -255,4 +255,14 @@
       is_default = #{isDefault,jdbcType=BIT}
     where del_id = #{delId,jdbcType=INTEGER}
   </update>
+
+  <!--自定义部分-->
+  <!--查找是否有默认地址-->
+  <select id="selectIsDefault" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    SELECT COUNT(*) FROM delivery_info WHERE cust_id=#{custId,jdbcType=INTEGER} and is_default=TRUE
+  </select>
+  <!--根据用户ID查询快递地址信息-->
+  <select id="selectByCustId" parameterType="java.lang.Integer" resultType="com.lps.po.DeliveryInfo">
+    SELECT * FROM delivery_info WHERE cust_id=#{custId,jdbcType=INTEGER}
+  </select>
 </mapper>

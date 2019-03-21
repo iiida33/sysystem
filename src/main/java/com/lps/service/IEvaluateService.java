@@ -1,5 +1,6 @@
 package com.lps.service;
 
+import com.lps.exception.CustomException;
 import com.lps.po.Evaluate;
 import com.lps.vo.EvaluateShowModel;
 
@@ -15,5 +16,5 @@ public interface IEvaluateService {
 //    根据顾客Id查询评价信息
     public List<EvaluateShowModel> findByCustId(int custId);
 //    顾客修改评价信息
-    public void updateEvaluateSelective(Evaluate evaluate);
+    public void updateEvaluateSelective(Evaluate evaluate)throws CustomException;
 }

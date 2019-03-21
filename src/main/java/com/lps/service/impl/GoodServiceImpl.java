@@ -1,10 +1,12 @@
 package com.lps.service.impl;
 
+import com.lps.mapper.GoodMapper;
 import com.lps.po.Good;
 import com.lps.service.IGoodService;
 import com.lps.vo.GoodAndPic;
 import com.lps.vo.GoodShowPage;
 import com.lps.vo.GoodSimpleShow;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +19,10 @@ import java.util.List;
  **/
 @Service
 public class GoodServiceImpl implements IGoodService {
+
+    @Autowired
+    private GoodMapper goodMapper;
+
     @Override
     public void insertGood(GoodAndPic goodAndPic) {
 

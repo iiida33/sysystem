@@ -13,6 +13,11 @@ import java.util.List;
  * @Date: 14:55 2019/3/18
  **/
 public class GoodAndPic extends Good {
+
+    private List<GoodPic> goodPics;
+
+    private List<GoodSku> goodSkus;
+
     public List<GoodPic> getGoodPics() {
         return goodPics;
     }
@@ -28,10 +33,6 @@ public class GoodAndPic extends Good {
     public void setGoodSkus(List<GoodSku> goodSkus) {
         this.goodSkus = goodSkus;
     }
-
-    private List<GoodPic> goodPics;
-
-    private List<GoodSku> goodSkus;
 
     @Override
     public String toString() {

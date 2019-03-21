@@ -1,107 +1,109 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.lps.mapper.EvaluateMapper" >
-  <resultMap id="BaseResultMap" type="com.lps.po.Evaluate" >
-    <id column="evaluate_id" property="evaluateId" jdbcType="INTEGER" />
-    <result column="orderDtl_id" property="orderdtlId" jdbcType="INTEGER" />
-    <result column="good_id" property="goodId" jdbcType="INTEGER" />
-    <result column="cust_id" property="custId" jdbcType="INTEGER" />
-    <result column="evaluate_text" property="evaluateText" jdbcType="VARCHAR" />
-    <result column="evaluate_date" property="evaluateDate" jdbcType="DATE" />
-    <result column="evaluate_state" property="evaluateState" jdbcType="BIT" />
-  </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+<mapper namespace="com.lps.mapper.EvaluateMapper">
+    <resultMap id="BaseResultMap" type="com.lps.po.Evaluate">
+        <id column="evaluate_id" property="evaluateId" jdbcType="INTEGER"/>
+        <result column="orderDtl_id" property="orderdtlId" jdbcType="INTEGER"/>
+        <result column="good_id" property="goodId" jdbcType="INTEGER"/>
+        <result column="cust_id" property="custId" jdbcType="INTEGER"/>
+        <result column="evaluate_text" property="evaluateText" jdbcType="VARCHAR"/>
+        <result column="evaluate_date" property="evaluateDate" jdbcType="DATE"/>
+        <result column="evaluate_state" property="evaluateState" jdbcType="BIT"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List" >
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
     evaluate_id, orderDtl_id, good_id, cust_id, evaluate_text, evaluate_date, evaluate_state
-  </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lps.po.EvaluateExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from evaluate
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from evaluate
-    where evaluate_id = #{evaluateId,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    </sql>
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lps.po.EvaluateExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from evaluate
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from evaluate
+        where evaluate_id = #{evaluateId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from evaluate
     where evaluate_id = #{evaluateId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.lps.po.EvaluateExample" >
-    delete from evaluate
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.lps.po.Evaluate" >
+    <delete id="deleteByExample" parameterType="com.lps.po.EvaluateExample">
+        delete from evaluate
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.lps.po.Evaluate">
     insert into evaluate (evaluate_id, orderDtl_id, good_id, 
       cust_id, evaluate_text, evaluate_date, 
       evaluate_state)
@@ -109,128 +111,128 @@
       #{custId,jdbcType=INTEGER}, #{evaluateText,jdbcType=VARCHAR}, #{evaluateDate,jdbcType=DATE}, 
       #{evaluateState,jdbcType=BIT})
   </insert>
-  <insert id="insertSelective" parameterType="com.lps.po.Evaluate" >
-    insert into evaluate
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="evaluateId != null" >
-        evaluate_id,
-      </if>
-      <if test="orderdtlId != null" >
-        orderDtl_id,
-      </if>
-      <if test="goodId != null" >
-        good_id,
-      </if>
-      <if test="custId != null" >
-        cust_id,
-      </if>
-      <if test="evaluateText != null" >
-        evaluate_text,
-      </if>
-      <if test="evaluateDate != null" >
-        evaluate_date,
-      </if>
-      <if test="evaluateState != null" >
-        evaluate_state,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="evaluateId != null" >
-        #{evaluateId,jdbcType=INTEGER},
-      </if>
-      <if test="orderdtlId != null" >
-        #{orderdtlId,jdbcType=INTEGER},
-      </if>
-      <if test="goodId != null" >
-        #{goodId,jdbcType=INTEGER},
-      </if>
-      <if test="custId != null" >
-        #{custId,jdbcType=INTEGER},
-      </if>
-      <if test="evaluateText != null" >
-        #{evaluateText,jdbcType=VARCHAR},
-      </if>
-      <if test="evaluateDate != null" >
-        #{evaluateDate,jdbcType=DATE},
-      </if>
-      <if test="evaluateState != null" >
-        #{evaluateState,jdbcType=BIT},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.lps.po.EvaluateExample" resultType="java.lang.Integer" >
-    select count(*) from evaluate
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map" >
-    update evaluate
-    <set >
-      <if test="record.evaluateId != null" >
-        evaluate_id = #{record.evaluateId,jdbcType=INTEGER},
-      </if>
-      <if test="record.orderdtlId != null" >
+    <insert id="insertSelective" parameterType="com.lps.po.Evaluate">
+        insert into evaluate
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="evaluateId != null">
+                evaluate_id,
+            </if>
+            <if test="orderdtlId != null">
+                orderDtl_id,
+            </if>
+            <if test="goodId != null">
+                good_id,
+            </if>
+            <if test="custId != null">
+                cust_id,
+            </if>
+            <if test="evaluateText != null">
+                evaluate_text,
+            </if>
+            <if test="evaluateDate != null">
+                evaluate_date,
+            </if>
+            <if test="evaluateState != null">
+                evaluate_state,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="evaluateId != null">
+                #{evaluateId,jdbcType=INTEGER},
+            </if>
+            <if test="orderdtlId != null">
+                #{orderdtlId,jdbcType=INTEGER},
+            </if>
+            <if test="goodId != null">
+                #{goodId,jdbcType=INTEGER},
+            </if>
+            <if test="custId != null">
+                #{custId,jdbcType=INTEGER},
+            </if>
+            <if test="evaluateText != null">
+                #{evaluateText,jdbcType=VARCHAR},
+            </if>
+            <if test="evaluateDate != null">
+                #{evaluateDate,jdbcType=DATE},
+            </if>
+            <if test="evaluateState != null">
+                #{evaluateState,jdbcType=BIT},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.lps.po.EvaluateExample" resultType="java.lang.Integer">
+        select count(*) from evaluate
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update evaluate
+        <set>
+            <if test="record.evaluateId != null">
+                evaluate_id = #{record.evaluateId,jdbcType=INTEGER},
+            </if>
+            <if test="record.orderdtlId != null">
+                orderDtl_id = #{record.orderdtlId,jdbcType=INTEGER},
+            </if>
+            <if test="record.goodId != null">
+                good_id = #{record.goodId,jdbcType=INTEGER},
+            </if>
+            <if test="record.custId != null">
+                cust_id = #{record.custId,jdbcType=INTEGER},
+            </if>
+            <if test="record.evaluateText != null">
+                evaluate_text = #{record.evaluateText,jdbcType=VARCHAR},
+            </if>
+            <if test="record.evaluateDate != null">
+                evaluate_date = #{record.evaluateDate,jdbcType=DATE},
+            </if>
+            <if test="record.evaluateState != null">
+                evaluate_state = #{record.evaluateState,jdbcType=BIT},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update evaluate
+        set evaluate_id = #{record.evaluateId,jdbcType=INTEGER},
         orderDtl_id = #{record.orderdtlId,jdbcType=INTEGER},
-      </if>
-      <if test="record.goodId != null" >
         good_id = #{record.goodId,jdbcType=INTEGER},
-      </if>
-      <if test="record.custId != null" >
         cust_id = #{record.custId,jdbcType=INTEGER},
-      </if>
-      <if test="record.evaluateText != null" >
         evaluate_text = #{record.evaluateText,jdbcType=VARCHAR},
-      </if>
-      <if test="record.evaluateDate != null" >
         evaluate_date = #{record.evaluateDate,jdbcType=DATE},
-      </if>
-      <if test="record.evaluateState != null" >
-        evaluate_state = #{record.evaluateState,jdbcType=BIT},
-      </if>
-    </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map" >
-    update evaluate
-    set evaluate_id = #{record.evaluateId,jdbcType=INTEGER},
-      orderDtl_id = #{record.orderdtlId,jdbcType=INTEGER},
-      good_id = #{record.goodId,jdbcType=INTEGER},
-      cust_id = #{record.custId,jdbcType=INTEGER},
-      evaluate_text = #{record.evaluateText,jdbcType=VARCHAR},
-      evaluate_date = #{record.evaluateDate,jdbcType=DATE},
-      evaluate_state = #{record.evaluateState,jdbcType=BIT}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.lps.po.Evaluate" >
-    update evaluate
-    <set >
-      <if test="orderdtlId != null" >
-        orderDtl_id = #{orderdtlId,jdbcType=INTEGER},
-      </if>
-      <if test="goodId != null" >
-        good_id = #{goodId,jdbcType=INTEGER},
-      </if>
-      <if test="custId != null" >
-        cust_id = #{custId,jdbcType=INTEGER},
-      </if>
-      <if test="evaluateText != null" >
-        evaluate_text = #{evaluateText,jdbcType=VARCHAR},
-      </if>
-      <if test="evaluateDate != null" >
-        evaluate_date = #{evaluateDate,jdbcType=DATE},
-      </if>
-      <if test="evaluateState != null" >
-        evaluate_state = #{evaluateState,jdbcType=BIT},
-      </if>
-    </set>
-    where evaluate_id = #{evaluateId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.lps.po.Evaluate" >
+        evaluate_state = #{record.evaluateState,jdbcType=BIT}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lps.po.Evaluate">
+        update evaluate
+        <set>
+            <if test="orderdtlId != null">
+                orderDtl_id = #{orderdtlId,jdbcType=INTEGER},
+            </if>
+            <if test="goodId != null">
+                good_id = #{goodId,jdbcType=INTEGER},
+            </if>
+            <if test="custId != null">
+                cust_id = #{custId,jdbcType=INTEGER},
+            </if>
+            <if test="evaluateText != null">
+                evaluate_text = #{evaluateText,jdbcType=VARCHAR},
+            </if>
+            <if test="evaluateDate != null">
+                evaluate_date = #{evaluateDate,jdbcType=DATE},
+            </if>
+            <if test="evaluateState != null">
+                evaluate_state = #{evaluateState,jdbcType=BIT},
+            </if>
+        </set>
+        where evaluate_id = #{evaluateId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lps.po.Evaluate">
     update evaluate
     set orderDtl_id = #{orderdtlId,jdbcType=INTEGER},
       good_id = #{goodId,jdbcType=INTEGER},
@@ -240,4 +242,41 @@
       evaluate_state = #{evaluateState,jdbcType=BIT}
     where evaluate_id = #{evaluateId,jdbcType=INTEGER}
   </update>
+
+    <!--自定义部分-->
+    <!--评价信息展示模块-->
+    <resultMap id="EvaluateShowResultMap" type="com.lps.vo.EvaluateShowModel">
+        <id column="evaluate_id" property="evaluateId" jdbcType="INTEGER"/>
+        <result column="cust_username" property="custUsername" jdbcType="VARCHAR"/>
+        <result column="evaluate_text" property="evaluateText" jdbcType="VARCHAR"/>
+        <result column="evaluate_date" property="evaluateDate" jdbcType="DATE"/>
+        <result column="evaluate_state" property="evaluateState" jdbcType="BIT"/>
+        <result column="orderDtl_props" property="skuProps" jdbcType="VARCHAR"/>
+        <result column="orderDtl_name" property="goodName" jdbcType="VARCHAR"/>
+        <result column="order_num" property="orderNum" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Evaluate_Show_Model">
+        evaluate_id,evaluate_text,evaluate_date,evaluate_state,cust_username,orderDtl_props,orderDtl_name,order_num
+    </sql>
+    <sql id="Join_Part">
+      LEFT JOIN customer ON evaluate.cust_id=customer.cust_id
+      LEFT JOIN order_detail ON evaluate.orderDtl_id=order_detail.orderDtl_id
+      LEFT JOIN `order` ON order_detail.order_id=`order`.order_id
+    </sql>
+    <!--根据商品Id查询评价信息-->
+    <select id="selectByGoodId" parameterType="java.lang.Integer" resultMap="EvaluateShowResultMap">
+        SELECT
+        <include refid="Evaluate_Show_Model"/>
+        FROM evaluate
+        <include refid="Join_Part"/>
+        WHERE evaluate.good_id = #{goodId,jdbcType=INTEGER}
+    </select>
+    <!--根据顾客Id查询评价信息-->
+    <select id="selectByCustId" parameterType="java.lang.Integer" resultMap="EvaluateShowResultMap">
+        SELECT
+        <include refid="Evaluate_Show_Model"/>
+        FROM evaluate
+        <include refid="Join_Part"/>
+        WHERE evaluate.cust_id = #{custId,jdbcType=INTEGER}
+    </select>
 </mapper>

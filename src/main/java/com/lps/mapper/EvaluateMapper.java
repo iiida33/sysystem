@@ -2,7 +2,10 @@ package com.lps.mapper;
 
 import com.lps.po.Evaluate;
 import com.lps.po.EvaluateExample;
+
 import java.util.List;
+
+import com.lps.vo.EvaluateShowModel;
 import org.apache.ibatis.annotations.Param;
 
 public interface EvaluateMapper {
@@ -27,4 +30,11 @@ public interface EvaluateMapper {
     int updateByPrimaryKeySelective(Evaluate record);
 
     int updateByPrimaryKey(Evaluate record);
+
+    //    ----------------------自定义部分-----------------------------------
+    //    根据商品Id查询评价信息
+    List<EvaluateShowModel> selectByGoodId(Integer goodId);
+
+    //    根据顾客Id查询评价信息
+    List<EvaluateShowModel> selectByCustId(Integer custId);
 }
