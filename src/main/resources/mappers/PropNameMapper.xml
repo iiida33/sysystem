@@ -223,4 +223,29 @@
       is_sale = #{isSale,jdbcType=BIT}
     where pn_id = #{pnId,jdbcType=INTEGER}
   </update>
+
+  <!--自定义部分-->
+  <resultMap id="PropNameAndValueList" type="com.lps.vo.PropNameAndValueList" extends="BaseResultMap">
+    <collection property="propValues" ofType="com.lps.po.PropValue">
+      <id column="pv_id" property="pvId" jdbcType="INTEGER" />
+      <result column="pv_name" property="pvName" jdbcType="VARCHAR" />
+    </collection>
+  </resultMap>
+  <sql id="Name_Value_List" >
+    prop_name.pn_id,pn_name,cat_id,is_must,is_select,is_sale,pv_id,pv_name
+  </sql>
+  <!--根据CatId查询所有属性和对应的属性值-->
+  <select id="selectAllNameAndValueByCatId" parameterType="java.lang.Integer" resultMap="PropNameAndValueList">
+    SELECT
+    <include refid="Name_Value_List" />
+    FROM prop_name,prop_value
+    WHERE prop_name.pn_id= prop_value.pn_id AND cat_id = #{catId,jdbcType=INTEGER}
+  </select>
+  <!--根据PnId查询属性和对应的属性值-->
+  <select id="selectNameAndAllValueByPnId" parameterType="java.lang.Integer" resultMap="PropNameAndValueList">
+    SELECT
+    <include refid="Name_Value_List" />
+    FROM prop_name,prop_value
+    WHERE prop_name.pn_id= prop_value.pn_id AND prop_name.pn_id = #{pnId,jdbcType=INTEGER}
+  </select>
 </mapper>

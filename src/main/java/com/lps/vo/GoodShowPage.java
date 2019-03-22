@@ -13,6 +13,16 @@ import java.util.List;
 public class GoodShowPage extends GoodAndPic {
     private List<GoodSku> goodSkus;
 
+    private List<PropNameAndValueList> propNameAndValueLists;
+
+    @Override
+    public String toString() {
+        return "GoodShowPage{" +
+                "goodSkus=" + goodSkus +
+                ", propNameAndValueLists=" + propNameAndValueLists +
+                '}';
+    }
+
     @Override
     public List<GoodSku> getGoodSkus() {
         return goodSkus;
@@ -23,10 +33,11 @@ public class GoodShowPage extends GoodAndPic {
         this.goodSkus = goodSkus;
     }
 
-    @Override
-    public String toString() {
-        return "GoodShowPage{" +
-                "goodSkus=" + goodSkus +
-                '}';
+    public List<PropNameAndValueList> getPropNameAndValueLists() {
+        return propNameAndValueLists;
+    }
+
+    public void setPropNameAndValueLists(List<PropNameAndValueList> propNameAndValueLists) {
+        this.propNameAndValueLists = propNameAndValueLists;
     }
 }

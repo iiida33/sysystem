@@ -7,6 +7,8 @@ import com.lps.vo.ShoppingCartGoodSku;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @ClassName: ShoppingCartServiceImpl
  * @Description:
@@ -35,12 +37,12 @@ public class ShoppingCartServiceImpl implements IShoppingCartService {
     }
 
     @Override
-    public ShoppingCartGoodSku findByCustId(int custId) {
-        return null;
+    public List<ShoppingCartGoodSku> findByCustId(int custId) {
+        return shoppingCartMapper.selectShopCartAndSku(custId);
     }
 
     @Override
     public void updateCart(ShoppingCart shoppingCart) {
-
+        shoppingCartMapper.updateByPrimaryKeySelective(shoppingCart);
     }
 }

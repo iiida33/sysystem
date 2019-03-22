@@ -178,4 +178,12 @@
       pn_id = #{pnId,jdbcType=INTEGER}
     where pv_id = #{pvId,jdbcType=INTEGER}
   </update>
+
+  <!--自定义部分-->
+  <!--根据PnId查询属性值-->
+  <select id="selectByPnId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    from prop_value WHERE pn_id=#{pnId,jdbcType=INTEGER}
+  </select>
 </mapper>

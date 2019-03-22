@@ -27,4 +27,7 @@ public interface OutMapper {
     int updateByPrimaryKeySelective(Out record);
 
     int updateByPrimaryKey(Out record);
+
+//    -------自定义部分--------------------------------------------------------------
+    List<Out> selectAll();
 }

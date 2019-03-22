@@ -27,4 +27,7 @@ public interface PropValueMapper {
     int updateByPrimaryKeySelective(PropValue record);
 
     int updateByPrimaryKey(PropValue record);
+
+//    自定义部分
+    List<PropValue> selectByPnId(Integer pnId);
 }

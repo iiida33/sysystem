@@ -2,6 +2,7 @@ package com.lps.service.impl;
 
 import com.lps.mapper.GoodMapper;
 import com.lps.po.Good;
+import com.lps.po.GoodPic;
 import com.lps.service.IGoodService;
 import com.lps.vo.GoodAndPic;
 import com.lps.vo.GoodShowPage;
@@ -25,12 +26,16 @@ public class GoodServiceImpl implements IGoodService {
 
     @Override
     public void insertGood(GoodAndPic goodAndPic) {
-
+        Good good = new Good();
+        good.setGoodBrand(goodAndPic.getGoodBrand());
+        good.setGoodDescribe(goodAndPic.getGoodDescribe());
+        good.setGoodId(goodAndPic.getGoodId());
+        good.setGoodImage(goodAndPic.getGoodImage());
+        good.setGoodName(goodAndPic.getGoodName());
     }
 
     @Override
     public void deleteGood(int goodId) {
-
     }
 
     @Override
