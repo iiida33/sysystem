@@ -67,7 +67,7 @@ public class AdminServiceImpl implements IAdminService {
         criteria.andAdminPasswordEqualTo(password);
         List<Admin> list = adminMapper.selectByExample(adminExample);
         if (list.get(0)==null){
-            throw new CustomException("工号或密码错误");
+            throw new CustomException("工号或密码错误","500");
         }
         return list.get(0);
     }

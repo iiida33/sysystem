@@ -313,9 +313,32 @@
         <result column="cust_create" property="custCreate" jdbcType="DATE"/>
         <result column="lastedcreate" property="orderCreate" jdbcType="TIMESTAMP"/>
     </resultMap>
+    <!--添加用户-->
+    <insert id="insertCustomer" parameterType="com.lps.po.Customer">
+        <selectKey keyProperty="custId" order="AFTER" resultType="java.lang.Integer">
+            select LAST_INSERT_ID();
+        </selectKey>
+        insert into customer(cust_username,cust_password,cust_phone,cust_create)
+        value (#{custUsername,jdbcType=VARCHAR},#{custPassword,jdbcType=VARCHAR},
+                #{custPhone,jdbcType=VARCHAR},#{custCreate,jdbcType=DATE})
+    </insert>
     <!--查询所有用户展示信息-->
     <select id="findAllToShow" resultMap="CustShowResultMap">
     SELECT customer.cust_id,cust_username,cust_create,MAX(order_create) lastedcreate
         FROM customer INNER JOIN `order` ON customer.cust_id = `order`.cust_id GROUP BY cust_id
+    </select>
+    <!--根据用户名查询用户-->
+    <select id="selectByUserName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from customer
+        where cust_username = #{custUsername,jdbcType=VARCHAR}
+    </select>
+    <!--根据手机号查询用户-->
+    <select id="selectByPhone" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from customer
+        where cust_phone = #{custPhone,jdbcType=VARCHAR}
     </select>
 </mapper>

@@ -21,7 +21,7 @@ public class CustomExceptionResolver implements HandlerExceptionResolver {
         if (e instanceof CustomException) {
             customException = (CustomException) e;
         }else{
-            customException = new CustomException("系统出现未知错误!");
+            customException = new CustomException("系统出现未知错误!","");
         }
 
         String message = customException.getMessage();

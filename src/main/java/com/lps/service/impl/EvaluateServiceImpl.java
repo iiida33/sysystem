@@ -47,7 +47,7 @@ public class EvaluateServiceImpl implements IEvaluateService {
     public void updateEvaluateSelective(Evaluate evaluate) throws CustomException{
         Evaluate evaluate1 = evaluateMapper.selectByPrimaryKey(evaluate.getEvaluateId());
         if (evaluate1.getEvaluateState())
-            throw new CustomException("该评论已作修改！不可再次修改！");
+            throw new CustomException("该评论已作修改！不可再次修改！","");
         evaluate.setEvaluateState(true);
         evaluateMapper.updateByPrimaryKeySelective(evaluate);
     }

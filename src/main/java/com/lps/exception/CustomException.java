@@ -8,8 +8,15 @@ package com.lps.exception;
  **/
 public class CustomException extends Exception {
     private String message;
+    private String status;
 
-    public CustomException(String message) {
+    public CustomException(String message, String status) {
+        super(message);
+        this.message = message;
+        this.status = status;
+    }
+    public CustomException(String message)
+    {
         super(message);
         this.message = message;
     }
@@ -21,5 +28,13 @@ public class CustomException extends Exception {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

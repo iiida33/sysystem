@@ -31,5 +31,12 @@ public interface CustomerMapper {
     int updateByPrimaryKey(Customer record);
 
 // -------------自定义部分-------------------------------------------------------------------
+//    添加用户
+    int insertCustomer(Customer customer);
+//    查询所有用户展示信息
     List<CustomerShowModel> findAllToShow();
+//    根据用户名查询用户-
+    Customer selectByUserName(String custUsername);
+//    根据手机号查询用户
+    Customer selectByPhone(String custPhone);
 }

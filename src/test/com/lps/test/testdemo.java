@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -36,7 +37,7 @@ public class testdemo {
     @Test
     public void test() {
 //        List<PropNameAndValueList> propNameAndValueLists=propNameMapper.selectAllNameAndValueByCatId(3);
-        GoodSku goodSku=goodSkuService.selectBySkuProps("1,3");
-        System.out.println(111111111);
+//        GoodSku goodSku=goodSkuService.selectBySkuProps("1,3");
+        System.out.println(new Date());
     }
 }
