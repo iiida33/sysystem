@@ -341,4 +341,11 @@
         from customer
         where cust_phone = #{custPhone,jdbcType=VARCHAR}
     </select>
+    <!--根据电子邮箱查询用户-->
+    <select id="selectByEmail" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from customer
+        where cust_email = #{custEmail,jdbcType=VARCHAR}
+    </select>
 </mapper>

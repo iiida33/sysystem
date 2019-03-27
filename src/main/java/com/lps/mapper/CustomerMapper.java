@@ -39,4 +39,6 @@ public interface CustomerMapper {
     Customer selectByUserName(String custUsername);
 //    根据手机号查询用户
     Customer selectByPhone(String custPhone);
+//    根据电子邮箱查询用户
+    Customer selectByEmail(String custEmail);
 }

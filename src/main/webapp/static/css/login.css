@@ -18,7 +18,6 @@ a {
     -webkit-transition: .5s ease;
     transition: .5s ease;
 }
-
 a:hover {
     color: #74c7eb;
 }
@@ -37,13 +36,11 @@ a:hover {
     padding: 0;
     margin: 0 0 40px 0;
 }
-
 .tab-group:after {
     content: "";
     display: table;
     clear: both;
 }
-
 .tab-group li a {
     display: block;
     text-decoration: none;
@@ -58,12 +55,10 @@ a:hover {
     -webkit-transition: .5s ease;
     transition: .5s ease;
 }
-
 .tab-group li a:hover {
     background: #74c7eb;
     color: #ffffff;
 }
-
 .tab-group .active a {
     background: #F95D96;
     color: #ffffff;
@@ -92,7 +87,6 @@ label {
     pointer-events: none;
     font-size: 22px;
 }
-
 label .req {
     margin: 2px;
     color: #F95D96;
@@ -104,7 +98,6 @@ label.active {
     left: 2px;
     font-size: 14px;
 }
-
 label.active .req {
     opacity: 0;
 }
@@ -127,7 +120,6 @@ input, textarea {
     -webkit-transition: border-color .25s ease, box-shadow .25s ease;
     transition: border-color .25s ease, box-shadow .25s ease;
 }
-
 input:focus, textarea:focus {
     outline: 0;
     border-color: #F95D96;
@@ -148,13 +140,11 @@ textarea {
     display: table;
     clear: both;
 }
-
-.bottom-row > div {
+.bottom-row > div{
     float: left;
     width: 50%;
     /*margin-right: 3%;*/
 }
-
 /*.bottom-row > div:last-child {*/
 /*margin: 0;*/
 /*}*/
@@ -174,7 +164,6 @@ textarea {
     transition: all 0.5s ease;
     -webkit-appearance: none;
 }
-
 .button:hover, .button:focus {
     background: #74c7eb;
 }
@@ -188,8 +177,64 @@ textarea {
     margin-top: -20px;
     text-align: right;
 }
-
 .prompt {
-    left: 100px;
+    left: 150px;
     color: red;
+}
+
+/* Popup container - can be anything you want */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* The actual popup */
+.popup .popuptext {
+    visibility: hidden;
+    width: 160px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 0.1s;
+    animation: fadeIn 0.1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
 }

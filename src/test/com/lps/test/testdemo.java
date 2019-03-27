@@ -19,6 +19,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -34,10 +35,12 @@ public class testdemo {
 
     @Autowired
     IGoodSkuService goodSkuService;
+
     @Test
     public void test() {
-//        List<PropNameAndValueList> propNameAndValueLists=propNameMapper.selectAllNameAndValueByCatId(3);
-//        GoodSku goodSku=goodSkuService.selectBySkuProps("1,3");
-        System.out.println(new Date());
+        System.out.println(Pattern.matches("^([A-Za-z0-9_\\-\\.])+\\@([A-Za-z0-9_\\-\\.])+\\.([A-Za-z]{2,4})$", "2513567@qq.com"));
+        System.out.println(Pattern.matches("^[1][3,4,5,7,8][0-9]{9}$","2513567@qq.com"));
+        System.out.println(Pattern.matches("^[1][3,4,5,7,8][0-9]{9}$","17876253535"));
+        //        Pattern pattern = Pattern.compile("^([A-Za-z0-9_\\-\\.])+\\@([A-Za-z0-9_\\-\\.])+\\.([A-Za-z]{2,4})$");
     }
 }

@@ -1,0 +1,8 @@
+{{each aNav as info i}}
+<li class="mega-menu"><a href="{{info.aUrl}}">{{info.aName}}</a>
+    <ul class="sub-menu">{{each info.bNav as item j}}
+        <li><a href="{{item.bUrl}}">{{item.bName}}</a></li>
+        {{/each}}
+    </ul>
+</li>
+{{/each}}

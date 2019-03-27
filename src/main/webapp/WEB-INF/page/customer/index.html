@@ -53,6 +53,9 @@
     <!-- responsive CSS -->
     <link rel="stylesheet" href="../../../static/css/responsive.css">
     <script src="../../../static/js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <script src="http://cdn.staticfile.org/artTemplate.js/3.0.1/template.js"></script>
+    <script src="../../../static/js/getNavDate.js"></script>
 </head>
 
 <body class="home">
@@ -67,8 +70,10 @@
             <div class="col-lg-12">
                 <div class="headet-top">
                     <div class="htop-one login">
-                        <a href="/">亲，请登录/</a>
-                        <a href="register.do">/免费注册</a>
+                        <a href="/" id="LoginRegister" style="display: none">亲，请登录//免费注册</a>
+                        <!--<a href="/register.do"></a>-->
+                        <!--<a href="#" onclick="loginJump()">亲，请登录/</a>-->
+                        <!--<a href="#" onclick="RegisterJump()">/免费注册</a>-->
                     </div>
                     <div class="htop-one last">
                         <ul class="account">
@@ -90,7 +95,7 @@
             <div class="row">
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                     <div class="lago">
-                        <a href="index.html"><img src="../../../img/logo.png" alt="lago"/></a>
+                        <a href="#"><img src="../../../img/logo.png" alt="lago"/></a>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -141,128 +146,8 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="main-menu">
-                    <ul class="nav floatleft">
-                        <li class="active "><a href="index.html">首页</a></li>
-                        <li class="mega-menu-one"><a href="shop.html">奶粉</a>
-                            <ul class="sub-menu">
-                                <li><a href="shop.html">1段</a></li>
-                                <li><a href="shop.html">2段</a></li>
-                                <li><a href="shop.html">3段</a></li>
-                                <li><a href="shop.html">4段</a></li>
-                                <li><a href="shop.html">孕妈奶粉</a></li>
-                                <li><a href="shop.html">特配奶粉</a></li>
-                                <li><a href="shop.html">有机奶粉</a></li>
-                                <!--<li>-->
-                                <!--<a href="shop.html"><img src="../../../img/block_menu.png" alt=""/></a>-->
-                                <!--</li>-->
-                            </ul>
-                        </li>
-                        <li class="mega-menu-two"><a href="shop.html">营养辅食</a>
-                            <ul class="sub-menu">
-                                <li><a href="shop.html">米粉/菜粉</a></li>
-                                <li><a href="shop.html">面条/粥</a></li>
-                                <li><a href="shop.html">果汁果泥</a></li>
-                                <li><a href="shop.html">宝宝零食</a></li>
-                                <li><a href="shop.html">钙铁锌/维生素</a></li>
-                                <li><a href="shop.html">DHA</a></li>
-                                <li><a href="shop.html">清火开胃</a></li>
-                                <li><a href="shop.html">益生菌/初乳</a></li>
-                            </ul>
-                        </li>
-                        <li class="mega-menu-three"><a href="shop.html">尿裤湿巾</a>
-                            <ul class="sub-menu">
-                                <li><a href="shop.html">新生儿</a></li>
-                                <li><a href="shop.html">S</a></li>
-                                <li><a href="shop.html">M</a></li>
-                                <li><a href="shop.html">L</a></li>
-                                <li><a href="shop.html">XL</a></li>
-                                <li><a href="shop.html">XXL</a></li>
-                                <li><a href="shop.html">拉拉裤</a></li>
-                                <li><a href="shop.html">婴儿湿巾</a></li>
-                                <li><a href="shop.html">成人尿裤</a></li>
-                            </ul>
-                        </li>
-                        <li class="mega-menu-four"><a href="shop.html">喂养用品</a>
-                            <ul class="sub-menu">
-                                <li><a href="shop.html">奶瓶奶嘴</a></li>
-                                <li><a href="shop.html">吸奶器</a></li>
-                                <li><a href="shop.html">暖奶消毒</a></li>
-                                <li><a href="shop.html">牙胶安抚</a></li>
-                                <li><a href="shop.html">儿童餐具</a></li>
-                                <li><a href="shop.html">水壶水杯</a></li>
-                                <li><a href="shop.html">围兜/口水巾</a></li>
-                                <li><a href="shop.html">辅食机/料理机</a></li>
-                                <li><a href="shop.html">食物存储</a></li>
-                            </ul>
-                        </li>
-                        <li class="mega-menu-five"><a href="shop.html">洗护用品</a>
-                            <ul class="sub-menu">
-                                <li><a href="shop.html">宝宝护肤</a></li>
-                                <li><a href="shop.html">洗发/沐浴</a></li>
-                                <li><a href="shop.html">洗澡用品</a></li>
-                                <li><a href="shop.html">爽身粉</a></li>
-                                <li><a href="shop.html">洗衣液</a></li>
-                                <li><a href="shop.html">理发器</a></li>
-                                <li><a href="shop.html">坐便器</a></li>
-                                <li><a href="shop.html">驱蚊/防嗮</a></li>
-                                <li><a href="shop.html">口腔清洁</a></li>
-                            </ul>
-                        </li>
-                        <li class="mega-menu-six"><a href="shop.html">童装童鞋</a>
-                            <ul class="sub-menu">
-                                <li><a href="shop.html">套装</a></li>
-                                <li><a href="shop.html">外套</a></li>
-                                <li><a href="shop.html">上衣</a></li>
-                                <li><a href="shop.html">裤裙</a></li>
-                                <li><a href="shop.html">睡衣</a></li>
-                                <li><a href="shop.html">拖鞋</a></li>
-                                <li><a href="shop.html">袜子</a></li>
-                                <li><a href="shop.html">运动鞋</a></li>
-                                <li><a href="shop.html">学步鞋</a></li>
-                                <li><a href="shop.html">婴儿礼盒</a></li>
-                            </ul>
-                        <li class="mega-menu-seven"><a href="shop.html">童车童床</a>
-                            <ul class="sub-menu">
-                                <li><a href="shop.html">婴儿床</a></li>
-                                <li><a href="shop.html">床上用品</a></li>
-                                <li><a href="shop.html">婴儿推车</a></li>
-                                <li><a href="shop.html">安全座椅</a></li>
-                                <li><a href="shop.html">学步车</a></li>
-                                <li><a href="shop.html">三轮车</a></li>
-                                <li><a href="shop.html">滑板车</a></li>
-                                <li><a href="shop.html">扭扭车</a></li>
-                                <li><a href="shop.html">自行车</a></li>
-                                <li><a href="shop.html">电动车</a></li>
-                                <li><a href="shop.html">儿童餐椅</a></li>
-                                <li><a href="shop.html">儿童家具</a></li>
-                            </ul>
-                        </li>
-                        <li class="mega-menu-eight"><a href="shop.html">玩具</a>
-                            <ul class="sub-menu">
-                                <li><a href="shop.html">爬行垫</a></li>
-                                <li><a href="shop.html">益智玩具</a></li>
-                                <li><a href="shop.html">户外玩具</a></li>
-                                <li><a href="shop.html">模型玩具</a></li>
-                                <li><a href="shop.html">电动遥控</a></li>
-                                <li><a href="shop.html">积木拼插</a></li>
-                                <li><a href="shop.html">毛绒布艺</a></li>
-                                <li><a href="shop.html">绘画/DIY</a></li>
-                            </ul>
-                        </li>
-                        <li class="mega-menu-nine"><a href="shop.html">孕妈专区</a>
-                            <ul class="sub-menu">
-                                <li><a href="shop.html">孕妈护肤</a></li>
-                                <li><a href="shop.html">孕妇装</a></li>
-                                <li><a href="shop.html">防辐射服</a></li>
-                                <li><a href="shop.html">孕期营养</a></li>
-                                <li><a href="shop.html">文胸/内衣</a></li>
-                                <li><a href="shop.html">待产护理</a></li>
-                                <li><a href="shop.html">月子护理</a></li>
-                                <li><a href="shop.html">产后塑身</a></li>
-                                <li><a href="shop.html">孕期营养</a></li>
-                                <li><a href="shop.html">妈咪包/背带</a></li>
-                            </ul>
-                        </li>
+                    <ul id="navcontainer" class="nav floatleft">
+                        <li class="active"><a href="index.html">首页</a></li>
                     </ul>
                 </div>
             </div>
@@ -276,7 +161,7 @@
                     <div class="mobile-menu">
                         <nav id="dropdown">
                             <ul>
-                                <li><a href="index.html">Home</a>
+                                <li><a href="#">Home</a>
                                 </li>
                                 <li><a href="blog.html">kids beds</a>
                                     <ul>
@@ -1831,14 +1716,14 @@
                     </div>
                 </div>
                 <div class="row top-speac">
-                        <div class="widget">
-                            <h5>联系我们</h5>
-                            <address>
-                                地址：<span class="color">广东省肇庆市端州区肇庆大道</span>&nbsp;&nbsp;&nbsp;
-                                电话: <span class="color">0123-456-789</span>&nbsp;&nbsp;&nbsp;
-                                邮箱: <span class="color">syshopping@163.com </span>
-                            </address>
-                        </div>
+                    <div class="widget">
+                        <h5>联系我们</h5>
+                        <address>
+                            地址：<span class="color">广东省肇庆市端州区肇庆大道</span>&nbsp;&nbsp;&nbsp;
+                            电话: <span class="color">0123-456-789</span>&nbsp;&nbsp;&nbsp;
+                            邮箱: <span class="color">syshopping@163.com </span>
+                        </address>
+                    </div>
                     <!--</div>-->
                 </div>
             </div>

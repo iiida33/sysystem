@@ -57,12 +57,12 @@ public class LoginRegisterController {
         return "customer/login.html";
     }
 
-    // 获取用户注册界面
-    @RequestMapping("/register.do")
-    public String getCustomerRegisterPage(HttpServletRequest request) {
-        request.setAttribute("state", 1);
-        return "customer/login.html";
-    }
+//    // 获取用户注册界面
+//    @RequestMapping("/register.do")
+//    public String getCustomerRegisterPage(Model model) {
+//        model.addAttribute("state","1");
+//        return "customer/login.html";
+//    }
 
     // 顾客注册
     @RequestMapping("/customerRegister.do")
@@ -73,9 +73,9 @@ public class LoginRegisterController {
         String custPhone = request.getParameter("custPhone");
         String validateCode = request.getParameter("validateCode");
         String code = (String) httpSession.getAttribute("validateCode");
-        Date date= new java.sql.Date(new java.util.Date().getTime());
-//        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
-//        df.format(new Date());
+        Date date = new java.sql.Date(new java.util.Date().getTime());
+        //        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
+        //        df.format(new Date());
         Customer customer = new Customer();
         customer.setCustUsername(custUsername);
         customer.setCustPhone(custPhone);
@@ -87,58 +87,47 @@ public class LoginRegisterController {
                 customerService.insertCustomer(customer);
             } catch (CustomException ce) {
                 map.put("msg", ce.getMessage());
-                map.put("status",ce.getStatus() );
+                map.put("status", ce.getStatus());
                 return map;
             }
             // 保存到session
             httpSession.setAttribute("custId", customer.getCustId());
             httpSession.setAttribute("customer", customer);
-//            request.setAttribute("customer",customer);
-            map.put("url", "/customerLoginSuccess.do");
             map.put("msg", "成功");
             map.put("status", "200");
             return map;
-        }
-        else {
+        } else {
             map.put("msg", "验证码错误");
             map.put("status", "0");
             return map;
         }
     }
+
     //顾客登录
-    //    @RequestMapping("/customerLogin.do")
-    //    @ResponseBody
-    //    public Map<String, String> customerLogin(Model model, HttpSession httpSession, String custPhone, String custUsername,
-    //                                             String custPassword, String validateCode) {
-    //        String code = (String) httpSession.getAttribute("validateCode");
-    //        HashMap<String, String> map = new HashMap<String, String>();
-    //        if (validateCode.equalsIgnoreCase(code)) {
-    //            Customer customer = null;
-    //            try {
-    //                customer = loginService.findEmployeeByIdAndPassword(username, password);
-    //            } catch (Exception e) {
-    //                map.put("msg", e.getMessage());
-    //                map.put("status", "500");
-    //                return map;
-    //            }
-    //            // 保存到session
-    //            httpSession.setAttribute("employeeId", customer.geteId());
-    //            map.put("url", "/loginSuccess.do");
-    //            map.put("msg", "成功");
-    //            map.put("status", "200");
-    //            return map;
-    //        } else {
-    //            map.put("msg", "验证码错误");
-    //            map.put("status", "0");
-    //            return map;
-    //        }
-    //    }
+    @RequestMapping("/customerLogin.do")
+    @ResponseBody
+    public Map<String, String> customerLogin(HttpSession httpSession, String loginName, String custPassword) {
+        HashMap<String, String> map = new HashMap<String, String>();
+        Customer customer = null;
+        try {
+            customer = customerService.findLoginMsg(loginName, custPassword);
+        } catch (Exception e) {
+            map.put("msg", e.getMessage());
+            map.put("status", "500");
+            return map;
+        }
+        // 保存到session
+        httpSession.setAttribute("custId", customer.getCustId());
+        httpSession.setAttribute("customer", customer);
+        map.put("msg", "成功");
+        map.put("status", "200");
+        return map;
+    }
 
     //顾客成功登录
     @RequestMapping("/customerLoginSuccess.do")
     public String customerLoginSuccess(Model model) throws Exception {
-//        return "Customer/index.html";
-        return "error/success.jsp";
+               return "customer/index.html";
     }
 
     // 获取顾客账号信息以显示
