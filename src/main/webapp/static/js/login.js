@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    var request = (function (){
+    var request = (function () {
         var obj = {};
         var arr = window.location.search.slice(1).split("&");
         for (var i = 0, len = arr.length; i < len; i++) {

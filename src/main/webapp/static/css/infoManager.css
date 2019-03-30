@@ -1,0 +1,71 @@
+div#orderInfo
+{
+    margin-left: 30px;
+}
+div#orderNav{
+    padding-bottom: 20px;
+    border-bottom: black;
+}
+div#orderNav ul.sidenav {
+    list-style-type: none;
+    width: 96%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #FFFFFF;
+}
+
+div#orderNav ul.sidenav li {
+    width: 25%;
+    float: left;
+    border-right: 1px solid #bbb;
+}
+
+div#orderNav ul.sidenav li a {
+    font-size: 18px;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+div#orderNav ul.sidenav li a:hover {
+    color: #f95d96;
+}
+div#orderTitle table{
+    width: 96%;
+    line-height: 40px;
+    border:1px solid #E8E8E8;
+    background-color: 	#F0F0F0;
+}
+div#orderContent table{
+    width: 96%;
+    border:1px solid #E8E8E8;
+}
+div#orderInfo table th{
+    vertical-align: middle;
+    text-align: center;
+}
+div#orderInfo table td{
+    vertical-align: middle;
+    text-align: center;
+}
+div#orderInfo table .t1{
+    width: 35%;
+}
+div#orderInfo table .t2{
+    width: 9%;
+}
+div#orderInfo table .t3{
+    width: 9%;
+}
+div#orderInfo table .t4{
+    width: 12%;
+}
+div#orderInfo table .t5{
+    width: 10%;
+}
+div#orderInfo table .t6{
+    width: 14%;
+}

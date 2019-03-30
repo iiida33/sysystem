@@ -3,6 +3,8 @@ package com.lps.mapper;
 import com.lps.po.Category;
 import com.lps.po.CategoryExample;
 import java.util.List;
+
+import com.lps.vo.CategoryShow;
 import org.apache.ibatis.annotations.Param;
 
 public interface CategoryMapper {
@@ -27,4 +29,7 @@ public interface CategoryMapper {
     int updateByPrimaryKeySelective(Category record);
 
     int updateByPrimaryKey(Category record);
+
+//    -------------自定义部分------------------------------------------------------
+    List<CategoryShow> selectAllToNav();
 }

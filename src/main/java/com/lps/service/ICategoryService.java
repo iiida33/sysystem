@@ -2,6 +2,7 @@ package com.lps.service;
 
 import com.lps.exception.CustomException;
 import com.lps.po.Category;
+import com.lps.vo.CategoryShow;
 
 import java.util.List;
 
@@ -20,4 +21,6 @@ public interface ICategoryService {
     public List<Category> findByPreId(int preId);
 //    修改类别信息
     public void updateCategorySelective(Category category);
+//    查询所有父子类别及对应关系
+    public List<CategoryShow> findAllToNav();
 }

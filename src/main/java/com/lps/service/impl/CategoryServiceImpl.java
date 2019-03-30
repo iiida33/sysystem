@@ -5,6 +5,7 @@ import com.lps.mapper.CategoryMapper;
 import com.lps.po.Category;
 import com.lps.po.CategoryExample;
 import com.lps.service.ICategoryService;
+import com.lps.vo.CategoryShow;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -74,5 +75,10 @@ public class CategoryServiceImpl implements ICategoryService {
     @Override
     public void updateCategorySelective(Category category) {
         categoryMapper.selectByPrimaryKey(category.getCatId());
+    }
+
+    @Override
+    public List<CategoryShow> findAllToNav() {
+        return categoryMapper.selectAllToNav();
     }
 }

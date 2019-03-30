@@ -1,0 +1,9 @@
+{{each value as info i}}
+<li><a href="/goodClassPage.do?catId={{info.catId}}">{{info.catName}}</a>
+        <ul class="sub-menu">
+            {{each info.categoryChild as item j}}
+            <li><a href="/goodClassPage.do?cateId={{item.catId}}">{{item.catName}}</a></li>
+            {{/each}}
+        </ul>
+</li>
+{{/each}}

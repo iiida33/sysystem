@@ -1,7 +1,7 @@
-{{each aNav as info i}}
-<li class="mega-menu"><a href="{{info.aUrl}}">{{info.aName}}</a>
-    <ul class="sub-menu">{{each info.bNav as item j}}
-        <li><a href="{{item.bUrl}}">{{item.bName}}</a></li>
+{{each value as info i}}
+<li class="mega-menu"><a href="/goodClassPage.do?catId={{info.catId}}">{{info.catName}}</a>
+    <ul class="sub-menu">{{each info.categoryChild as item j}}
+        <li><a href="/goodClassPage.do?cateId={{item.catId}}">{{item.catName}}</a></li>
         {{/each}}
     </ul>
 </li>

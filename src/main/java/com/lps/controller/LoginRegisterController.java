@@ -10,10 +10,12 @@ import com.lps.utils.CaptchaUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -49,10 +51,24 @@ public class LoginRegisterController {
         CaptchaUtil.outputCaptcha(request, response);
     }
 
+
+// 显示首页
+    @RequestMapping("/")
+    public String getIndex() {
+        return "customer/index.html";
+    }
+
+    @RequestMapping("/getIndexState.do")
+    @ResponseBody
+    public int getIndexState(HttpSession session){
+        if (session.getAttribute("custId")!=null)
+            return 1;
+        return 0;
+    }
     //实现顾客登录注册功能
 
     // 获取顾客登陆界面
-    @RequestMapping("/")
+    @RequestMapping("/login.do")
     public String getCustomerLoginPage() {
         return "customer/login.html";
     }
@@ -106,7 +122,7 @@ public class LoginRegisterController {
     //顾客登录
     @RequestMapping("/customerLogin.do")
     @ResponseBody
-    public Map<String, String> customerLogin(HttpSession httpSession, String loginName, String custPassword) {
+    public Map<String, String> customerLogin(HttpSession httpSession, HttpServletResponse response, String loginName, String custPassword) {
         HashMap<String, String> map = new HashMap<String, String>();
         Customer customer = null;
         try {
@@ -117,6 +133,11 @@ public class LoginRegisterController {
             return map;
         }
         // 保存到session
+//        String cookieName="custId";
+//        String cookieValue=String.valueOf(customer.getCustId());
+//        Cookie cookie = new Cookie(cookieName,cookieValue);
+//        cookie.setPath("/");
+//        response.addCookie(cookie);
         httpSession.setAttribute("custId", customer.getCustId());
         httpSession.setAttribute("customer", customer);
         map.put("msg", "成功");
@@ -145,7 +166,7 @@ public class LoginRegisterController {
     // 顾客退出登录
     @RequestMapping(value = "/logout.do")
     public String logout(HttpSession httpSession) {
-        httpSession.removeAttribute("employeeId");
+        httpSession.removeAttribute("custId");
         return "redirect:/";
     }
 

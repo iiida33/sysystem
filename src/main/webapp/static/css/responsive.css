@@ -277,10 +277,7 @@ div.bg-bd div.single-promotion {
 }
 .home-three div.owl-theme.owl-carousel div.owl-item {
   padding: 0px;
-} 
-/*.home-three div.blog {*/
-  /*border-right: none; */
-/*}*/
+}
 .subscribe input[type="text"] {   
   width: 65%;
   float: left;
@@ -347,11 +344,7 @@ div.bg-bd div.single-promotion {
 .beds-section.bg-bd {
   padding: 15px;
 }
-/*.page-one div.blog {*/
-  /*border-right: medium none;*/
-  /*padding: 0 5px;*/
-/*}*/
-.page-one div.newslatter {
+ div.newslatter {
   position: inherit;
 }
 .price_slider_amount input[type="text"] { 
@@ -544,9 +537,7 @@ button.shop-button {
 .single-lago { 
   margin: 0 5px; 
 }
-/*.blog {*/
-  /*border-right: none; */
-/*}*/
+
 div.newslatter {
   padding: 0px 0 30px 0;
 }
@@ -566,14 +557,6 @@ div.newslatter {
 .htop-one ul li { 
   margin-left:0px; 
 }
-/*.blog-img { */
-  /*width: 100%;*/
-  /*margin-bottom: 15px;*/
-  /*border-radius:0px;*/
-/*}*/
-/*.blog-text {*/
-  /*overflow: inherit;*/
-/*}*/
 .footer-bg {
   padding-bottom: 25px;
 }
@@ -705,9 +688,7 @@ div.newslatter {
 .home-three div.right-section {
   margin: 10px 0 0 0 ;
 }
-/*.home-three div.blog {*/
-  /*padding: 30px 0;*/
-/*}*/
+
 /*----------------------------------------*/
 /*  4.  Chechout Page Responsive CSS
 /*----------------------------------------*/
@@ -1016,12 +997,7 @@ button.shop-button {
   width: 65%;
   margin-right: 5px;
 }
-/*.blog {*/
-  /*border-right: 0px dashed #6ec4ea; */
-/*}*/
-/*.single-blog { */
-  /*margin: 17px 2px;*/
-/*}*/
+
 .single-promotion:hover div.singleh {
   padding-top: 25%;
 }
