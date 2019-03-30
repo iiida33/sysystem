@@ -1233,20 +1233,6 @@ div.owl-theme .owl-controls {
   font-size: 16px;
   line-height: 35px;
 }
-/*.widget ul.im li {*/
-  /*line-height: 35px;*/
-/*}*/
-/*.widget ul.im li a{*/
-  /*color: #5e686d;*/
-  /*display: inline-block;*/
-  /*font-size: 14px;*/
-  /*transition: all 500ms ease 0s; */
-  /*font-weight: 400;*/
-/*}*/
-/*.widget ul.im li a:hover{*/
-  /*color: #0d98d5;*/
-  /*padding-left: 10px;*/
-/*}*/
 .widget address {
   font-size: 14px;
   line-height: 30px;
@@ -1381,15 +1367,6 @@ span.color a{
 /*----------------------------------------*/
 /*  8.1  Home Page-2 Mega Menu Start
 /*----------------------------------------*/
-/*.mega-menu-one div.mega-menu{width: 720px;}*/
-/*.mega-menu-three div.mega-menu,*/
-/*.mega-menu-for div.mega-menu,*/
-/*.mega-menu-two div.mega-menu{*/
-  /*width: 560px;*/
-/*}*/
-/*.mega-menu-one div.mega-menu span { */
-  /*width:20%;*/
-/*} */
 div.mega-menu{
   background: #fff none repeat scroll 0 0;
   border-radius: 20px;
@@ -2008,7 +1985,6 @@ span.color a:hover {
 .color-list ul li {
   float: left; 
 }
-.td-stok span,
 #right-ap div.price-box > .p-item span, #right-ap div.price-box > span {
   background: #55c65e none repeat scroll 0 0;
   border: 1px solid #36943e;
@@ -2915,11 +2891,16 @@ width: 30px;
 table.main-tabel {
   border: 1px solid #d6d4d4;
 }
-.table thead tr th {
+.table thead tr th{
   background: #fbfbfb none repeat scroll 0 0;
   border-bottom-width: 1px;
   color: #333;
   vertical-align: middle;
+  text-align: center;
+}
+.table tbody tr td{
+  vertical-align: middle;
+  text-align: center;
 }
 .table tfoot tr {
   background: #fbfbfb none repeat scroll 0 0;
@@ -2928,24 +2909,34 @@ span.td-img img {
   border: 1px solid #ccc;
   width: 100%;
 }
-#payment table tbody tr td.td-img-tr, 
-#summary table tbody tr td.td-img-tr {
+#payment table tbody tr td.td-img-tr{
   padding: 18px;
   width: 12%;
 }
+.tab-content table tbody tr td{
+  padding-top: 50px;
+}
+.tab-content table tbody tr td.td-checkbox{
+  width: 3%;
+}
 .tab-content table tbody tr td.td-p-title {
-  padding: 35px 0 0 10px;
-  width: 390px;
+  width: 20%;
 }
 .tab-content table tbody tr td.td-stok {
-  padding: 35px 0 0 9px;
-  width: 91px;
+  width: 15%;
+}
+.tab-content table tbody tr td.td-unite{
+  width: 10%;
 }
 .tab-content table tbody tr td.td-quentety {
-  width: 120px;
+  width: 15%;
+}
+.tab-content table tbody tr td.td-t-amount{
+  width: 10%;
 }
 .tab-content table tbody tr td.td-trash {
-  width: 40px;
+  width: 5%;
+  padding-top: 20px;
 }
 .text.totel.big-totol{
   text-transform: capitalize;
@@ -2955,7 +2946,6 @@ span.td-img img {
 }
 .td-quentety input {
   border: 1px solid #ccc;
-  margin: 15px 0 5px 0;
   padding: 10px 0 10px 25px;
   width: 102px;
 }
@@ -2968,7 +2958,6 @@ border-width: 1px;
 float: left;
 color: #c0c0c0; ;
 line-height: 35px;
-margin-right: 7px;
 padding: 0;
 text-shadow: 1px -1px rgba(0, 0, 0, 0.05);
 }
@@ -2978,12 +2967,12 @@ text-shadow: 1px -1px rgba(0, 0, 0, 0.05);
   color: #ccc;
   cursor: pointer;
   display: block;
-  font-size: 31px;
-  height: 40px;
-  line-height: 30px;
+  font-size: 20px;
+  height: 30px;
+  line-height: 20px;
   text-align: center;
   vertical-align: middle;
-  width: 40px;
+  width: 30px;
 }
 .tab-content table tbody tr td.td-p-title a p{
 color: #4c4c4c;
@@ -3002,9 +2991,6 @@ text-overflow: ellipsis;
 .tab-content table tbody tr td.td-p-title small{
 display: block;
 padding: 5px 0 0;
-}
-.td-unite ul {
-  margin: 20px 0 0;
 }
 .td-trash i {
   color: #333;
@@ -3185,10 +3171,6 @@ transition: all 0.3s ease 0s;
   margin: 20px 0 0 15px;
   width: 170px;
 }
-.bootom-section ul li a,
-.r-y-w a{
-  text-decoration:none;
-}
 .r-y-w p {
   padding: 13px;
   width: 100%;
@@ -3205,75 +3187,8 @@ transition: all 0.3s ease 0s;
 .tabel-bootom{
   margin: 0 0 15px 0;
 }
-#shipping table tbody tr td.td-img-tr {
-  padding: 7px;
-  width: 7%;
-} 
-#shipping table tbody tr td.td-img-tr span.td-img img{
-  border: none;
-}
-#shipping table tbody tr td.td-p-title {
-  padding: 10px;
-  width: 800px;
-}
 .td-t-amount div.total-amount span {
   text-align: left;
-}
-#shipping div.total-amount span {
-  display: block;
-  padding: 16px 0 0;
-}
-.bootom-section ul {
-  margin: 45px;
-  overflow: hidden;
-}
-.bootom-section {
-  position: relative;
-}
-.bootom-section ul li.button.last-li{
-  padding: 0;
-}
-.bootom-section ul li.con-shopp {
-  display: block;
-  float: left;
-  line-height: normal;
-}
-.bootom-section ul li.con-shopp a:after,
-.bootom-section ul li.pro-check a:after{
-  position: relative;
-  top: 3px;
-  font-family: fontawesome;
-  font-size: 20px;
-  color: #fff;
-  width: 20px;
-  height: 20px;
-}
-.bootom-section ul li.con-shopp a::after {
-  content: "";
-  float: left;
-  left:-10px;
-  top: 0;
-}
-.bootom-section ul li.pro-check a::after {
-  content: "";
-  margin-left: 8px;
-  right: 0;
-}
-.bootom-section ul li.pro-check {
-  display: block;
-  float: right;
-}
-.bootom-section ul li.pro-check a {
-  display: inline-block;
-  height: 40px;
-  line-height: 8px;
-  padding: 13px 15px;
-}
-.bootom-section ul li.con-shopp a {
-  display: inline-block;
-  height: 40px;
-  line-height: 40px;
-  padding: 0 22px;
 }
 a.button{
   padding:13px 10px 13px 50px;
@@ -3435,4 +3350,15 @@ text-transform: uppercase;
   left: 10px;
   position: absolute;
   top: 14px;
+}
+.bootom-section .button{
+  margin-left: 800px;
+  height: 40px;
+  width: 100px;
+}
+.check-out-page .checkOutTitle{
+  font-size: large;
+  font: bold;
+  margin: 30px 0;
+  border-bottom: 1px  solid #a0b3b0;
 }

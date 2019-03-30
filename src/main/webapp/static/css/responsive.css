@@ -376,14 +376,14 @@ div.bg-bd div.single-promotion {
   display: inline-block;
   margin: 0;
 }
-.bootom-section ul li:last-child { 
-  right: inherit; 
-  top: 25px;
-}
-.bootom-section ul li:first-child { 
-  left: inherit; 
-  top: -25px;
-}
+/*.bootom-section ul li:last-child { */
+  /*right: inherit; */
+  /*top: 25px;*/
+/*}*/
+/*.bootom-section ul li:first-child { */
+  /*left: inherit; */
+  /*top: -25px;*/
+/*}*/
 /*----------------------------------------*/
 /*  7.  Contract Page Responsive CSS
 /*----------------------------------------*/
@@ -814,21 +814,7 @@ div.newslatter {
   overflow: hidden;
   padding-left: 10px;
 }
-/*----------------------------------------*/
-/*  7.  Checkout Page Responsive CSS
-/*----------------------------------------*/
-.bootom-section ul {
-  margin: 45px 7px; 
-}
-.bootom-section ul li.pro-check {
-  float: none;
-  margin-top: 10px;
-  text-align: center;
-}
-.bootom-section ul li.con-shopp {
-  float: none;
-  text-align: center;
-}
+
 .main-form input.input { 
   width: 100%;
 }
@@ -1225,14 +1211,14 @@ div.bg-bd div.single-promotion {
 /*----------------------------------------*/
 /*  7.  Whist list Responsive CSS
 /*----------------------------------------*/
-.bootom-section ul li:last-child { 
-  right: inherit; 
-  top: 25px;
-}
-.bootom-section ul li:first-child { 
-  left: inherit; 
-  top: -25px;
-}
+/*.bootom-section ul li:last-child { */
+  /*right: inherit; */
+  /*top: 25px;*/
+/*}*/
+/*.bootom-section ul li:first-child { */
+  /*left: inherit; */
+  /*top: -25px;*/
+/*}*/
 
 }
  
