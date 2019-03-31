@@ -1,7 +1,5 @@
 package com.lps.service.impl;
 
-import com.lps.mapper.GoodPicMapper;
-import com.lps.po.GoodExample;
 import com.lps.po.GoodPic;
 import com.lps.po.GoodPicExample;
 import com.lps.service.IGoodPicService;

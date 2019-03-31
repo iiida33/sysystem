@@ -1,7 +1,6 @@
 package com.lps.service.impl;
 
 import com.lps.exception.CustomException;
-import com.lps.mapper.AdminMapper;
 import com.lps.po.Admin;
 import com.lps.po.AdminExample;
 import com.lps.service.IAdminService;

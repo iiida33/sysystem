@@ -30,6 +30,6 @@ public interface CategoryMapper {
 
     int updateByPrimaryKey(Category record);
 
-//    -------------自定义部分------------------------------------------------------
+    //    -------------自定义部分------------------------------------------------------
     List<CategoryShow> selectAllToNav();
 }

@@ -72,7 +72,7 @@
     </sql>
     <sql id="Base_Column_List">
     evaluate_id, orderDtl_id, good_id, cust_id, evaluate_text, evaluate_date, evaluate_state
-    </sql>
+  </sql>
     <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lps.po.EvaluateExample">
         select
         <if test="distinct">

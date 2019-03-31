@@ -29,7 +29,7 @@ public interface IPropsService {
     public void insertPropValue(PropValue propValue);
 
     //    删除属性值
-    public void deleteByPvId(int pvId);
+    public void deleteByPvId(String pvId);
 
     //    修改属性值
     public void updatePropValue(PropValue propValue);

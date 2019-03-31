@@ -114,52 +114,62 @@ public class PropValueExample {
             return (Criteria) this;
         }
 
-        public Criteria andPvIdEqualTo(Integer value) {
+        public Criteria andPvIdEqualTo(String value) {
             addCriterion("pv_id =", value, "pvId");
             return (Criteria) this;
         }
 
-        public Criteria andPvIdNotEqualTo(Integer value) {
+        public Criteria andPvIdNotEqualTo(String value) {
             addCriterion("pv_id <>", value, "pvId");
             return (Criteria) this;
         }
 
-        public Criteria andPvIdGreaterThan(Integer value) {
+        public Criteria andPvIdGreaterThan(String value) {
             addCriterion("pv_id >", value, "pvId");
             return (Criteria) this;
         }
 
-        public Criteria andPvIdGreaterThanOrEqualTo(Integer value) {
+        public Criteria andPvIdGreaterThanOrEqualTo(String value) {
             addCriterion("pv_id >=", value, "pvId");
             return (Criteria) this;
         }
 
-        public Criteria andPvIdLessThan(Integer value) {
+        public Criteria andPvIdLessThan(String value) {
             addCriterion("pv_id <", value, "pvId");
             return (Criteria) this;
         }
 
-        public Criteria andPvIdLessThanOrEqualTo(Integer value) {
+        public Criteria andPvIdLessThanOrEqualTo(String value) {
             addCriterion("pv_id <=", value, "pvId");
             return (Criteria) this;
         }
 
-        public Criteria andPvIdIn(List<Integer> values) {
+        public Criteria andPvIdLike(String value) {
+            addCriterion("pv_id like", value, "pvId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPvIdNotLike(String value) {
+            addCriterion("pv_id not like", value, "pvId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPvIdIn(List<String> values) {
             addCriterion("pv_id in", values, "pvId");
             return (Criteria) this;
         }
 
-        public Criteria andPvIdNotIn(List<Integer> values) {
+        public Criteria andPvIdNotIn(List<String> values) {
             addCriterion("pv_id not in", values, "pvId");
             return (Criteria) this;
         }
 
-        public Criteria andPvIdBetween(Integer value1, Integer value2) {
+        public Criteria andPvIdBetween(String value1, String value2) {
             addCriterion("pv_id between", value1, value2, "pvId");
             return (Criteria) this;
         }
 
-        public Criteria andPvIdNotBetween(Integer value1, Integer value2) {
+        public Criteria andPvIdNotBetween(String value1, String value2) {
             addCriterion("pv_id not between", value1, value2, "pvId");
             return (Criteria) this;
         }

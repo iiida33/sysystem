@@ -1,7 +1,6 @@
 package com.lps.service.impl;
 
 import com.lps.exception.CustomException;
-import com.lps.mapper.CategoryMapper;
 import com.lps.po.Category;
 import com.lps.po.CategoryExample;
 import com.lps.service.ICategoryService;

@@ -1,108 +1,110 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.lps.mapper.DeliveryInfoMapper" >
-  <resultMap id="BaseResultMap" type="com.lps.po.DeliveryInfo" >
-    <id column="del_id" property="delId" jdbcType="INTEGER" />
-    <result column="cust_id" property="custId" jdbcType="INTEGER" />
-    <result column="del_receiver" property="delReceiver" jdbcType="VARCHAR" />
-    <result column="del_area" property="delArea" jdbcType="VARCHAR" />
-    <result column="del_address" property="delAddress" jdbcType="VARCHAR" />
-    <result column="del_phone" property="delPhone" jdbcType="VARCHAR" />
-    <result column="del_pc" property="delPc" jdbcType="CHAR" />
-    <result column="is_default" property="isDefault" jdbcType="BIT" />
-  </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+<mapper namespace="com.lps.mapper.DeliveryInfoMapper">
+    <resultMap id="BaseResultMap" type="com.lps.po.DeliveryInfo">
+        <id column="del_id" property="delId" jdbcType="INTEGER"/>
+        <result column="cust_id" property="custId" jdbcType="INTEGER"/>
+        <result column="del_receiver" property="delReceiver" jdbcType="VARCHAR"/>
+        <result column="del_area" property="delArea" jdbcType="VARCHAR"/>
+        <result column="del_address" property="delAddress" jdbcType="VARCHAR"/>
+        <result column="del_phone" property="delPhone" jdbcType="VARCHAR"/>
+        <result column="del_pc" property="delPc" jdbcType="CHAR"/>
+        <result column="is_default" property="isDefault" jdbcType="BIT"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List" >
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
     del_id, cust_id, del_receiver, del_area, del_address, del_phone, del_pc, is_default
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lps.po.DeliveryInfoExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from delivery_info
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from delivery_info
-    where del_id = #{delId,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lps.po.DeliveryInfoExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from delivery_info
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from delivery_info
+        where del_id = #{delId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from delivery_info
     where del_id = #{delId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.lps.po.DeliveryInfoExample" >
-    delete from delivery_info
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.lps.po.DeliveryInfo" >
+    <delete id="deleteByExample" parameterType="com.lps.po.DeliveryInfoExample">
+        delete from delivery_info
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.lps.po.DeliveryInfo">
     insert into delivery_info (del_id, cust_id, del_receiver, 
       del_area, del_address, del_phone, 
       del_pc, is_default)
@@ -110,141 +112,141 @@
       #{delArea,jdbcType=VARCHAR}, #{delAddress,jdbcType=VARCHAR}, #{delPhone,jdbcType=VARCHAR}, 
       #{delPc,jdbcType=CHAR}, #{isDefault,jdbcType=BIT})
   </insert>
-  <insert id="insertSelective" parameterType="com.lps.po.DeliveryInfo" >
-    insert into delivery_info
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="delId != null" >
-        del_id,
-      </if>
-      <if test="custId != null" >
-        cust_id,
-      </if>
-      <if test="delReceiver != null" >
-        del_receiver,
-      </if>
-      <if test="delArea != null" >
-        del_area,
-      </if>
-      <if test="delAddress != null" >
-        del_address,
-      </if>
-      <if test="delPhone != null" >
-        del_phone,
-      </if>
-      <if test="delPc != null" >
-        del_pc,
-      </if>
-      <if test="isDefault != null" >
-        is_default,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="delId != null" >
-        #{delId,jdbcType=INTEGER},
-      </if>
-      <if test="custId != null" >
-        #{custId,jdbcType=INTEGER},
-      </if>
-      <if test="delReceiver != null" >
-        #{delReceiver,jdbcType=VARCHAR},
-      </if>
-      <if test="delArea != null" >
-        #{delArea,jdbcType=VARCHAR},
-      </if>
-      <if test="delAddress != null" >
-        #{delAddress,jdbcType=VARCHAR},
-      </if>
-      <if test="delPhone != null" >
-        #{delPhone,jdbcType=VARCHAR},
-      </if>
-      <if test="delPc != null" >
-        #{delPc,jdbcType=CHAR},
-      </if>
-      <if test="isDefault != null" >
-        #{isDefault,jdbcType=BIT},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.lps.po.DeliveryInfoExample" resultType="java.lang.Integer" >
-    select count(*) from delivery_info
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map" >
-    update delivery_info
-    <set >
-      <if test="record.delId != null" >
-        del_id = #{record.delId,jdbcType=INTEGER},
-      </if>
-      <if test="record.custId != null" >
+    <insert id="insertSelective" parameterType="com.lps.po.DeliveryInfo">
+        insert into delivery_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="delId != null">
+                del_id,
+            </if>
+            <if test="custId != null">
+                cust_id,
+            </if>
+            <if test="delReceiver != null">
+                del_receiver,
+            </if>
+            <if test="delArea != null">
+                del_area,
+            </if>
+            <if test="delAddress != null">
+                del_address,
+            </if>
+            <if test="delPhone != null">
+                del_phone,
+            </if>
+            <if test="delPc != null">
+                del_pc,
+            </if>
+            <if test="isDefault != null">
+                is_default,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="delId != null">
+                #{delId,jdbcType=INTEGER},
+            </if>
+            <if test="custId != null">
+                #{custId,jdbcType=INTEGER},
+            </if>
+            <if test="delReceiver != null">
+                #{delReceiver,jdbcType=VARCHAR},
+            </if>
+            <if test="delArea != null">
+                #{delArea,jdbcType=VARCHAR},
+            </if>
+            <if test="delAddress != null">
+                #{delAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="delPhone != null">
+                #{delPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="delPc != null">
+                #{delPc,jdbcType=CHAR},
+            </if>
+            <if test="isDefault != null">
+                #{isDefault,jdbcType=BIT},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.lps.po.DeliveryInfoExample" resultType="java.lang.Integer">
+        select count(*) from delivery_info
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update delivery_info
+        <set>
+            <if test="record.delId != null">
+                del_id = #{record.delId,jdbcType=INTEGER},
+            </if>
+            <if test="record.custId != null">
+                cust_id = #{record.custId,jdbcType=INTEGER},
+            </if>
+            <if test="record.delReceiver != null">
+                del_receiver = #{record.delReceiver,jdbcType=VARCHAR},
+            </if>
+            <if test="record.delArea != null">
+                del_area = #{record.delArea,jdbcType=VARCHAR},
+            </if>
+            <if test="record.delAddress != null">
+                del_address = #{record.delAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="record.delPhone != null">
+                del_phone = #{record.delPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="record.delPc != null">
+                del_pc = #{record.delPc,jdbcType=CHAR},
+            </if>
+            <if test="record.isDefault != null">
+                is_default = #{record.isDefault,jdbcType=BIT},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update delivery_info
+        set del_id = #{record.delId,jdbcType=INTEGER},
         cust_id = #{record.custId,jdbcType=INTEGER},
-      </if>
-      <if test="record.delReceiver != null" >
         del_receiver = #{record.delReceiver,jdbcType=VARCHAR},
-      </if>
-      <if test="record.delArea != null" >
         del_area = #{record.delArea,jdbcType=VARCHAR},
-      </if>
-      <if test="record.delAddress != null" >
         del_address = #{record.delAddress,jdbcType=VARCHAR},
-      </if>
-      <if test="record.delPhone != null" >
         del_phone = #{record.delPhone,jdbcType=VARCHAR},
-      </if>
-      <if test="record.delPc != null" >
         del_pc = #{record.delPc,jdbcType=CHAR},
-      </if>
-      <if test="record.isDefault != null" >
-        is_default = #{record.isDefault,jdbcType=BIT},
-      </if>
-    </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map" >
-    update delivery_info
-    set del_id = #{record.delId,jdbcType=INTEGER},
-      cust_id = #{record.custId,jdbcType=INTEGER},
-      del_receiver = #{record.delReceiver,jdbcType=VARCHAR},
-      del_area = #{record.delArea,jdbcType=VARCHAR},
-      del_address = #{record.delAddress,jdbcType=VARCHAR},
-      del_phone = #{record.delPhone,jdbcType=VARCHAR},
-      del_pc = #{record.delPc,jdbcType=CHAR},
-      is_default = #{record.isDefault,jdbcType=BIT}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.lps.po.DeliveryInfo" >
-    update delivery_info
-    <set >
-      <if test="custId != null" >
-        cust_id = #{custId,jdbcType=INTEGER},
-      </if>
-      <if test="delReceiver != null" >
-        del_receiver = #{delReceiver,jdbcType=VARCHAR},
-      </if>
-      <if test="delArea != null" >
-        del_area = #{delArea,jdbcType=VARCHAR},
-      </if>
-      <if test="delAddress != null" >
-        del_address = #{delAddress,jdbcType=VARCHAR},
-      </if>
-      <if test="delPhone != null" >
-        del_phone = #{delPhone,jdbcType=VARCHAR},
-      </if>
-      <if test="delPc != null" >
-        del_pc = #{delPc,jdbcType=CHAR},
-      </if>
-      <if test="isDefault != null" >
-        is_default = #{isDefault,jdbcType=BIT},
-      </if>
-    </set>
-    where del_id = #{delId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.lps.po.DeliveryInfo" >
+        is_default = #{record.isDefault,jdbcType=BIT}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lps.po.DeliveryInfo">
+        update delivery_info
+        <set>
+            <if test="custId != null">
+                cust_id = #{custId,jdbcType=INTEGER},
+            </if>
+            <if test="delReceiver != null">
+                del_receiver = #{delReceiver,jdbcType=VARCHAR},
+            </if>
+            <if test="delArea != null">
+                del_area = #{delArea,jdbcType=VARCHAR},
+            </if>
+            <if test="delAddress != null">
+                del_address = #{delAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="delPhone != null">
+                del_phone = #{delPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="delPc != null">
+                del_pc = #{delPc,jdbcType=CHAR},
+            </if>
+            <if test="isDefault != null">
+                is_default = #{isDefault,jdbcType=BIT},
+            </if>
+        </set>
+        where del_id = #{delId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lps.po.DeliveryInfo">
     update delivery_info
     set cust_id = #{custId,jdbcType=INTEGER},
       del_receiver = #{delReceiver,jdbcType=VARCHAR},
@@ -256,13 +258,13 @@
     where del_id = #{delId,jdbcType=INTEGER}
   </update>
 
-  <!--自定义部分-->
-  <!--查找是否有默认地址-->
-  <select id="selectIsDefault" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    <!--自定义部分-->
+    <!--查找是否有默认地址-->
+    <select id="selectIsDefault" parameterType="java.lang.Integer" resultType="java.lang.Integer">
     SELECT COUNT(*) FROM delivery_info WHERE cust_id=#{custId,jdbcType=INTEGER} and is_default=TRUE
   </select>
-  <!--根据用户ID查询快递地址信息-->
-  <select id="selectByCustId" parameterType="java.lang.Integer" resultType="com.lps.po.DeliveryInfo">
+    <!--根据用户ID查询快递地址信息-->
+    <select id="selectByCustId" parameterType="java.lang.Integer" resultType="com.lps.po.DeliveryInfo">
     SELECT * FROM delivery_info WHERE cust_id=#{custId,jdbcType=INTEGER}
   </select>
 </mapper>

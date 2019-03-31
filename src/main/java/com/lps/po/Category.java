@@ -11,17 +11,6 @@ public class Category {
 
     private Integer catOrder;
 
-    @Override
-    public String toString() {
-        return "Category{" +
-                "catId=" + catId +
-                ", catName='" + catName + '\'' +
-                ", precatId=" + precatId +
-                ", isParent=" + isParent +
-                ", catOrder=" + catOrder +
-                '}';
-    }
-
     public Integer getCatId() {
         return catId;
     }

@@ -1,17 +1,13 @@
 package com.lps.service.impl;
 
 import com.lps.exception.CustomException;
-import com.lps.mapper.CollectMapper;
-import com.lps.mapper.CustomerMapper;
 import com.lps.po.Customer;
-import com.lps.po.CustomerExample;
 import com.lps.service.ICustomerService;
 import com.lps.vo.CustomerShowModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**

@@ -1,9 +1,6 @@
 package com.lps.service.impl;
 
-import com.lps.controller.LoginRegisterController;
 import com.lps.exception.CustomException;
-import com.lps.mapper.AdminMapper;
-import com.lps.mapper.CustomerMapper;
 import com.lps.service.ILoginRegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

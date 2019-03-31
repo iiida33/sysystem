@@ -181,7 +181,6 @@
     where collect_id = #{collectId,jdbcType=INTEGER}
   </update>
 
-
     <!--自定义-->
     <resultMap id="CollectShowMap" type="com.lps.vo.CollectShowModel">
         <id column="collect_id" property="collectId" jdbcType="INTEGER"/>

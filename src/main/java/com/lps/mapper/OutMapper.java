@@ -2,7 +2,9 @@ package com.lps.mapper;
 
 import com.lps.po.Out;
 import com.lps.po.OutExample;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface OutMapper {
@@ -28,6 +30,6 @@ public interface OutMapper {
 
     int updateByPrimaryKey(Out record);
 
-//    -------自定义部分--------------------------------------------------------------
+    //    -------自定义部分--------------------------------------------------------------
     List<Out> selectAll();
 }

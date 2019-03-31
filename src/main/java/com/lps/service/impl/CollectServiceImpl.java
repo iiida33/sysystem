@@ -1,8 +1,6 @@
 package com.lps.service.impl;
 
-import com.lps.mapper.CollectMapper;
 import com.lps.po.Collect;
-import com.lps.po.CollectExample;
 import com.lps.service.ICollectService;
 import com.lps.vo.CollectShowModel;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -2,7 +2,9 @@ package com.lps.mapper;
 
 import com.lps.po.PropValue;
 import com.lps.po.PropValueExample;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface PropValueMapper {
@@ -10,7 +12,7 @@ public interface PropValueMapper {
 
     int deleteByExample(PropValueExample example);
 
-    int deleteByPrimaryKey(Integer pvId);
+    int deleteByPrimaryKey(String pvId);
 
     int insert(PropValue record);
 
@@ -18,7 +20,7 @@ public interface PropValueMapper {
 
     List<PropValue> selectByExample(PropValueExample example);
 
-    PropValue selectByPrimaryKey(Integer pvId);
+    PropValue selectByPrimaryKey(String pvId);
 
     int updateByExampleSelective(@Param("record") PropValue record, @Param("example") PropValueExample example);
 
@@ -28,6 +30,6 @@ public interface PropValueMapper {
 
     int updateByPrimaryKey(PropValue record);
 
-//    自定义部分
+    //    自定义部分
     List<PropValue> selectByPnId(Integer pnId);
 }

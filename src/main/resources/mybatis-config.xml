@@ -11,12 +11,12 @@
 		<!--关闭积极加载-->
 		<setting name="aggressiveLazyLoading" value="false"/>
 	</settings>
-	
 	<!-- 定义别名 -->
 	<typeAliases>
 		<package name="com.lps.po,com.lps.vo"/>
 	</typeAliases>
-	
+
+
 	<!-- 引入分页插件 pagehelper -->
 	<plugins>
 		<plugin interceptor="com.github.pagehelper.PageInterceptor">

@@ -224,13 +224,14 @@
 
     <!--根据顾客Id查询购物车信息-->
     <select id="selectShopCartAndSku" parameterType="java.lang.Integer" resultMap="ShopCartGoodSkuResultMap">
-        SELECT shopping_cart.*,sku_price,sku_pic,sku_state,GROUP_CONCAT(pv_name) props,good_name,sku_price*cart_count money
+        SELECT shopping_cart.*,sku_price,sku_pic,sku_state,GROUP_CONCAT(pv_name) props,good_name,sku_price*cart_count
+        money
         FROM good,prop_value,good_sku,shopping_cart
-		WHERE good_sku.good_id = good.good_id
-		    and FIND_IN_SET(pv_id,sku_props)
-		    and shopping_cart.sku_id=good_sku.sku_id
-		    and cust_id=#{custId,jdbcType=INTEGER}
-		GROUP BY shopping_cart.sku_id;
+        WHERE good_sku.good_id = good.good_id
+        and FIND_IN_SET(pv_id,sku_props)
+        and shopping_cart.sku_id=good_sku.sku_id
+        and cust_id=#{custId,jdbcType=INTEGER}
+        GROUP BY shopping_cart.sku_id;
         <!--SELECT shopping_cart.*,sku_price,sku_pic,sku_state,GROUP_CONCAT(pv_name) 属性,good_name-->
         <!--FROM shopping_cart-->
         <!--LEFT JOIN good_sku ON shopping_cart.sku_id=good_sku.sku_id-->

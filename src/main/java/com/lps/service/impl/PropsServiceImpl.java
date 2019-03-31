@@ -79,7 +79,7 @@ public class PropsServiceImpl implements IPropsService {
     }
 
     @Override
-    public void deleteByPvId(int pvId) {
+    public void deleteByPvId(String pvId) {
         propValueMapper.deleteByPrimaryKey(pvId);
     }
 

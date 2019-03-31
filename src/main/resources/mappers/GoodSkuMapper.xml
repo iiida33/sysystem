@@ -266,10 +266,10 @@
   </delete>
     <!--根据商品销售属性值ID查询商品sku信息-->
     <select id="selectBySkuProps" parameterType="java.lang.String" resultMap="BaseResultMap">
-    SELECT
+        SELECT
         <include refid="Base_Column_List"/>
-    FROM good_sku
-    WHERE sku_props = "${value}"
+        FROM good_sku
+        WHERE sku_props = "${value}"
     </select>
     <!--根据商品ID查询商品SKU信息-->
     <select id="selectByGoodId" parameterType="java.lang.Integer" resultMap="BaseResultMap">

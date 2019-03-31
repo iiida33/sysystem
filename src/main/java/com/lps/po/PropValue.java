@@ -1,18 +1,18 @@
 package com.lps.po;
 
 public class PropValue {
-    private Integer pvId;
+    private String pvId;
 
     private String pvName;
 
     private Integer pnId;
 
-    public Integer getPvId() {
+    public String getPvId() {
         return pvId;
     }
 
-    public void setPvId(Integer pvId) {
-        this.pvId = pvId;
+    public void setPvId(String pvId) {
+        this.pvId = pvId == null ? null : pvId.trim();
     }
 
     public String getPvName() {

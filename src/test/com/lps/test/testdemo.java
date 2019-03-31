@@ -1,25 +1,14 @@
 package com.lps.test;
 
-import com.lps.mapper.*;
-import com.lps.po.Category;
-import com.lps.po.Collect;
-import com.lps.po.GoodSku;
 import com.lps.service.*;
-import com.lps.service.impl.EvaluateServiceImpl;
 import com.lps.vo.CategoryShow;
-import com.lps.vo.PropNameAndValueList;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.Date;
 import java.util.List;
-import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * @ClassName: testdemo

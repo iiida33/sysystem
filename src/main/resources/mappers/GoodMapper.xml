@@ -255,6 +255,4 @@
       good_image = #{goodImage,jdbcType=VARCHAR}
     where good_id = #{goodId,jdbcType=INTEGER}
   </update>
-
-  <!--自定义部分-->
 </mapper>

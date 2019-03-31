@@ -320,7 +320,7 @@
         </selectKey>
         insert into customer(cust_username,cust_password,cust_phone,cust_create)
         value (#{custUsername,jdbcType=VARCHAR},#{custPassword,jdbcType=VARCHAR},
-                #{custPhone,jdbcType=VARCHAR},#{custCreate,jdbcType=DATE})
+        #{custPhone,jdbcType=VARCHAR},#{custCreate,jdbcType=DATE})
     </insert>
     <!--查询所有用户展示信息-->
     <select id="findAllToShow" resultMap="CustShowResultMap">
