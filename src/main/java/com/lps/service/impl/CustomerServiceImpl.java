@@ -4,12 +4,15 @@ import com.lps.exception.CustomException;
 import com.lps.mapper.CollectMapper;
 import com.lps.mapper.CustomerMapper;
 import com.lps.po.Customer;
+import com.lps.po.CustomerExample;
 import com.lps.service.ICustomerService;
 import com.lps.vo.CustomerShowModel;
 import com.sun.org.apache.bcel.internal.generic.NEW;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -55,7 +58,22 @@ public class CustomerServiceImpl implements ICustomerService {
     }
 
     @Override
-    public void deleteById(int id) {
+    public void deleteById(int id) throws CustomException {
+        Date date1 = customerMapper.selectCurrentBuyTime(id);
+        if (date1==null){
+            collectMapper.deleteByCustId(id);
+            customerMapper.deleteByPrimaryKey(id);
+            return;
+        }
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+        Date date2 = new Date();// new Date()为获取当前系统时间
+        long from1 = date1.getTime();
+        long to1 = date2.getTime();
+        int days = (int) ((to1 - from1) / (1000 * 60 * 60 * 24));
+        if (days<=180)
+        {
+            throw new CustomException("该用户近半年进行过消费，不能删除！");
+        }
         collectMapper.deleteByCustId(id);
         customerMapper.deleteByPrimaryKey(id);
     }
@@ -74,8 +92,9 @@ public class CustomerServiceImpl implements ICustomerService {
     }
 
     @Override
-    public List<CustomerShowModel> findAll() {
-        return customerMapper.findAllToShow();
+    public List<Customer> findAll(Customer customer) {
+        List<Customer> customers = customerMapper.selectCustomerSelective(customer);
+        return customers;
     }
 
     @Override

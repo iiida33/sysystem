@@ -17,7 +17,6 @@
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script src="../../../static/lib/lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="../../../static/lib/js/xadmin.js"></script>
-
 </head>
 <body>
     <!-- 顶部开始 -->
@@ -67,7 +66,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="toPage.do?url=admin/cate.jsp">
+                        <a _href="toPage.do?url=admin/cate-list.jsp">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>分类列表</cite>
                         </a>
@@ -82,28 +81,13 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="toPage.do?url=admin/goodManager.jsp">
+                        <a _href="toPage.do?url=admin/good-list.jsp">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>商品列表</cite>
                         </a>
                     </li >
                 </ul>
             </li>
-            <%--<li>--%>
-                <%--<a href="javascript:;">--%>
-                    <%--<i class="iconfont">&#xe723;</i>--%>
-                    <%--<cite>test</cite>--%>
-                    <%--<i class="iconfont nav_right">&#xe697;</i>--%>
-                <%--</a>--%>
-                <%--<ul class="sub-menu">--%>
-                    <%--<li>--%>
-                        <%--<a _href="toPage.do?url=admin/TreeGuid.jsp">--%>
-                            <%--<i class="iconfont">&#xe6a7;</i>--%>
-                            <%--<cite>test</cite>--%>
-                        <%--</a>--%>
-                    <%--</li >--%>
-                <%--</ul>--%>
-            <%--</li>--%>
             <li>
                 <a href="javascript:;">
                     <i class="iconfont">&#xe723;</i>
@@ -144,6 +128,5 @@
         <div class="copyright">Copyright &copy; 2019 梁培珊 201524132105</div>
     </div>
     <!-- 底部结束 -->
-
 </body>
 </html>

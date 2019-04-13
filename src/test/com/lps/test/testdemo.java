@@ -1,6 +1,7 @@
 package com.lps.test;
 
 import com.lps.mapper.CategoryMapper;
+import com.lps.mapper.CustomerMapper;
 import com.lps.po.Category;
 import com.lps.service.*;
 import com.lps.vo.CategoryShow;
@@ -11,7 +12,12 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.sound.midi.Soundbank;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.zip.CheckedOutputStream;
 
 /**
  * @ClassName: testdemo
@@ -24,17 +30,27 @@ import java.util.List;
 public class testdemo {
 
     @Autowired
-    CategoryMapper categoryMapper;
+    CustomerMapper customerMapper;
 
     @Test
-    public void test() {
-        Category category = new Category();
-        category.setPrecatId(6);
-        category.setCatName("1段");
-        System.out.println(categoryMapper.selectByCatName(category));
-//        System.out.println(Pattern.matches("^([A-Za-z0-9_\\-\\.])+\\@([A-Za-z0-9_\\-\\.])+\\.([A-Za-z]{2,4})$", "2513567@qq.com"));
-//        System.out.println(Pattern.matches("^[1][3,4,5,7,8][0-9]{9}$","2513567@qq.com"));
-//        System.out.println(Pattern.matches("^[1][3,4,5,7,8][0-9]{9}$","17876253535"));
-        //        Pattern pattern = Pattern.compile("^([A-Za-z0-9_\\-\\.])+\\@([A-Za-z0-9_\\-\\.])+\\.([A-Za-z]{2,4})$");
+    public void test() throws ParseException {
+        //        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");//设置日期格式
+        //        System.out.println(df.format(new Date()));// new Date()为获取当前系统时间
+        //        SimpleDateFormat simpleFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+        //        /*天数差*/
+        //        Date fromDate1 = simpleFormat.parse("2019-04-13 18:10");
+        //        Date toDate1 = simpleFormat.parse("2018-03-12 12:00");
+        //        long from1 = fromDate1.getTime();
+        //        long to1 = toDate1.getTime();
+        //        int days = (int) ((to1 - from1) / (1000 * 60 * 60 * 24));
+        //        System.out.println("两个时间之间的天数差为：" + days);
+        Date date1 = customerMapper.selectCurrentBuyTime(1);
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+        Date date2 = new Date();// new Date()为获取当前系统时间
+        long from1 = date1.getTime();
+        long to1 = date2.getTime();
+        int days = (int) ((to1 - from1) / (1000 * 60 * 60 * 24));
+        System.out.println(date1);
+        System.out.println("两个时间之间的天数差为：" + days);
     }
 }

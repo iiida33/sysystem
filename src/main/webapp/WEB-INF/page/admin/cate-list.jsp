@@ -49,9 +49,6 @@
     <button class="layui-btn layui-btn layui-btn-xs" onclick=""><i
             class="layui-icon">&#xe642;</i>编辑
     </button>
-    <%--<button class="layui-btn layui-btn-warm layui-btn-xs" onclick=""><i--%>
-    <%--class="layui-icon">&#xe642;</i>添加子栏目--%>
-    <%--</button>--%>
     <button class="layui-btn-danger layui-btn layui-btn-xs" onclick=""
             href="javascript:;"><i class="layui-icon">&#xe640;</i>删除
     </button>
@@ -107,7 +104,6 @@
                 edit(obj.data);
             }
         });
-
     });
 
     function del(data) {
@@ -127,8 +123,10 @@
                     success: function (result) {
                         var status = result.status;
                         if (status == "200") {
-                            layer.msg(result.msg, {time: 5000});
-                            location.replace(location.href);
+                            layer.alert(result.msg, {
+                                title: '删除'
+                            },
+                                location.replace(location.href));
                         }
                         else {
                             layer.msg(result.msg);
@@ -142,10 +140,6 @@
             }
         );
     }
-
-
-    var i = 1000;
-
     //编辑
     function edit(data) {
         layui.use(['layer', 'form'], function () {
@@ -158,10 +152,7 @@
                 maxmin: true,
                 content: 'toPage.do?url=admin/cate-edit.jsp',
                 success: function (layero, index) {
-                    // console.log(layero);
-                    // console.log(index);
                     var body = layer.getChildFrame('body', index);
-                    // var iframeWin = window[layero.find('iframe')[0]['name']];
                     body.find('#catId').val(data.catId);
                     body.find('#catName').val(data.catName);
                     body.find('#catOrder').val(data.catOrder);
@@ -169,15 +160,6 @@
             });
         })
     }
-
-    // function print() {
-    //     console.log(treeGrid.cache[tableId]);
-    //     var loadIndex = layer.msg("对象已打印，按F12，在控制台查看！", {
-    //         time: 3000
-    //         , offset: 'auto'//顶部
-    //         , shade: 0
-    //     });
-    // }
 </script>
 </body>
 

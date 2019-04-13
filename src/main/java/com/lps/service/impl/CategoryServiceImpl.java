@@ -37,7 +37,8 @@ public class CategoryServiceImpl implements ICategoryService {
             throw new CustomException("二级类别数量不能超过12个！");
         }
         List<Category> categories = categoryMapper.selectByCatName(category);
-        if (categories!=null)
+        int count = categories.size();
+        if (count>0)
             throw new CustomException("类别名已存在！");
         categoryMapper.insertSelective(category);
     }
@@ -93,9 +94,10 @@ public class CategoryServiceImpl implements ICategoryService {
     @Override
     public void updateCategorySelective(Category category) throws CustomException{
         List<Category> categories = categoryMapper.selectByCatName(category);
+        int count = categories.size();
         int catId = category.getCatId();
         int id = categories.get(0).getCatId();
-        if (categories!=null&& catId!=id)
+        if (count>0 && catId!=id)
             throw new CustomException("类别名已存在！");
         categoryMapper.updateByPrimaryKeySelective(category);
     }

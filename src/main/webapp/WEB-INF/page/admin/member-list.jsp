@@ -1,16 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
-<!DOCTYPE html>
-<html>
-  
-  <head>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<!doctype html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <title>圣婴网管理端</title>
-    <meta name="renderer" content="webkit">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
-    <link rel="shortcut icon" href="../../../img/favicon.ico" type="image/x-icon" />
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+    <link rel="shortcut icon" href="../../../img/favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="../../../static/lib/css/font.css">
     <link rel="stylesheet" href="../../../static/lib/css/xadmin.css">
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
@@ -18,184 +20,138 @@
     <script type="text/javascript" src="../../../static/lib/js/xadmin.js"></script>
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
-      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
-      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-  </head>
-  
-  <body class="layui-anim layui-anim-up">
-    <div class="x-nav">
+</head>
+
+<body class="layui-anim layui-anim-up">
+<div class="x-nav">
       <span class="layui-breadcrumb">
         <a href="">首页</a>
         <a href="">会员管理</a>
         <a>
           <cite>用户列表</cite></a>
       </span>
-      <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
+       href="javascript:location.replace(location.href);" title="刷新">
         <i class="layui-icon" style="line-height:30px">ဂ</i></a>
-    </div>
-    <div class="x-body">
-      <div class="layui-row">
+</div>
+<div class="x-body">
+    <div class="layui-row">
         <form class="layui-form layui-col-md12 x-so">
-          <input class="layui-input" placeholder="开始日" name="start" id="start">
-          <input class="layui-input" placeholder="截止日" name="end" id="end">
-          <input type="text" name="username"  placeholder="请输入用户名" autocomplete="off" class="layui-input">
-          <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+            注册时间：
+            <input class="layui-input" placeholder="开始日" name="start" id="start">
+            <input class="layui-input" placeholder="截止日" name="end" id="end">
+            <input type="text" name="username" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+            <button class="layui-btn" lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
         </form>
-      </div>
-      <xblock>
-        <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-        <span class="x-right" style="line-height:40px">共有数据：88 条</span>
-      </xblock>
-      <table class="layui-table">
-        <thead>
-          <tr>
-            <th>
-              <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
-            </th>
-            <th>ID</th>
-            <th>用户名</th>
-            <th>性别</th>
-            <th>手机</th>
-            <th>邮箱</th>
-            <th>地址</th>
-            <th>注册时间</th>
-            <th>状态</th>
-            <th>操作</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
-            </td>
-            <td>1</td>
-            <td>小明</td>
-            <td>男</td>
-            <td>13000000000</td>
-            <td>admin@mail.com</td>
-            <td>北京市 海淀区</td>
-            <td>2017-01-01 11:11:42</td>
-            <td class="td-status">
-              <span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span></td>
-            <td class="td-manage">
-              <a onclick="member_stop(this,'10001')" href="javascript:;"  title="启用">
-                <i class="layui-icon">&#xe601;</i>
-              </a>
-              <a title="编辑"  onclick="x_admin_show('编辑','member-edit.html',600,400)" href="javascript:;">
-                <i class="layui-icon">&#xe642;</i>
-              </a>
-              <a onclick="x_admin_show('修改密码','member-password.html',600,400)" title="修改密码" href="javascript:;">
-                <i class="layui-icon">&#xe631;</i>
-              </a>
-              <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
-                <i class="layui-icon">&#xe640;</i>
-              </a>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
-            </td>
-            <td>1</td>
-            <td>小明</td>
-            <td>男</td>
-            <td>13000000000</td>
-            <td>admin@mail.com</td>
-            <td>北京市 海淀区</td>
-            <td>2017-01-01 11:11:42</td>
-            <td class="td-status">
-              <span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span></td>
-            <td class="td-manage">
-              <a onclick="member_stop(this,'10001')" href="javascript:;"  title="启用">
-                <i class="layui-icon">&#xe601;</i>
-              </a>
-              <a title="编辑"  onclick="x_admin_show('编辑','member-edit.html',600,400)" href="javascript:;">
-                <i class="layui-icon">&#xe642;</i>
-              </a>
-              <a onclick="x_admin_show('修改密码','member-password.html',600,400)" title="修改密码" href="javascript:;">
-                <i class="layui-icon">&#xe631;</i>
-              </a>
-              <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
-                <i class="layui-icon">&#xe640;</i>
-              </a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="page">
-        <div>
-          <a class="prev" href="">&lt;&lt;</a>
-          <span class="num">1</span>
-          <a class="current" href="">2</a>
-          <a class="num" href="">3</a>
-          <a class="num" href="">30</a>
-          <a class="next" href="">&gt;&gt;</a>
-        </div>
-      </div>
-
     </div>
-    <script>
-      layui.use('laydate', function(){
-        var laydate = layui.laydate;
-        
-        //执行一个laydate实例
-        laydate.render({
-          elem: '#start' //指定元素
-        });
+    <table class="layui-hide layui-table layui-form" id="demo" lay-filter="test"></table>
 
-        //执行一个laydate实例
-        laydate.render({
-          elem: '#end' //指定元素
-        });
-      });
-
-       /*用户-停用*/
-      function member_stop(obj,id){
-          layer.confirm('确认要停用吗？',function(index){
-
-              if($(obj).attr('title')=='启用'){
-
-                //发异步把用户状态进行更改
-                $(obj).attr('title','停用')
-                $(obj).find('i').html('&#xe62f;');
-
-                $(obj).parents("tr").find(".td-status").find('span').addClass('layui-btn-disabled').html('已停用');
-                layer.msg('已停用!',{icon: 5,time:1000});
-
-              }else{
-                $(obj).attr('title','启用')
-                $(obj).find('i').html('&#xe601;');
-
-                $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('已启用');
-                layer.msg('已启用!',{icon: 5,time:1000});
-              }
-              
-          });
-      }
-
-      /*用户-删除*/
-      function member_del(obj,id){
-          layer.confirm('确认要删除吗？',function(index){
-              //发异步删除数据
-              $(obj).parents("tr").remove();
-              layer.msg('已删除!',{icon:1,time:1000});
-          });
-      }
-
-
-
-      function delAll (argument) {
-
-        var data = tableCheck.getData();
-  
-        layer.confirm('确认要删除吗？'+data,function(index){
-            //捉到所有被选中的，发异步进行删除
-            layer.msg('删除成功', {icon: 1});
-            $(".layui-form-checked").not('.header').parents('tr').remove();
-        });
-      }
+    <script type="text/html" id="barDemo">
+        <a class="layui-btn layui-btn-xs" lay-event="edit">修改密码</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
     </script>
 
-  </body>
+</div>
 
+<script>
+    layui.use(['laydate', 'laypage', 'layer', 'table', 'laytpl', 'laydate', 'util', 'form'], function () {
+        var $ = layui.jquery, form = layui.form;
+        var util = layui.util;
+        laypage = layui.laypage
+            , layer = layui.layer //弹层
+            , table = layui.table //表格
+            , laytpl = layui.laytpl
+            , laydate = layui.laydate;
+        table.render({
+            elem: '#demo'
+            , height: 480
+            , url: '/customer/showAllCustomerMsg.do' //数据接口
+            , title: '用户表'
+            , page: true //开启分页
+            , limits: [10, 15, 20]
+            , cols: [[ //表头
+                {type: 'checkbox', fixed: 'left'}
+                , {field: 'custId', title: '用户ID', align: 'center', width: 80, fixed: 'left'}
+                , {field: 'custUsername', title: '用户名', align: 'center', width: 100, fixed: 'left'}
+                , {field: 'custName', title: '姓名', align: 'center', width: 90}
+                , {field: 'custSex', title: '性别', align: 'center', width: 80}
+                , {field: 'custPhone', title: '手机', align: 'center', width: 130}
+                , {field: 'custEmail', title: '邮箱', align: 'center', width: 170}
+                , {
+                    field: 'custBirth', title: '生日', align: 'center', width: 150, templet: function (d) {
+                        return (d.custBirth != null) ? layui.util.toDateString(d.custBirth, 'yyyy-MM-dd') : "";
+                    }
+                }
+                , {field: 'custAddress', title: '地址', align: 'center', width: 250}
+                , {
+                    field: 'custCreate',
+                    title: '注册时间',
+                    align: 'center',
+                    width: 150,
+                    templet: function (d) {
+                        return (d.custCreate != null) ? layui.util.toDateString(d.custCreate, 'yyyy-MM-dd') : "";
+                    }
+                }
+                , {fixed: 'right', width: 150, title: '操作', align: 'center', toolbar: '#barDemo'}
+            ]]
+        });
+
+        //监听行工具事件
+        table.on('tool(test)', function (obj) { //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+            var data = obj.data //获得当前行数据
+                , layEvent = obj.event; //获得 lay-event 对应的值
+            if (layEvent === 'del') {
+                layer.confirm('真的删除行么', function (index) {
+                    //向服务端发送删除指令
+                    $.ajax({
+                        type: 'get',
+                        url: 'customer/deleteCustomer.do',
+                        data: {"custId": obj.data.custId},
+                        dataType: 'json',
+                        success: function (result) {
+                            if (result.status != "200") {
+                                layer.msg(result.msg);
+                            }
+                            else {
+                                layer.msg(result.msg);
+                                obj.del(); //删除对应行（tr）的DOM结构
+                                layer.close(index);
+                            }
+                        }
+                    })
+                });
+            }
+            else if (layEvent === 'edit') {
+                // console.log(555555);
+                // editPass(data);
+                x_admin_show('修改用户密码','toPage.do?url=admin/member-password.jsp?custId='+data.custId+'&custUsername='+data.custUsername, 600,400);
+            }
+        });
+    });
+
+    function editPass(data) {
+        layui.use(['layer', 'form'], function () {
+            var $ = layui.jquery, layer = layui.layer, form = layui.form;//独立版的layer无需执行这一句
+            layer.open({
+                type: 2,
+                title: '修改用户密码',
+                area: ['650px', '350px'],
+                fixed: false, //不固定
+                maxmin: true,
+                content: 'toPage.do?url=admin/member-password.jsp',
+                success: function (layero, index) {
+                    var body = layer.getChildFrame('body', index);
+                    body.find('#custUsername').val(data.custUsername);
+                    body.find('#custId').val(data.custId);
+                    console.log(33333);
+                }
+            });
+        })
+    }
+
+</script>
+</body>
 </html>

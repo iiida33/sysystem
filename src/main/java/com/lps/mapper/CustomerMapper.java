@@ -3,6 +3,7 @@ package com.lps.mapper;
 import com.lps.po.Customer;
 import com.lps.po.CustomerExample;
 
+import java.util.Date;
 import java.util.List;
 
 import com.lps.vo.CustomerShowModel;
@@ -47,7 +48,7 @@ public interface CustomerMapper {
     int insertCustomer(Customer customer);
 
     //    查询所有用户展示信息
-    List<CustomerShowModel> findAllToShow();
+    List<Customer> findAllToShow();
 
     //    根据用户名查询用户
     Customer selectByUserName(String custUsername);
@@ -58,6 +59,12 @@ public interface CustomerMapper {
     //    根据电子邮箱查询用户
     Customer selectByEmail(String custEmail);
 
-//    修改密码
+    //    修改密码
     void updatePassword(Customer customer);
+
+    //    根据条件查询用户信息
+    public List<Customer> selectCustomerSelective(Customer customer);
+
+//    获取用户最近购物时间
+    public Date selectCurrentBuyTime(Integer custId);
 }

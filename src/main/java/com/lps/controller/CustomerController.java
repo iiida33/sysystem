@@ -1,21 +1,24 @@
 package com.lps.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.lps.exception.CustomException;
 import com.lps.po.Customer;
 import com.lps.service.ICustomerService;
+import com.lps.vo.CustomerPages;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 /**
  * @ClassName: CustomerController
@@ -44,21 +47,6 @@ public class CustomerController {
     ) throws Exception {
         HashMap<String, String> map = new HashMap<String, String>();
         customer.setCustId((Integer) session.getAttribute("custId"));
-//        //原始名称
-//        String originalFilename = pic.getOriginalFilename();
-//        //上传图片
-//        if (pic != null && originalFilename != null && originalFilename.length() > 0) {
-//            //存储图片的物理路径
-//            String pic_path = "D:\\WorkPlace\\Temp\\sypic\\custom\\";
-//            //新的图片名称
-//            String newFileName = UUID.randomUUID() + originalFilename.substring(originalFilename.lastIndexOf("."));
-//            //新图片
-//            File newFile = new File(pic_path + newFileName);
-//            //将内存中的数据写入磁盘
-//            pic.transferTo(newFile);
-//            //将新图片名称写到itemsCustom中
-//            customer.setCustPic(newFileName);
-//        }
         try {
             customerService.updateCustomerSelective(customer);
         } catch (Exception e) {
@@ -89,4 +77,48 @@ public class CustomerController {
         return map;
     }
 
+    @RequestMapping("/changePassword1.do")
+    public void changePassword1(int custId,String custPassword){
+        customerService.updatePassword(custId,custPassword);
+    }
+
+    @RequestMapping("/showAllCustomerMsg.do")
+    @ResponseBody
+    public CustomerPages showAllCustomerMsg(
+            @RequestParam(value="page", defaultValue="1")int pageNum,
+            @RequestParam(value="limit", defaultValue="5") int limit,
+            @RequestParam(value="custUsername", defaultValue="") String custUsername){
+        List<Customer> customers;
+        Customer customer = new Customer();
+        customer.setCustUsername(custUsername);
+        //pageNum:起始页面  pageSize:每页的大小
+        PageHelper.startPage(pageNum,limit);
+        //查找条件，一定要紧跟在startPage后
+        customers = customerService.findAll(customer);
+        PageInfo pageResult = new PageInfo(customers);
+        //设置前台需要的数据
+        CustomerPages customerPages = new CustomerPages();
+        customerPages.setCode(0);
+        customerPages.setMsg("");
+        customerPages.setCount((int)pageResult.getTotal());
+        customerPages.setData(pageResult.getList());
+        return customerPages;
+    }
+
+    @RequestMapping("/deleteCustomer.do")
+    @ResponseBody
+    public Map<String,String> deleteCustomer(int custId){
+        Map<String,String> map = new HashMap<>();
+        try{
+            customerService.deleteById(custId);
+        }
+        catch (CustomException ce){
+            map.put("status","500");
+            map.put("msg",ce.getMessage());
+            return map;
+        }
+        map.put("status","200");
+        map.put("msg","删除用户成功！");
+        return map;
+    }
 }

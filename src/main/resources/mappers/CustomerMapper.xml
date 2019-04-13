@@ -356,4 +356,19 @@
         </set>
         where cust_id = #{custId,jdbcType=INTEGER}
     </update>
+    <!--根据条件查询用户信息-->
+    <select id="selectCustomerSelective" parameterType="com.lps.po.Customer" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM customer
+        <where>
+            <if test="custUsername != '' and custUsername != null">
+                and cust_username like concat('%',#{custUsername,jdbcType=VARCHAR},'%')
+            </if>
+        </where>
+    </select>
+    <!--获取用户最近购物时间-->
+    <select id="selectCurrentBuyTime" parameterType="java.lang.Integer" resultType="java.util.Date">
+        SELECT MAX(order_create) FROM `order` GROUP BY cust_id HAVING cust_id = #{custId,jdbcType=INTEGER}
+    </select>
 </mapper>

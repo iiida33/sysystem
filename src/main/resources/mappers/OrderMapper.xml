@@ -190,7 +190,7 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.lps.po.OrderExample" resultType="java.lang.Integer" >
-    select count(*) from order
+    select count(*) from `order`
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
