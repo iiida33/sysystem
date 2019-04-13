@@ -1,10 +1,12 @@
 // 1.入口函数
 $(function() {
+    console("test1");
     $.ajax({
-        url: "showCategory.do",
+        url: "/category/showCategory.do",
         type: "get",
         dataType: "json",
         success: function (res) {
+            console("test2")
             var value = {value:res};
             var html = $.get('toPage.do?url=module/menuTemplate.html', function(data) {
                 var render = template.compile(data);
@@ -20,4 +22,4 @@ $(function() {
             })
         }
     });
-})
+});

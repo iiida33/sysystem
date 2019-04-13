@@ -20,7 +20,6 @@ div#orderNav ul.sidenav li {
     float: left;
     border-right: 1px solid #bbb;
 }
-
 div#orderNav ul.sidenav li a {
     font-size: 18px;
     display: block;
@@ -29,7 +28,6 @@ div#orderNav ul.sidenav li a {
     padding: 14px 16px;
     text-decoration: none;
 }
-
 div#orderNav ul.sidenav li a:hover {
     color: #f95d96;
 }
@@ -68,4 +66,24 @@ div#orderInfo table .t5{
 }
 div#orderInfo table .t6{
     width: 14%;
+}
+div.category-menu a.active{
+    background-color:#f95d96;
+    border-radius: 5px;
+    color: #fff;
+}
+
+div.infoMas [type="submit"] {
+    background: #f95d96 none repeat scroll 0 0;
+    border-style: none;
+    border-radius: 10px;
+    color: #fff;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 30px;
+    margin-top: 20px;
+    margin-left: 50px;
+    margin-bottom: 20px;
+    padding: 0 20px;
 }

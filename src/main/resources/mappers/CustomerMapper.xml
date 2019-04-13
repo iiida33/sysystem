@@ -348,4 +348,12 @@
         from customer
         where cust_email = #{custEmail,jdbcType=VARCHAR}
     </select>
+    <!--修改用户密码信息-->
+    <update id="updatePassword" parameterType="com.lps.po.Customer">
+        update customer
+        <set>
+            cust_password = #{custPassword,jdbcType=VARCHAR},
+        </set>
+        where cust_id = #{custId,jdbcType=INTEGER}
+    </update>
 </mapper>

@@ -23,7 +23,23 @@
 		<!-- 配置jsp路径的后缀 -->
 	</bean>
 	<!--注解适配器和注解映射器-->
-	<mvc:annotation-driven></mvc:annotation-driven>
+	<mvc:annotation-driven conversion-service="conversionService">
+		<mvc:message-converters register-defaults="true">
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<constructor-arg value="UTF-8"/>
+				<property name="writeAcceptCharset" value="false"/>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+
+<!--时间转换器-->
+	<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		<property name="converters">
+			<list>
+				<bean class="com.lps.converter.DateConverter"/>
+			</list>
+		</property>
+	</bean>
 	<!-- 防止静态资源被拦截 -->
 	<mvc:default-servlet-handler/>
 	<!--注册multipart解析器-->

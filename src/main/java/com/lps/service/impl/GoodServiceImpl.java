@@ -1,6 +1,8 @@
 package com.lps.service.impl;
 
+import com.lps.mapper.GoodMapper;
 import com.lps.po.Good;
+import com.lps.po.GoodExample;
 import com.lps.service.IGoodService;
 import com.lps.vo.GoodAndPic;
 import com.lps.vo.GoodShowPage;
@@ -34,10 +36,15 @@ public class GoodServiceImpl implements IGoodService {
 
     @Override
     public void deleteGood(int goodId) {
+        goodMapper.deleteByPrimaryKey(goodId);
     }
 
     @Override
     public List<GoodSimpleShow> findByCateId(int cateId) {
+        GoodExample goodExample = new GoodExample();
+        GoodExample.Criteria criteria = goodExample.createCriteria();
+        criteria.andCatIdEqualTo(cateId);
+        goodMapper.selectByExample(goodExample);
         return null;
     }
 
@@ -48,7 +55,11 @@ public class GoodServiceImpl implements IGoodService {
 
     @Override
     public List<Good> fineAll() {
-        return null;
+
+        GoodExample goodExample = new GoodExample();
+        GoodExample.Criteria criteria = goodExample.createCriteria();
+        criteria.andGoodIdEqualTo(null);
+        return goodMapper.selectByExample(goodExample);
     }
 
     @Override

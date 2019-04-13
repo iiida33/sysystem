@@ -1,5 +1,6 @@
 package com.lps.service.impl;
 
+import com.lps.mapper.GoodSkuMapper;
 import com.lps.po.GoodSku;
 import com.lps.service.IGoodSkuService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,9 +1,12 @@
 package com.lps.service.impl;
 
 import com.lps.exception.CustomException;
+import com.lps.mapper.CollectMapper;
+import com.lps.mapper.CustomerMapper;
 import com.lps.po.Customer;
 import com.lps.service.ICustomerService;
 import com.lps.vo.CustomerShowModel;
+import com.sun.org.apache.bcel.internal.generic.NEW;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,11 +29,19 @@ public class CustomerServiceImpl implements ICustomerService {
 
     @Override
     public void updateCustomerSelective(Customer customer) throws CustomException {
-        Customer customer1 = customerMapper.selectByPrimaryKey(customer.getCustId());
-        if (customer1.getCustPhone() == customer.getCustPhone())
-            throw new CustomException("手机号码已注册", "501");
-        if (customer1.getCustUsername() == customer.getCustUsername())
-            throw new CustomException("会员名已存在", "502");
+        Customer customer1 = new Customer();
+        customer1 = customerMapper.selectByPhone(customer.getCustPhone());
+        if (customer1!=null&&customer.getCustId() !=customer1.getCustId() )
+            throw new CustomException("该手机号码已被注册，请修改");
+        customer1 = customerMapper.selectByUserName(customer.getCustUsername());
+        if (customer1!=null&&customer.getCustId() !=customer1.getCustId() )
+            throw new CustomException("该会员名已被存在，请修改");
+        if (customer.getCustEmail()!="")
+        {
+            customer1 = customerMapper.selectByEmail(customer.getCustEmail());
+            if (customer1!=null&&customer.getCustId() !=customer1.getCustId() )
+                throw new CustomException("该电子邮箱已被注册，请修改");
+        }
         customerMapper.updateByPrimaryKeySelective(customer);
     }
 
@@ -84,5 +95,13 @@ public class CustomerServiceImpl implements ICustomerService {
             return customer;
         else
             throw new CustomException("您输入的密码和账户名不匹配！");
+    }
+
+    @Override
+    public void updatePassword(int custId, String custPassword) {
+        Customer customer = new Customer();
+        customer.setCustId(custId);
+        customer.setCustPassword(custPassword);
+        customerMapper.updatePassword(customer);
     }
 }

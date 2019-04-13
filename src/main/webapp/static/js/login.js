@@ -72,10 +72,6 @@ function register() {
     var custPhone = $("#custPhone").val()
     var validateCode = $("#validateCode").val();
     $(".prompt").hide();
-    // $("#custPhone").next().hide();
-    // $("#custUsername").next().hide();
-    // $("#custPassword").next().hide();
-    // $("#validateCode").next().hide();
 
     if (custPhone == "") {
         $("#custPhone").next().text("手机号码不能为空");

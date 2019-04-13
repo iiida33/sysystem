@@ -5,17 +5,14 @@ import com.lps.po.Admin;
 import com.lps.po.Customer;
 import com.lps.service.IAdminService;
 import com.lps.service.ICustomerService;
-import com.lps.service.ILoginRegisterService;
 import com.lps.utils.CaptchaUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -28,7 +25,6 @@ import java.util.Map;
  * @ClassName: loginRegisterController
  * @Description: 顾客登录注册/管理员登录
  * @Author: 梁培珊
- * @Date: 8:15 2019/3/16
  **/
 @Controller
 public class LoginRegisterController {
@@ -39,9 +35,6 @@ public class LoginRegisterController {
     @Autowired
     private ICustomerService customerService;
 
-    @Autowired
-    private ILoginRegisterService loginRegisterService;
-
     // 验证码获取
     @RequestMapping("/changeCode.do")
     @ResponseBody
@@ -51,34 +44,26 @@ public class LoginRegisterController {
         CaptchaUtil.outputCaptcha(request, response);
     }
 
-
-// 显示首页
+    // 显示首页
     @RequestMapping("/")
     public String getIndex() {
-        return "customer/index.html";
+        return "customer/index.jsp";
     }
 
-    @RequestMapping("/getIndexState.do")
-    @ResponseBody
-    public int getIndexState(HttpSession session){
-        if (session.getAttribute("custId")!=null)
-            return 1;
-        return 0;
-    }
+//    @RequestMapping("/getIndexState.do")
+//    @ResponseBody
+//    public int getIndexState(HttpSession session) {
+//        if (session.getAttribute("custId") != null)
+//            return 1;
+//        return 0;
+//    }
+
     //实现顾客登录注册功能
-
     // 获取顾客登陆界面
     @RequestMapping("/login.do")
     public String getCustomerLoginPage() {
-        return "customer/login.html";
+        return "customer/login.jsp";
     }
-
-//    // 获取用户注册界面
-//    @RequestMapping("/register.do")
-//    public String getCustomerRegisterPage(Model model) {
-//        model.addAttribute("state","1");
-//        return "customer/login.html";
-//    }
 
     // 顾客注册
     @RequestMapping("/customerRegister.do")
@@ -108,7 +93,7 @@ public class LoginRegisterController {
             }
             // 保存到session
             httpSession.setAttribute("custId", customer.getCustId());
-            httpSession.setAttribute("customer", customer);
+            httpSession.setAttribute("customerName", customer.getCustName());
             map.put("msg", "成功");
             map.put("status", "200");
             return map;
@@ -122,7 +107,7 @@ public class LoginRegisterController {
     //顾客登录
     @RequestMapping("/customerLogin.do")
     @ResponseBody
-    public Map<String, String> customerLogin(HttpSession httpSession, HttpServletResponse response, String loginName, String custPassword) {
+    public Map<String, String> customerLogin(HttpSession httpSession, String loginName, String custPassword) {
         HashMap<String, String> map = new HashMap<String, String>();
         Customer customer = null;
         try {
@@ -133,13 +118,8 @@ public class LoginRegisterController {
             return map;
         }
         // 保存到session
-//        String cookieName="custId";
-//        String cookieValue=String.valueOf(customer.getCustId());
-//        Cookie cookie = new Cookie(cookieName,cookieValue);
-//        cookie.setPath("/");
-//        response.addCookie(cookie);
         httpSession.setAttribute("custId", customer.getCustId());
-        httpSession.setAttribute("customer", customer);
+        httpSession.setAttribute("customerName", customer.getCustUsername());
         map.put("msg", "成功");
         map.put("status", "200");
         return map;
@@ -147,8 +127,16 @@ public class LoginRegisterController {
 
     //顾客成功登录
     @RequestMapping("/customerLoginSuccess.do")
-    public String customerLoginSuccess(Model model) throws Exception {
-               return "customer/index.html";
+    public String customerLoginSuccess() throws Exception {
+        return "customer/index.jsp";
+    }
+
+    // 顾客退出登录
+    @RequestMapping(value = "/logout.do")
+    public String logout(HttpSession httpSession) {
+        httpSession.removeAttribute("custId");
+        httpSession.removeAttribute("customerName");
+        return "redirect:/";
     }
 
     // 获取顾客账号信息以显示
@@ -163,18 +151,11 @@ public class LoginRegisterController {
     //        return map;
     //    }
 
-    // 顾客退出登录
-    @RequestMapping(value = "/logout.do")
-    public String logout(HttpSession httpSession) {
-        httpSession.removeAttribute("custId");
-        return "redirect:/";
-    }
-
     //实现管理员登录功能
     // 获取管理员登陆界面
     @RequestMapping("/admin.do")
     public String getAdminLoginPage() {
-        return "admin/adminLogin.html";
+        return "admin/adminLogin.jsp";
     }
 
     // 获取管理员账号信息以显示
@@ -205,7 +186,7 @@ public class LoginRegisterController {
         }
         // 保存到session
         httpSession.setAttribute("admin", admin);
-        map.put("url", "toPage.do?url=admin/index.html");
+        map.put("url", "toPage.do?url=admin/index.jsp");
         map.put("msg", "成功");
         map.put("status", "200");
         return map;
@@ -215,6 +196,6 @@ public class LoginRegisterController {
     @RequestMapping(value = "/logoutAdmin.do")
     public String logoutAdmin(HttpSession httpSession) {
         httpSession.removeAttribute("admin");
-        return "redirect:/index.html";
+        return "redirect:/";
     }
 }

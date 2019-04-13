@@ -1,39 +1,28 @@
 (function ($) {
     "use strict";
-// //获取cookie字符串
-//     var strCookie = document.cookie;
-// //将多cookie切割为多个名/值对
-//     var arrCookie = strCookie.split(";");
-//     var custId;
-// //遍历cookie数组，处理每个cookie对
-//     for (var i = 0; i < arrCookie.length; i++) {
-//         var arr = arrCookie[i].split("=");
-// //找到名称为userId的cookie，并返回它的值
-//         if ("custId" == arr[0]) {
-//             custId = arr[1];
-//             break;
-//         }
-//     }
-//     if(custId==null)
-//     {
-//         $('#LoginRegister').show();
-//     }
 
-    $.ajax({
-        url: '/getIndexState.do',
-        dataType: 'json',
-        success: function (data) {
-            if (data == 1) {
-                $('#LoginOut').show();
-            }
-            else
-            {
-                $
-                $('#LoginRegister').show();
-            }
+    var id = $('#custId').val();
+    if (id!= null&&id!="") {
+        $('#LoginOut').show();
+    }
+    else {
+        $('#LoginRegister').show();
+    }
 
-        }
-    });
+    // $.ajax({
+    //     url: '/getIndexState.do',
+    //     dataType: 'json',
+    //     success: function (data) {
+    //         if (data == 1) {
+    //             $('#LoginOut').show();
+    //         }
+    //         else
+    //         {
+    //             $('#LoginRegister').show();
+    //         }
+    //
+    //     }
+    // });
 
     /*jQuery MeanMenu
       --------------------- */

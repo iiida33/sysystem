@@ -21,4 +21,6 @@ public interface ICustomerService {
     public List<CustomerShowModel> findAll();
 //    查询用户登录信息（用户名、手机号、邮箱、密码）
     public Customer findLoginMsg(String string,String password)throws CustomException ;
+//    修改用户密码
+    public void updatePassword(int custId,String custPassword);
 }

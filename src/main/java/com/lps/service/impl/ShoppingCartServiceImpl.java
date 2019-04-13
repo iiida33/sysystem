@@ -1,5 +1,6 @@
 package com.lps.service.impl;
 
+import com.lps.mapper.ShoppingCartMapper;
 import com.lps.po.ShoppingCart;
 import com.lps.service.IShoppingCartService;
 import com.lps.vo.ShoppingCartGoodSku;
