@@ -6,7 +6,9 @@ import com.lps.po.CustomerExample;
 import java.util.Date;
 import java.util.List;
 
+import com.lps.po.Good;
 import com.lps.vo.CustomerShowModel;
+import com.lps.vo.GoodCatSku;
 import org.apache.ibatis.annotations.Param;
 
 public interface CustomerMapper {
@@ -65,6 +67,7 @@ public interface CustomerMapper {
     //    根据条件查询用户信息
     public List<Customer> selectCustomerSelective(Customer customer);
 
-//    获取用户最近购物时间
+    //    获取用户最近购物时间
     public Date selectCurrentBuyTime(Integer custId);
+
 }

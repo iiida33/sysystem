@@ -1,10 +1,15 @@
 package com.lps.service.impl;
 
+import com.lps.exception.CustomException;
 import com.lps.mapper.GoodMapper;
+import com.lps.mapper.GoodPicMapper;
+import com.lps.mapper.GoodSkuMapper;
 import com.lps.po.Good;
 import com.lps.po.GoodExample;
+import com.lps.po.GoodSku;
 import com.lps.service.IGoodService;
 import com.lps.vo.GoodAndPic;
+import com.lps.vo.GoodCatSku;
 import com.lps.vo.GoodShowPage;
 import com.lps.vo.GoodSimpleShow;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +28,10 @@ public class GoodServiceImpl implements IGoodService {
 
     @Autowired
     private GoodMapper goodMapper;
+    @Autowired
+    private GoodSkuMapper goodSkuMapper;
+    @Autowired
+    private GoodPicMapper goodPicMapper;
 
     @Override
     public void insertGood(GoodAndPic goodAndPic) {
@@ -36,6 +45,8 @@ public class GoodServiceImpl implements IGoodService {
 
     @Override
     public void deleteGood(int goodId) {
+        goodSkuMapper.deleteByGoodId(goodId);
+        goodPicMapper.deletePicByGoodId(goodId);
         goodMapper.deleteByPrimaryKey(goodId);
     }
 
@@ -55,7 +66,6 @@ public class GoodServiceImpl implements IGoodService {
 
     @Override
     public List<Good> fineAll() {
-
         GoodExample goodExample = new GoodExample();
         GoodExample.Criteria criteria = goodExample.createCriteria();
         criteria.andGoodIdEqualTo(null);
@@ -78,7 +88,27 @@ public class GoodServiceImpl implements IGoodService {
     }
 
     @Override
-    public void updateStateById(int goodId, Boolean goodState) {
+    public int updateStateById(int goodId, Boolean goodState) throws CustomException {
+        Good good = new Good();
+        good.setGoodId(goodId);
+        good.setGoodState(goodState);
+        if(!goodState){
+            List<GoodSku> goodSkus = goodSkuMapper.selectByGoodId(goodId);
+            for(GoodSku goodSku:goodSkus){
+                if (goodSku.getSkuState()){
+                    throw new CustomException("该商品仍有未下架的SKU，不能下架！");
+                }
+            }
+            goodMapper.updateByPrimaryKeySelective(good);
+            return 0;
+        }
+        goodMapper.updateByPrimaryKeySelective(good);
+        return 1;
+    }
 
+    @Override
+    public List<GoodCatSku> findAllSelective(Good good) {
+        List<GoodCatSku> goodCatSkus = goodMapper.selectGoodListSelective(good);
+        return goodCatSkus;
     }
 }

@@ -53,7 +53,6 @@
         <a class="layui-btn layui-btn-xs" lay-event="edit">修改密码</a>
         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
     </script>
-
 </div>
 
 <script>
@@ -73,8 +72,7 @@
             , page: true //开启分页
             , limits: [10, 15, 20]
             , cols: [[ //表头
-                {type: 'checkbox', fixed: 'left'}
-                , {field: 'custId', title: '用户ID', align: 'center', width: 80, fixed: 'left'}
+                {field: 'custId', title: '用户ID', align: 'center', width: 80, fixed: 'left'}
                 , {field: 'custUsername', title: '用户名', align: 'center', width: 100, fixed: 'left'}
                 , {field: 'custName', title: '姓名', align: 'center', width: 90}
                 , {field: 'custSex', title: '性别', align: 'center', width: 80}
@@ -126,8 +124,8 @@
             }
             else if (layEvent === 'edit') {
                 // console.log(555555);
-                // editPass(data);
-                x_admin_show('修改用户密码','toPage.do?url=admin/member-password.jsp?custId='+data.custId+'&custUsername='+data.custUsername, 600,400);
+                editPass(data);
+                // x_admin_show('修改用户密码','toPage.do?url=admin/member-password.jsp?custId='+data.custId+'&custUsername='+data.custUsername, 600,400);
             }
         });
     });

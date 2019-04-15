@@ -1,17 +1,29 @@
 package com.lps.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.lps.exception.CustomException;
+import com.lps.po.Category;
+import com.lps.po.Customer;
 import com.lps.po.Good;
+import com.lps.service.ICategoryService;
 import com.lps.service.IGoodService;
 import com.lps.service.IGoodSkuService;
-import com.lps.vo.GoodAndPic;
-import com.lps.vo.GoodSimpleShow;
+import com.lps.vo.*;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.jws.WebParam;
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @ClassName: GoodController
@@ -20,9 +32,12 @@ import java.util.List;
  * @Date: 8:28 2019/3/17
  **/
 @Controller
+@RequestMapping("/good")
 public class GoodController {
     @Autowired
     private IGoodService goodService;
+    @Autowired
+    private ICategoryService categoryService;
 
     //    展示商品信息
     @RequestMapping("/showGoodMes.do")
@@ -57,7 +72,68 @@ public class GoodController {
 
     //   删除商品信息
     @RequestMapping("/deleteGood.do")
+    @ResponseBody
     public void deleteGood(int goodId) {
         goodService.deleteGood(goodId);
+    }
+
+    //展示商品列表
+    @RequestMapping("/showGoodList.do")
+    @ResponseBody
+    public GoodPages showGoodList(
+            @RequestParam(value = "page", defaultValue = "1") int pageNum,
+            @RequestParam(value = "limit", defaultValue = "5") int limit,
+            @RequestParam(value = "goodName", defaultValue = "") String goodName) {
+        List<GoodCatSku> goodCatSkus;
+        Good good = new Good();
+        good.setGoodName(goodName);
+        //pageNum:起始页面  pageSize:每页的大小
+        PageHelper.startPage(pageNum, limit);
+        //查找条件，一定要紧跟在startPage后
+        goodCatSkus = goodService.findAllSelective(good);
+        PageInfo pageResult = new PageInfo(goodCatSkus);
+        //设置前台需要的数据
+        GoodPages goodPages = new GoodPages();
+        goodPages.setCode(0);
+        goodPages.setMsg("");
+        goodPages.setCount((int) pageResult.getTotal());
+        goodPages.setData(pageResult.getList());
+        return goodPages;
+    }
+
+    //    改变商品状态（上架/下架）
+    @RequestMapping("/changeGoodState.do")
+    @ResponseBody
+    public Map<String, String> changeGoodState(int goodId,boolean goodState){
+        Map<String,String> map = new HashMap<>();
+        int state;
+        try {
+            state = goodService.updateStateById(goodId,goodState);
+        }
+        catch (CustomException ce){
+            map.put("status","500");
+            map.put("msg",ce.getMessage());
+            return map;
+        }
+        map.put("status","200");
+        if (state==0){
+            map.put("msg","商品下架成功");
+        }
+        else{
+            map.put("msg","商品上架成功");
+        }
+        return map;
+    }
+
+    @RequestMapping("/showGoodEditMsg.do")
+    public String showGoodEditMsg(HttpServletRequest request){
+        return "admin/good-edit.jsp";
+    }
+
+    @RequestMapping("/goodEditPage.do")
+    public String goodEditPage(Model model){
+        List<Category> categories = categoryService.findPreCate();
+        model.addAttribute("firstCategory",categories);
+        return "admin/good-add.jsp";
     }
 }

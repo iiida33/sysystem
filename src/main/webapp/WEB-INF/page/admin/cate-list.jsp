@@ -123,10 +123,9 @@
                     success: function (result) {
                         var status = result.status;
                         if (status == "200") {
-                            layer.alert(result.msg, {
-                                title: '删除'
-                            },
-                                location.replace(location.href));
+                            layer.msg(result.msg, { icon: 1, time: 1000 },function(){
+                                location.replace(location.href);
+                            });
                         }
                         else {
                             layer.msg(result.msg);

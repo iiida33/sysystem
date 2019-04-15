@@ -27,4 +27,8 @@ public interface GoodPicMapper {
     int updateByPrimaryKeySelective(GoodPic record);
 
     int updateByPrimaryKey(GoodPic record);
+
+//    自定义部分
+//    根据商品ID（goodId）删除图片
+    void deletePicByGoodId(Integer goodId);
 }

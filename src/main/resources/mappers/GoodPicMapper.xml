@@ -223,4 +223,10 @@
       pic_order = #{picOrder,jdbcType=INTEGER}
     where pic_id = #{picId,jdbcType=INTEGER}
   </update>
+
+  <!--自定义部分-->
+  <!--根据商品ID（goodId）删除图片-->
+  <delete id="deletePicByGoodId" parameterType="java.lang.Integer">
+    DELETE FROM good_pic WHERE good_id = #{goodId,jdbcType=INTEGER}
+  </delete>
 </mapper>

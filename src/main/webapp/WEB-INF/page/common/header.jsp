@@ -147,8 +147,8 @@
             type: "get",
             dataType: "json",
             success: function (res) {
-                console.log("test2");
                 var value = {value: res};
+                console.log(value);
                 var str = template('menuTemplate', value);
                 var strOri = document.getElementById('navcontainer').innerHTML;
                 document.getElementById('navcontainer').innerHTML = strOri + str;

@@ -67,32 +67,6 @@
     </form>
 </div>
 <script>
-    //加载参数
-    window.onload = function () {
-        //加载顾客id
-        $("#custId").val(decodeURI(getQueryVariable("custId")));
-        //加载顾客用户名
-        $("#custUsername").val(decodeURI(getQueryVariable("custUsername")));
-    };
-
-    //获取url参数
-    function getQueryVariable(variable) {
-        var query = window.location.search.substring(1);
-        var index = query.indexOf("?");
-        query = query.substr(index + 1, query.length);
-        // console.log(query);
-        var vars = query.split("&");
-        // console.log(vars);
-        for (var i = 0; i < vars.length; i++) {
-            var pair = vars[i].split("=");
-            // console.log(pair[0]);
-            if (pair[0] == variable) {
-                return pair[1];
-            }
-        }
-        return false;
-    }
-
     layui.use(['form', 'layedit', 'laydate'], function () {
         var form = layui.form
             , layer = layui.layer
@@ -101,8 +75,6 @@
             , $ = layui.jquery;
         // 监听提交
         form.on('submit(save)', function (data) {
-            // alert($("#dIdInput").val());
-            // alert(JSON.stringify(data.field));
             $.ajax({
                 type: 'post',
                 url: 'customer/changePassword1.do',
@@ -110,21 +82,16 @@
                     "custId": parseInt($("#custId").val()),
                     "custPassword": $("#newpass").val()
                 },
-                dataType: 'json',
-                success: function (data) {
-                    // console.log(data);
-                    layer.alert("修改成功", {
-                            title: '修改信息'
-                        }
-                        // function () {
-                        //     window.parent.location.reload();
-                        //     var index = parent.layer.getFrameIndex(window.name);
-                        //     parent.layer.close(index);
-                        // }
-                    );
-                }
+                dataType: 'json'
+            });
+            layer.alert("修改成功", {icon: 6}, function () {
+                // 获得frame索引
+                var index = parent.layer.getFrameIndex(window.name);
+                //关闭当前frame
+                parent.layer.close(index);
             });
             return false;
+
         });
         //自定义验证规则
         form.verify({
@@ -141,62 +108,6 @@
             ]
         });
     })
-    ;
 </script>
-<%--<script>--%>
-<%--layui.use(['form', 'layer'], function () {--%>
-<%--$ = layui.jquery;--%>
-<%--var form = layui.form--%>
-<%--, layer = layui.layer;--%>
-<%--//监听提交--%>
-<%--form.on('submit(save)', function (data) {--%>
-<%--var custId = $("#custId").val();--%>
-<%--var custPass = $("#newpass").val();--%>
-<%--// 监听提交--%>
-<%--$.ajax({--%>
-<%--type: 'post',--%>
-<%--url: 'customer/changePassword1.do',--%>
-<%--data: {--%>
-<%--"custId": custId,--%>
-<%--"custPassword": custPass--%>
-<%--},--%>
-<%--dataType: 'json',--%>
-<%--success: function (data) {--%>
-<%--console.log(11111);--%>
-<%--// var status = data.status;--%>
-<%--// // 说明存在同名--%>
-<%--// if (status != "200") {--%>
-<%--//     // console.log(data);--%>
-<%--//     layer.msg(data.msg);--%>
-<%--// } else {--%>
-<%--//     layer.alert(data.msg, {--%>
-<%--//             title: '修改信息'--%>
-<%--//         },--%>
-<%--//         function () {--%>
-<%--//             window.parent.location.reload();--%>
-<%--//             var index = parent.layer.getFrameIndex(window.name);--%>
-<%--//             parent.layer.close(index);--%>
-<%--//         }--%>
-<%--//     );--%>
-<%--// }--%>
-<%--}--%>
-<%--});--%>
-<%--return false;--%>
-<%--});--%>
-<%--form.verify({--%>
-<%--secpass: function (value) { //value：表单的值、item：表单的DOM对象--%>
-<%--if (value != $('#newpass').val()) {--%>
-<%--return '两次密码不一致！';--%>
-<%--}--%>
-<%--}--%>
-<%--//我们既支持上述函数式的方式，也支持下述数组的形式--%>
-<%--//数组的两个值分别代表：[正则匹配、匹配不符时的提示文字]--%>
-<%--, newpass: [--%>
-<%--/^[a-zA-Z0-9_]{6,18}$/--%>
-<%--, '密码由6-18个字母、数字、下划线组成'--%>
-<%--]--%>
-<%--});--%>
-<%--});--%>
-<%--</script>--%>
 </body>
 </html>

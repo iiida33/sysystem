@@ -78,6 +78,7 @@ public class CustomerController {
     }
 
     @RequestMapping("/changePassword1.do")
+    @ResponseBody
     public void changePassword1(int custId,String custPassword){
         customerService.updatePassword(custId,custPassword);
     }

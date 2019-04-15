@@ -1,7 +1,9 @@
 package com.lps.service;
 
+import com.lps.exception.CustomException;
 import com.lps.po.Good;
 import com.lps.vo.GoodAndPic;
+import com.lps.vo.GoodCatSku;
 import com.lps.vo.GoodShowPage;
 import com.lps.vo.GoodSimpleShow;
 
@@ -25,5 +27,7 @@ public interface IGoodService {
 //    修改商品信息
     public void updateByGoodIdSelective(int goodId);
 //    修改商品在售状态
-    public void updateStateById(int goodId,Boolean goodState);
+    public int updateStateById(int goodId, Boolean goodState) throws CustomException;
+//    查询商品列表
+    public List<GoodCatSku> findAllSelective(Good good);
 }

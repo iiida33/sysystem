@@ -3,8 +3,10 @@ package com.lps.test;
 import com.lps.mapper.CategoryMapper;
 import com.lps.mapper.CustomerMapper;
 import com.lps.po.Category;
+import com.lps.po.Good;
 import com.lps.service.*;
 import com.lps.vo.CategoryShow;
+import com.lps.vo.GoodCatSku;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,10 +32,18 @@ import java.util.zip.CheckedOutputStream;
 public class testdemo {
 
     @Autowired
-    CustomerMapper customerMapper;
+    IGoodService goodService;
 
     @Test
-    public void test() throws ParseException {
+    public void test() {
+        Good good = new Good();
+        good.setGoodName("商品1");
+        List<GoodCatSku> goodCatSkus = goodService.findAllSelective(good);
+        System.out.println("test");
+    }
+
+    @Test
+    public void timeTest() {
         //        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");//设置日期格式
         //        System.out.println(df.format(new Date()));// new Date()为获取当前系统时间
         //        SimpleDateFormat simpleFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
@@ -44,13 +54,13 @@ public class testdemo {
         //        long to1 = toDate1.getTime();
         //        int days = (int) ((to1 - from1) / (1000 * 60 * 60 * 24));
         //        System.out.println("两个时间之间的天数差为：" + days);
-        Date date1 = customerMapper.selectCurrentBuyTime(1);
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
-        Date date2 = new Date();// new Date()为获取当前系统时间
-        long from1 = date1.getTime();
-        long to1 = date2.getTime();
-        int days = (int) ((to1 - from1) / (1000 * 60 * 60 * 24));
-        System.out.println(date1);
-        System.out.println("两个时间之间的天数差为：" + days);
+        //        Date date1 = customerMapper.selectCurrentBuyTime(1);
+        //        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+        //        Date date2 = new Date();// new Date()为获取当前系统时间
+        //        long from1 = date1.getTime();
+        //        long to1 = date2.getTime();
+        //        int days = (int) ((to1 - from1) / (1000 * 60 * 60 * 24));
+        //        System.out.println(date1);
+        //        System.out.println("两个时间之间的天数差为：" + days);}
     }
 }
