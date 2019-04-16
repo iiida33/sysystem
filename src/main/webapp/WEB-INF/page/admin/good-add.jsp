@@ -22,6 +22,10 @@
         <form class="layui-form goodsAddForm" action="" method="post">
             <div id="goodBaseMsg">
                 <input type="hidden" name="goodId" id="goodId" value="1">
+                <input type="hidden" name="goodProps" id="goodProps">
+                <input type="hidden" id="catId" value=""/>
+                <input type="hidden" id="skuProps" value=""/>
+                <div id="test" style="display: none;" data-id="data"></div>
                 <h1>商品信息</h1>
                 <hr style="margin-bottom: 30px"/>
                 <div class="layui-form-item">
@@ -90,10 +94,6 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">商品图片</label>
                     <div class="layui-input-inline">
-                        <%--<c:if test="${goodImage !=null}">--%>
-                        <%--<img src="/goodPic/${goodImage}" width=100 height=100/>--%>
-                        <%--<br/>--%>
-                        <%--</c:if>--%>
                         <img id="goodImg" src="/goodPic/${goodImage}" alt="请上传图片" width="100px" height="100px"/>
                         <button type="button" class="layui-btn" id="goodPic">
                             <i class="layui-icon">&#xe67c;</i>上传图片
@@ -111,11 +111,13 @@
                     <script id="salePropsTemplate" type="text/html">
                         {{# for(var i = 0; i < d.length; i++){ }}
                         <div class="layui-form-item" pane="" style="margin-left: 10px;">
-                            <label class="layui-form-label"style="text-align: left;width: 50px;">{{d[i].pnName}}</label>
+                            <label class="layui-form-label"
+                                   style="text-align: left;width: 50px;">{{d[i].pnName}}</label>
                             <div class="layui-input-block">
                                 {{# for(var j = 0; j < d[i].propValues.length; j++){ }}
                                 <input type="checkbox" name="saleProp{{i}}{{j}}" value="{{d[i].propValues[j].pvId }}"
-                                       lay-skin="primary" title="{{d[i].propValues[j].pvName }}" lay-filter="salePropCB{{i}}">
+                                       lay-skin="primary" title="{{d[i].propValues[j].pvName }}"
+                                       lay-filter="salePropCB{{i}}">
                                 {{# } }}
                             </div>
                         </div>
@@ -126,31 +128,28 @@
                     <table class="layui-table">
                         <thead>
                         <tr>
-                            <th id="salePropName"></th>
+                            <th id="salePropName">销售属性</th>
                             <th>sku编号</th>
                             <th>价格</th>
                             <th>库存</th>
-                            <th>商品sku图片</th>
                         </tr>
                         </thead>
-                        <tbody>
-                        <tr>
-                            <td width="60px"><label>sku编号</label></td>
-                            <td><input type="text" name="skuNum" id="skuNum" value="${skuNum}" required
-                                       lay-verify="required" placeholder="sku编号"
-                                       autocomplete="off" class="layui-input"></td>
-                            <td><input type="text" name="skuPrice" id="skuPrice" value="${skuPrice}" placeholder="价格"
-                                       autocomplete="off" class="layui-input"></td>
-                            <td><input type="text" name="skuStock" id="skuStock" value="${skuStock}" placeholder="库存"
-                                       autocomplete="off" class="layui-input"></td>
-                            <td>
-                                <img id="goodSkuImg" src="/goodPic/${skuPic}" alt="请上传图片" width="100px" height="100px"/>
-                                <button type="button" class="layui-btn" id="goodSkuPic">
-                                    <i class="layui-icon">&#xe67c;</i>上传图片
-                                </button>
-                            </td>
-                        </tr>
+                        <tbody id="goodSkuSet">
                         </tbody>
+                        <script id="goodSkuTable" type="text/html">
+                            <tr class="goodSkuTi" data-id="{{d.proValue}}">
+                                <td width="60px"><label>{{d.proName}}</label></td>
+                                <td><input type="text" name="skuNum" id="skuNum{{d.num}}" value="${skuNum}" required
+                                           lay-verify="required" placeholder="sku编号"
+                                           autocomplete="off" class="layui-input"></td>
+                                <td><input type="text" name="skuPrice" id="skuPrice{{d.num}}" value="${skuPrice}"
+                                           placeholder="价格"
+                                           autocomplete="off" class="layui-input"></td>
+                                <td><input type="text" name="skuStock" id="skuStock{{d.num}}" value="${skuStock}"
+                                           placeholder="库存"
+                                           autocomplete="off" class="layui-input"></td>
+                            </tr>
+                        </script>
                     </table>
                 </div>
             </div>
@@ -163,11 +162,9 @@
                             <i class="layui-icon">&#xe67c;</i>选择图片（最多选择6张，单张图片最大为10M）
                         </button>
                         <button type="button" class="layui-btn" id="test9">开始上传</button>
-                        <button type="button" class="layui-btn" id="cleanImgs"><i class="fa fa-trash-o fa-lg"></i>清空图片预览
-                        </button>
+                        <button type="button" class="layui-btn" id="cleanImgs"><i class="fa fa-trash-o fa-lg"></i>清空图片预览</button>
                     </div>
-                    <blockquote class="layui-elem-quote layui-quote-nm"
-                                style="width: 800px;margin-top: 10px;margin-left: 30px;">
+                    <blockquote class="layui-elem-quote layui-quote-nm" style="width: 800px;margin-top: 10px;margin-left: 30px;">
                         预览图：
                         <div class="layui-upload-list" id="demo2"></div>
                     </blockquote>
@@ -189,6 +186,7 @@
 <script type="text/javascript" src="../../../static/js/uploadPic/js/common.js"></script>
 <script type="text/javascript" src="../../../static/js/uploadPic/js/goodsMutiUpload.js"></script>
 <script>
+    var skudata;
     //JavaScript代码区域
     layui.use(['element', 'form', 'laydate', 'laytpl', 'upload'], function () {
         var upload = layui.upload;
@@ -209,19 +207,6 @@
                 //请求异常回调
             }
         });
-        //商品SKU图片上传
-        var uploadInst2 = upload.render({
-            elem: '#goodSkuPic' //绑定元素
-            , url: '/upload.do' //上传接口
-            , done: function (res) {
-                //上传完毕回调
-                console.log(res);
-                $("#goodSkuImg").attr("src", res.data.src);
-            }
-            , error: function () {
-                //请求异常回调
-            }
-        });
         //监听一级类别下拉框
         form.on('select(cate1Change)', function (data) {
             var cid = data.value;
@@ -237,7 +222,7 @@
                         var categories = data.categories;
                         var unSaleProps = data.unSaleProps;
                         var saleProps = data.saleProps;
-                        console.log(unSaleProps);
+                        // console.log(unSaleProps);
                         var cate2Obj = document.getElementById("cate2");
                         cate2Obj.innerHTML = "";
                         for (var i = 0; i < categories.length; i++) {
@@ -276,17 +261,50 @@
         });
         //监听二级类别下拉框
         form.on('select(cate2Change)', function (data) {
-            var cid = data.value;
+            $("#catId").val(data.value);
+            // var cid = data.value;
+            // console.log(cid);
         });
+
+        var props = "";
+        form.on('select(pvChange)', function (data) {
+            // $("#catId").val(data.value);
+            props = props + "," + data.value;
+            $("#goodProps").val(props);
+        });
+
+        var i = 0;
+        var skuProps = "";
         //监听复选框事件
-        form.on('checkbox(salePropCB0)', function(data){
-            console.log(data.elem); //得到checkbox原始DOM对象
-            console.log(data.elem.checked); //是否被选中，true或者false
-            console.log(data.value); //复选框value值，也可以通过data.elem.value得到
-            console.log(data.othis); //得到美化后的DOM对象
+        form.on('checkbox(salePropCB0)', function (data) {
+            var goodSkuSet = $("#goodSkuSet").innerHTML;
+            if (data.elem.checked) {
+                i++;
+                // console.log(data.elem); //得到checkbox原始DOM对象
+                // console.log(arr[i]);
+                skuProps = skuProps + "," + data.elem.value;
+                $("#skuProps").val(skuProps);
+                var num = i;
+                var proValue = data.elem.value;
+                var proName = data.elem.title;
+                skudata =
+                    {
+                        "num": i
+                        , "proValue": proValue
+                        , "proName": proName
+                    };
+                //商品sku表显示模板
+                var getTp3 = goodSkuTable.innerHTML
+                    , view3 = document.getElementById('goodSkuSet');
+                laytpl(getTp3).render(skudata, function (html) {
+                    view3.innerHTML = view3.innerHTML + html;
+                });
+            }
+            else {
+                i--;
+            }
         });
     });
-
 </script>
 </body>
 

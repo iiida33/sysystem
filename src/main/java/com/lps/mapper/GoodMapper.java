@@ -31,6 +31,10 @@ public interface GoodMapper {
 
     int updateByPrimaryKey(Good record);
 
+//    ----------自定义部分---------------------------------------
     //    根据条件查询所有商品信息
     public List<GoodCatSku> selectGoodListSelective(Good good);
+//    添加商品返回主键
+    public Integer insertGoodReturnId(Good good);
+
 }

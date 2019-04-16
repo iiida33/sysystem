@@ -30,4 +30,6 @@ public interface IGoodService {
     public int updateStateById(int goodId, Boolean goodState) throws CustomException;
 //    查询商品列表
     public List<GoodCatSku> findAllSelective(Good good);
+//    添加商品信息并返回主键
+    public int insertGoodReturnId(Good good);
 }

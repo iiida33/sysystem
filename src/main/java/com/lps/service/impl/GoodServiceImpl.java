@@ -111,4 +111,11 @@ public class GoodServiceImpl implements IGoodService {
         List<GoodCatSku> goodCatSkus = goodMapper.selectGoodListSelective(good);
         return goodCatSkus;
     }
+
+    @Override
+    public int insertGoodReturnId(Good good) {
+        goodMapper.insertGoodReturnId(good);
+        int goodId=good.getGoodId();
+        return goodId;
+    }
 }

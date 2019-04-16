@@ -270,7 +270,7 @@
     </resultMap>
     <!--根据条件查询所有商品信息-->
     <select id="selectGoodListSelective" parameterType="com.lps.po.Good" resultMap="GoodCatSkuMap">
-    SELECT
+        SELECT
         good.good_id goodid,good_name,good_brand,cat_name,good_state,SUM(sku_stock) stock,good.cat_id
         FROM good
         LEFT JOIN category ON good.cat_id = category.cat_id
@@ -280,10 +280,69 @@
                 good_name like concat('%',#{goodName,jdbcType=VARCHAR},'%')
             </if>
             <if test="catId != '' and catId != null">
-               and good.cat_id = #{goodName,jdbcType=INTEGER}
+                and good.cat_id = #{goodName,jdbcType=INTEGER}
             </if>
         </where>
         GROUP BY good_sku.good_id
         ORDER BY good.good_id
-  </select>
+    </select>
+    <!--添加商品返回主键信息-->
+    <insert id="insertGoodReturnId" parameterType="com.lps.po.Good">
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="goodId">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into good
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="goodId != null">
+                good_id,
+            </if>
+            <if test="goodName != null">
+                good_name,
+            </if>
+            <if test="catId != null">
+                cat_id,
+            </if>
+            <if test="goodBrand != null">
+                good_brand,
+            </if>
+            <if test="goodDescribe != null">
+                good_describe,
+            </if>
+            <if test="goodProps != null">
+                good_props,
+            </if>
+            <if test="goodState != null">
+                good_state,
+            </if>
+            <if test="goodImage != null">
+                good_image,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="goodId != null">
+                #{goodId,jdbcType=INTEGER},
+            </if>
+            <if test="goodName != null">
+                #{goodName,jdbcType=VARCHAR},
+            </if>
+            <if test="catId != null">
+                #{catId,jdbcType=INTEGER},
+            </if>
+            <if test="goodBrand != null">
+                #{goodBrand,jdbcType=VARCHAR},
+            </if>
+            <if test="goodDescribe != null">
+                #{goodDescribe,jdbcType=VARCHAR},
+            </if>
+            <if test="goodProps != null">
+                #{goodProps,jdbcType=VARCHAR},
+            </if>
+            <if test="goodState != null">
+                #{goodState,jdbcType=BIT},
+            </if>
+            <if test="goodImage != null">
+                #{goodImage,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
 </mapper>

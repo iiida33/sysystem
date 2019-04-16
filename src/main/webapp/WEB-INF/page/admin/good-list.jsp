@@ -152,7 +152,7 @@
             var data = obj.data //获得当前行数据
                 , layEvent = obj.event; //获得 lay-event 对应的值
             if (layEvent === 'del') {
-                layer.confirm('真的删除行么', function (index) {
+                layer.confirm('真的删除商品么', function (index) {
                     var goodId = obj.data.goodId;
                     var goodState = obj.data.goodState;
                     var goodStock = obj.data.goodStock;

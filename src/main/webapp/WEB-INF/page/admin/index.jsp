@@ -21,7 +21,7 @@
 <body>
     <!-- 顶部开始 -->
     <div class="container">
-        <div class="logo"><a href="good/goodEditPage.do">圣婴网 | 管理员端</a></div>
+        <div class="logo"><a href="#">圣婴网 | 管理员端</a></div>
         <div class="left_open">
             <i title="展开左侧栏" class="iconfont">&#xe699;</i>
         </div>
@@ -99,21 +99,6 @@
                         <a _href="toPage.do?url=admin/order-list.jsp">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>订单列表</cite>
-                        </a>
-                    </li >
-                </ul>
-            </li>
-            <li>
-                <a href="javascript:;">
-                    <i class="iconfont">&#xe723;</i>
-                    <cite>test</cite>
-                    <i class="iconfont nav_right">&#xe697;</i>
-                </a>
-                <ul class="sub-menu">
-                    <li>
-                        <a _href="toPage.do?url=admin/good-add.jsp">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>test</cite>
                         </a>
                     </li >
                 </ul>

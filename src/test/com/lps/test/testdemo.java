@@ -2,9 +2,11 @@ package com.lps.test;
 
 import com.lps.mapper.CategoryMapper;
 import com.lps.mapper.CustomerMapper;
+import com.lps.mapper.GoodMapper;
 import com.lps.po.Category;
 import com.lps.po.Good;
 import com.lps.service.*;
+import com.lps.service.impl.GoodServiceImpl;
 import com.lps.vo.CategoryShow;
 import com.lps.vo.GoodCatSku;
 import org.junit.Test;
@@ -33,13 +35,15 @@ public class testdemo {
 
     @Autowired
     IGoodService goodService;
+    @Autowired
+    GoodMapper goodMapper;
 
     @Test
     public void test() {
         Good good = new Good();
         good.setGoodName("商品1");
-        List<GoodCatSku> goodCatSkus = goodService.findAllSelective(good);
-        System.out.println("test");
+        int goodId=goodService.insertGoodReturnId(good);
+        return;
     }
 
     @Test

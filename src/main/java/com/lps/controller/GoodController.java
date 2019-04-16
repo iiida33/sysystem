@@ -1,12 +1,12 @@
 package com.lps.controller;
 
+import com.alibaba.fastjson.JSONArray;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.lps.exception.CustomException;
-import com.lps.po.Category;
-import com.lps.po.Customer;
-import com.lps.po.Good;
+import com.lps.po.*;
 import com.lps.service.ICategoryService;
+import com.lps.service.IGoodPicService;
 import com.lps.service.IGoodService;
 import com.lps.service.IGoodSkuService;
 import com.lps.vo.*;
@@ -38,6 +38,10 @@ public class GoodController {
     private IGoodService goodService;
     @Autowired
     private ICategoryService categoryService;
+    @Autowired
+    private IGoodSkuService goodSkuService;
+    @Autowired
+    private IGoodPicService goodPicService;
 
     //    展示商品信息
     @RequestMapping("/showGoodMes.do")
@@ -135,5 +139,54 @@ public class GoodController {
         List<Category> categories = categoryService.findPreCate();
         model.addAttribute("firstCategory",categories);
         return "admin/good-add.jsp";
+    }
+
+    @RequestMapping("/saveGood.do")
+    @ResponseBody
+    private String saveGood(Good good, HttpServletRequest request, String imgUrls){
+        Map<String,String> map = new HashMap<>();
+        String str = request.getParameter("goodSkus");
+        List<GoodSku> goodSkus= JSONArray.parseArray(str,GoodSku.class);
+        String[] urls = imgUrls.split(",");
+        String goodProp = good.getGoodProps();
+        int a = goodProp.indexOf(",")+1;
+        String goodProps = goodProp.substring(a);
+        good.setGoodProps(goodProps);
+        int size = goodSkus.size();
+        if(size==0){
+            good.setGoodState(false);
+        }
+        else{
+            int stock=0;
+            for(int j = 0 ;j<size;j++){
+                stock+=goodSkus.get(j).getSkuStock();
+            }
+            if (stock<=0){
+                good.setGoodState(false);
+            }
+            else
+                good.setGoodState(true);
+        }
+        int goodId = goodService.insertGoodReturnId(good);
+        String pic=good.getGoodImage();
+        for (GoodSku gs:goodSkus){
+            gs.setGoodId(goodId);
+            gs.setSkuPic(pic);
+            if (gs.getSkuStock()>0)
+                gs.setSkuState(true);
+            else
+                gs.setSkuState(false);
+            goodSkuService.insertGoodSku(gs);
+        }
+        GoodPic goodPic = new GoodPic();
+        for (int i = 0; i < urls.length; i++) {
+//            urls[i];
+            goodPic.setPicName(urls[i]);
+            goodPic.setGoodId(goodId);
+            goodPic.setIsTurn(true);
+            goodPic.setPicOrder(i);
+            goodPicService.insertGoodPic(goodPic);
+        }
+        return "1";
     }
 }
