@@ -5,6 +5,7 @@ import com.lps.mapper.PropValueMapper;
 import com.lps.po.PropName;
 import com.lps.po.PropValue;
 import com.lps.service.IPropsService;
+import com.lps.vo.PropNameAndValue;
 import com.lps.vo.PropNameAndValueList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -86,5 +87,11 @@ public class PropsServiceImpl implements IPropsService {
     @Override
     public void updatePropValue(PropValue propValue) {
         propValueMapper.updateByPrimaryKeySelective(propValue);
+    }
+
+    @Override
+    public List<PropNameAndValue> findPropNameAndValue(String skuProps) {
+        List<PropNameAndValue> propNameAndValues = propNameMapper.selectPropNameAndValue(skuProps);
+        return propNameAndValues;
     }
 }

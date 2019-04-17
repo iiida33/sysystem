@@ -55,30 +55,28 @@
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                     <ul class="curt">
                         <li>
-                            <a class="total-cart-b" href="#">
-                                <span></span>
+                            <a class="total-cart-b" href="/shoppingCart/shopCartPage.do?custId=${custId}">
+                                <%--<span>11</span>--%>
                                 <p>购物车</p>
-                                <label class="cart_money"></label>
                             </a>
                             <div class="curt-list">
-                                <ul>
-                                    <li class="curt-list-li">
-                                        <a href="#"><img src="../../../img/product/printed-chiffon-dress.jpg.png"
-                                                         alt="img"></a>
-                                        <a href="#"><p>玩偶</p><span class="curt-list-item-color">*1</span></a>
-                                        <span>S, 黄色</span>
-                                        <h6>￥31</h6>
-                                    </li>
+                                <ul id="shopCart"></ul>
+                                <script id="shopCartPtl" type="text/html">
+                                    {{each scData.shoppingCartGoodSkus as info i}}
+                                    {{if i<2}}
                                     <li class="curt-list-li border-li">
-                                        <a href="#"><img src="../../../img/product/printed-dress.chear.jpg.png"
+                                        <a href="#"><img src="{{info.goodSku.skuPic}}"
                                                          alt="img"></a>
-                                        <a href="#"><p>宝宝餐椅</p><span class="curt-list-item-color">*1</span></a>
-                                        <span>L, 绿色</span>
-                                        <h6>￥75</h6>
+                                        <a href="#"><p>{{info.goodBrand}} {{info.goodName}}</p><span
+                                                class="curt-list-item-color">*{{info.cartCount}}</span></a>
+                                        <span>{{info.props}}</span>
+                                        <h6>￥{{info.money}}</h6>
                                     </li>
-                                    <li><p class="totel">总计</p><h6>￥106</h6></li>
-                                </ul>
-                                <button>结算</button>
+                                    {{/if}}
+                                    {{/each}}
+                                    <li><h6>购物车内{{scData.count}}件商品</h6><h6>总计￥{{scData.totallMoney}}</h6></li>
+                                </script>
+                                <button onclick="toShoppingCartPage();">结算</button>
                             </div>
                         </li>
                     </ul>
@@ -96,10 +94,10 @@
                     <script id="menuTemplate" type="text/html">
                         {{each value as info i}}
                         <li class="mega-menu">
-                            <a href="/goodClassPage.do?catId={{info.catId}}">{{info.catName}}</a>
+                            <a href="/toGoodList.do?catId={{info.catId}}">{{info.catName}}</a>
                             <ul class="sub-menu">
                                 {{each info.categoryChild as item j}}
-                                <li><a href="/goodClassPage.do?cateId={{item.catId}}">{{item.catName}}</a></li>
+                                <li><a href="/toGoodList.do?catId={{item.catId}}">{{item.catName}}</a></li>
                                 {{/each}}
                             </ul>
                         </li>
@@ -141,14 +139,13 @@
 </header>
 <script>
     $(function () {
-        console.log("test1");
+        var custId = $("#custId").val();
         $.ajax({
             url: "/category/showCategory.do",
             type: "get",
             dataType: "json",
             success: function (res) {
                 var value = {value: res};
-                console.log(value);
                 var str = template('menuTemplate', value);
                 var strOri = document.getElementById('navcontainer').innerHTML;
                 document.getElementById('navcontainer').innerHTML = strOri + str;
@@ -158,5 +155,30 @@
                 document.getElementById('navcontainer1').innerHTML = strOri1 + str1;
             }
         });
+
+        if (custId != '' && custId != null) {
+            $.ajax({
+                url: "/shoppingCart/shoppingCartList.do",
+                type: "get",
+                data: {"custId": custId},
+                dataType: "json",
+                success: function (data) {
+                    var scData = {scData: data};
+                    console.log(scData);
+                    var strSC = template('shopCartPtl', scData);
+                    var oldStr = document.getElementById('shopCart').innerHTML;
+                    document.getElementById('shopCart').innerHTML = strSC + oldStr;
+
+                }
+            });
+        }
+
+        function toShoppingCartPage() {
+            $.ajax({
+                url: "/shoppingCart/shopCartPage.do",
+                type: "get",
+                data: {"custId": custId},
+            });
+        }
     });
 </script>

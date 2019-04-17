@@ -5,6 +5,7 @@ import com.lps.po.PropNameExample;
 
 import java.util.List;
 
+import com.lps.vo.PropNameAndValue;
 import com.lps.vo.PropNameAndValueList;
 import org.apache.ibatis.annotations.Param;
 
@@ -37,4 +38,7 @@ public interface PropNameMapper {
 
     //    根据PnId查询属性及对应的属性值
     PropNameAndValueList selectNameAndAllValueByPnId(Integer pnId);
+
+    //    根据属性值ID串查询对应属性名
+    List<PropNameAndValue> selectPropNameAndValue(String skuProps);
 }

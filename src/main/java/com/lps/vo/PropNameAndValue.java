@@ -9,22 +9,55 @@ import com.lps.po.PropValue;
  * @Author: 梁培珊
  * @Date: 10:38 2019/3/22
  **/
-public class PropNameAndValue extends PropName {
+public class PropNameAndValue {
 
-    private PropValue propValue;
+    private Integer pnId;
+
+    private String pnName;
+
+    private String pvId;
+
+    private String pvName;
 
     @Override
     public String toString() {
         return "PropNameAndValue{" +
-                "propValue=" + propValue +
+                "pnId=" + pnId +
+                ", pnName='" + pnName + '\'' +
+                ", pvId='" + pvId + '\'' +
+                ", pvName='" + pvName + '\'' +
                 '}';
     }
 
-    public PropValue getPropValue() {
-        return propValue;
+    public Integer getPnId() {
+        return pnId;
     }
 
-    public void setPropValue(PropValue propValue) {
-        this.propValue = propValue;
+    public void setPnId(Integer pnId) {
+        this.pnId = pnId;
+    }
+
+    public String getPnName() {
+        return pnName;
+    }
+
+    public void setPnName(String pnName) {
+        this.pnName = pnName;
+    }
+
+    public String getPvId() {
+        return pvId;
+    }
+
+    public void setPvId(String pvId) {
+        this.pvId = pvId;
+    }
+
+    public String getPvName() {
+        return pvName;
+    }
+
+    public void setPvName(String pvName) {
+        this.pvName = pvName;
     }
 }

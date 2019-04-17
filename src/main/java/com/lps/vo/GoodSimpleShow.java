@@ -10,6 +10,8 @@ public class GoodSimpleShow {
 
     private Integer goodId;
 
+    private String goodBrand;
+
     private String goodName;
 
     private String goodImage;
@@ -20,6 +22,7 @@ public class GoodSimpleShow {
     public String toString() {
         return "GoodSimpleShow{" +
                 "goodId=" + goodId +
+                ", goodBrand='" + goodBrand + '\'' +
                 ", goodName='" + goodName + '\'' +
                 ", goodImage='" + goodImage + '\'' +
                 ", skuPrice=" + skuPrice +
@@ -32,6 +35,14 @@ public class GoodSimpleShow {
 
     public void setGoodId(Integer goodId) {
         this.goodId = goodId;
+    }
+
+    public String getGoodBrand() {
+        return goodBrand;
+    }
+
+    public void setGoodBrand(String goodBrand) {
+        this.goodBrand = goodBrand;
     }
 
     public String getGoodName() {

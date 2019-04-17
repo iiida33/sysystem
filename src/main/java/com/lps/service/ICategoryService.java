@@ -27,4 +27,6 @@ public interface ICategoryService {
     public List<Category> findAll();
 //    查询类型数目
     public int countCategory();
+//    查找某一级类别及其下所有二级类别
+    public CategoryShow findOneFCateAndItsChild(int catId);
 }

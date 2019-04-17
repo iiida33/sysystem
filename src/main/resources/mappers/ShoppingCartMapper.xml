@@ -91,9 +91,9 @@
         where cart_id = #{cartId,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from shopping_cart
-    where cart_id = #{cartId,jdbcType=INTEGER}
-  </delete>
+        delete from shopping_cart
+        where cart_id = #{cartId,jdbcType=INTEGER}
+    </delete>
     <delete id="deleteByExample" parameterType="com.lps.po.ShoppingCartExample">
         delete from shopping_cart
         <if test="_parameter != null">
@@ -205,6 +205,7 @@
         <result column="money" property="money" jdbcType="DOUBLE"/>
         <result column="props" property="props" jdbcType="VARCHAR"/>
         <result column="good_name" property="goodName" jdbcType="VARCHAR"/>
+        <result column="good_brand" property="goodBrand" jdbcType="VARCHAR"/>
         <association property="goodSku" javaType="com.lps.po.GoodSku">
             <id column="sku_id" property="skuId" jdbcType="INTEGER"/>
             <result column="good_id" property="goodId" jdbcType="INTEGER"/>
@@ -225,20 +226,14 @@
     <!--根据顾客Id查询购物车信息-->
     <select id="selectShopCartAndSku" parameterType="java.lang.Integer" resultMap="ShopCartGoodSkuResultMap">
         SELECT shopping_cart.*,sku_price,sku_pic,sku_state,GROUP_CONCAT(pv_name) props,good_name,sku_price*cart_count
-        money
+        money,good_brand,sku_props
         FROM good,prop_value,good_sku,shopping_cart
         WHERE good_sku.good_id = good.good_id
         and FIND_IN_SET(pv_id,sku_props)
         and shopping_cart.sku_id=good_sku.sku_id
         and cust_id=#{custId,jdbcType=INTEGER}
-        GROUP BY shopping_cart.sku_id;
-        <!--SELECT shopping_cart.*,sku_price,sku_pic,sku_state,GROUP_CONCAT(pv_name) 属性,good_name-->
-        <!--FROM shopping_cart-->
-        <!--LEFT JOIN good_sku ON shopping_cart.sku_id=good_sku.sku_id-->
-        <!--LEFT JOIN good ON good_sku.good_id = good.good_id-->
-        <!--INNER JOIN prop_value ON FIND_IN_SET(pv_id,sku_props)-->
-        <!--WHERE cust_id=1-->
-        <!--GROUP BY shopping_cart.sku_id;-->
+        GROUP BY shopping_cart.sku_id
+        ORDER BY cart_id DESC
     </select>
 
 </mapper>

@@ -268,6 +268,14 @@
         <result column="cat_name" property="catName" jdbcType="VARCHAR"/>
         <result column="stock" property="goodStock" jdbcType="INTEGER"/>
     </resultMap>
+    <!--GoodSimpleShow类的resultMap-->
+    <resultMap id="GoodSimpleShowMap" type="com.lps.vo.GoodSimpleShow">
+        <id column="good.good_id" property="goodId" jdbcType="INTEGER"/>
+        <result column="good_brand" property="goodBrand" jdbcType="VARCHAR"/>
+        <result column="good_name" property="goodName" jdbcType="VARCHAR"/>
+        <result column="good_image" property="goodImage" jdbcType="VARCHAR"/>
+        <result column="min(sku_price)" property="skuPrice" jdbcType="DOUBLE"/>
+    </resultMap>
     <!--根据条件查询所有商品信息-->
     <select id="selectGoodListSelective" parameterType="com.lps.po.Good" resultMap="GoodCatSkuMap">
         SELECT
@@ -345,4 +353,12 @@
             </if>
         </trim>
     </insert>
+    <!--根据分类查询向顾客展示的商品列表-->
+    <select id="selectByCatIdAndStateToCus" parameterType="java.lang.Integer" resultMap="GoodSimpleShowMap">
+        SELECT  good.good_id,good_brand,good_name,good_image,min(sku_price)
+        FROM good
+        LEFT JOIN good_sku ON good.good_id=good_sku.good_id
+        WHERE cat_id = #{catId,jdbcType=INTEGER} AND good_state = TRUE
+        GROUP BY good_id
+    </select>
 </mapper>

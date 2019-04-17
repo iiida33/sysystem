@@ -6,6 +6,7 @@ import com.lps.po.GoodExample;
 import java.util.List;
 
 import com.lps.vo.GoodCatSku;
+import com.lps.vo.GoodSimpleShow;
 import org.apache.ibatis.annotations.Param;
 
 public interface GoodMapper {
@@ -36,5 +37,6 @@ public interface GoodMapper {
     public List<GoodCatSku> selectGoodListSelective(Good good);
 //    添加商品返回主键
     public Integer insertGoodReturnId(Good good);
-
+//    根据分类查询向顾客展示的商品列表
+    public List<GoodSimpleShow> selectByCatIdAndStateToCus(Integer catId);
 }

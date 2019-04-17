@@ -34,6 +34,7 @@ import java.util.Map;
 @Controller
 @RequestMapping("/good")
 public class GoodController {
+
     @Autowired
     private IGoodService goodService;
     @Autowired
@@ -53,8 +54,9 @@ public class GoodController {
     //    按照分类显示商品信息
     @RequestMapping("/showGoodMesByCate.do")
     @ResponseBody
-    public List<GoodSimpleShow> showGoodMesByCate(int CateId) {
-        return goodService.findByCateId(CateId);
+    public List<GoodSimpleShow> showGoodMesByCate(int cateId) {
+        List<GoodSimpleShow> goodSimpleShows =goodService.findByCateId(cateId);
+        return goodSimpleShows;
     }
 
     //    增加商品信息

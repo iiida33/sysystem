@@ -233,6 +233,12 @@
             <result column="pv_name" property="pvName" jdbcType="VARCHAR"/>
         </collection>
     </resultMap>
+    <resultMap id="PropNameAndValueMap" type="com.lps.vo.PropNameAndValue">
+        <id column="prop_name.pn_id" property="pnId" jdbcType="INTEGER"/>
+        <result column="pn_name" property="pnName" jdbcType="VARCHAR"/>
+        <result column="pv_id" property="pvId" jdbcType="VARCHAR"/>
+        <result column="pv_name" property="pvName" jdbcType="VARCHAR"/>
+    </resultMap>
     <sql id="Name_Value_List">
     prop_name.pn_id,pn_name,cat_id,is_must,is_select,is_sale,pv_id,pv_name
   </sql>
@@ -249,5 +255,11 @@
         <include refid="Name_Value_List"/>
         FROM prop_name,prop_value
         WHERE prop_name.pn_id= prop_value.pn_id AND prop_name.pn_id = #{pnId,jdbcType=INTEGER}
+    </select>
+    <!--根据属性值ID串查询对应属性名-->
+    <select id="selectPropNameAndValue" parameterType="java.lang.String" resultMap="PropNameAndValueMap">
+        SELECT prop_name.pn_id,pv_id,pn_name,pv_name FROM prop_name
+        LEFT JOIN prop_value ON FIND_IN_SET(pv_id,#{skuProps,jdbcType=VARCHAR})
+        WHERE prop_value.pn_id=prop_name.pn_id
     </select>
 </mapper>

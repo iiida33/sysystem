@@ -18,6 +18,8 @@ public class ShoppingCartGoodSku extends ShoppingCart {
 
     private String goodName;
 
+    private String goodBrand;
+
     @Override
     public String toString() {
         return "ShoppingCartGoodSku{" +
@@ -25,6 +27,7 @@ public class ShoppingCartGoodSku extends ShoppingCart {
                 ", money=" + money +
                 ", props='" + props + '\'' +
                 ", goodName='" + goodName + '\'' +
+                ", goodBrand='" + goodBrand + '\'' +
                 '}';
     }
 
@@ -58,5 +61,13 @@ public class ShoppingCartGoodSku extends ShoppingCart {
 
     public void setGoodName(String goodName) {
         this.goodName = goodName;
+    }
+
+    public String getGoodBrand() {
+        return goodBrand;
+    }
+
+    public void setGoodBrand(String goodBrand) {
+        this.goodBrand = goodBrand;
     }
 }

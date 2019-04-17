@@ -3,12 +3,15 @@ package com.lps.test;
 import com.lps.mapper.CategoryMapper;
 import com.lps.mapper.CustomerMapper;
 import com.lps.mapper.GoodMapper;
+import com.lps.mapper.PropNameMapper;
 import com.lps.po.Category;
 import com.lps.po.Good;
 import com.lps.service.*;
 import com.lps.service.impl.GoodServiceImpl;
 import com.lps.vo.CategoryShow;
 import com.lps.vo.GoodCatSku;
+import com.lps.vo.GoodSimpleShow;
+import com.lps.vo.PropNameAndValue;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,12 +40,12 @@ public class testdemo {
     IGoodService goodService;
     @Autowired
     GoodMapper goodMapper;
+    @Autowired
+    PropNameMapper propNameMapper;
 
     @Test
     public void test() {
-        Good good = new Good();
-        good.setGoodName("商品1");
-        int goodId=goodService.insertGoodReturnId(good);
+        List<PropNameAndValue> propNameAndValues=propNameMapper.selectPropNameAndValue("2,3");
         return;
     }
 

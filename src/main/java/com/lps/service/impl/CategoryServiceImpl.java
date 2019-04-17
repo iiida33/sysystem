@@ -118,4 +118,18 @@ public class CategoryServiceImpl implements ICategoryService {
         int count = categoryMapper.countByExample(categoryExample);
         return count;
     }
+
+    @Override
+    public CategoryShow findOneFCateAndItsChild(int catId) {
+        CategoryShow categoryShow = new CategoryShow();
+        Category category = categoryMapper.selectByPrimaryKey(catId);
+        if (category.getIsParent()){
+            categoryShow = categoryMapper.selectFatherAndItsChild(catId);
+        }
+        else{
+            int preId = category.getPrecatId();
+            categoryShow = categoryMapper.selectFatherAndItsChild(preId);
+        }
+        return categoryShow;
+    }
 }

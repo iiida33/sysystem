@@ -2,6 +2,7 @@ package com.lps.service;
 
 import com.lps.po.PropName;
 import com.lps.po.PropValue;
+import com.lps.vo.PropNameAndValue;
 import com.lps.vo.PropNameAndValueList;
 
 import java.util.List;
@@ -33,4 +34,7 @@ public interface IPropsService {
 
     //    修改属性值
     public void updatePropValue(PropValue propValue);
+
+//    根据属性值ID串查询对应属性名
+    public List<PropNameAndValue> findPropNameAndValue(String skuProps);
 }

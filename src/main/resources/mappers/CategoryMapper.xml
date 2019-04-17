@@ -229,7 +229,15 @@
     where a.is_parent = 1
     ORDER BY a.cat_order,b.cat_order;
   </select>
-
+    <!--查询某父类及其二级类别-->
+    <select id="selectFatherAndItsChild" parameterType="java.lang.Integer" resultMap="CategoryNavResultMap">
+    SELECT a.cat_id parentId,a.cat_name parentName,b.cat_id childId,b.cat_name childName
+    FROM category a
+    LEFT JOIN category b
+    ON a.cat_id=b.precat_id
+    where a.is_parent = 1 AND a.cat_id = #{catId,jdbcType=INTEGER}
+    ORDER BY b.cat_order;
+    </select>
     <!--查询所有父类别-->
     <select id="selectPreCate" resultMap="BaseResultMap">
     SELECT cat_id,cat_name FROM category WHERE is_parent=1 ORDER BY cat_order

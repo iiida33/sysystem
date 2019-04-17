@@ -110,61 +110,61 @@
             <div class="promotion">
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="single-promotion">
-                        <a href="toPage.do?url=customer/shop.jsp"><img src="../../../img/banner/banner1.jpg" alt=""/> </a>
+                        <a href="/toGoodList.do?catId=5"><img src="../../../img/banner/banner1.jpg" alt=""/> </a>
                         <div class="singleh">
                             <h3>品质奶粉</h3>
                             <p>奶粉与辅食，匠心搭配，给宝宝一个健康、强壮的身体</p>
-                            <span><a href="#">了解更多</a></span>
+                            <span><a href="/toGoodList.do?catId=5">了解更多</a></span>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="single-promotion">
-                        <a href="#"><img src="../../../img/banner/banner2.jpg" alt=""/> </a>
+                        <a href="/toGoodList.do?catId=7"><img src="../../../img/banner/banner2.jpg" alt=""/> </a>
                         <div class="singleh">
-                            <h3>萌娃酷爽</h3>
+                            <h3>萌娃裤爽</h3>
                             <p>好店会选，精选好裤</p>
-                            <span><a href="#">了解更多</a></span>
+                            <span><a href="/toGoodList.do?catId=7">了解更多</a></span>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="single-promotion">
-                        <a href="#"><img src="../../../img/banner/banner3.jpg" alt=""/> </a>
+                        <a href="/toGoodList.do?catId=10"><img src="../../../img/banner/banner3.jpg" alt=""/> </a>
                         <div class="singleh">
                             <h3>潮童鞋服</h3>
                             <p>萌宝出游季</p>
-                            <span><a href="#">了解更多</a></span>
+                            <span><a href="/toGoodList.do?catId=10">了解更多</a></span>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="single-promotion">
-                        <a href="#"><img src="../../../img/banner/banner4.jpg" alt=""/> </a>
+                        <a href="/toGoodList.do?catId=12"><img src="../../../img/banner/banner4.jpg" alt=""/> </a>
                         <div class="singleh">
                             <h3>潮童酷玩</h3>
                             <p>宝贝的童年玩伴，宝箱有好货</p>
-                            <span><a href="#">了解更多</a></span>
+                            <span><a href="/toGoodList.do?catId=12">了解更多</a></span>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="single-promotion">
-                        <a href="#"><img src="../../../img/banner/banner5.jpg" alt=""/> </a>
+                        <a href="/toGoodList.do?catId=11"><img src="../../../img/banner/banner5.jpg" alt=""/> </a>
                         <div class="singleh">
                             <h3>萌品万象城</h3>
                             <p>育儿神器，妈妈优选</p>
-                            <span><a href="#">了解更多</a></span>
+                            <span><a href="/toGoodList.do?catId=11">了解更多</a></span>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="single-promotion">
-                        <a href="#"><img src="../../../img/banner/banner6.jpg" alt=""/> </a>
+                        <a href="/toGoodList.do?catId=13"><img src="../../../img/banner/banner6.jpg" alt=""/> </a>
                         <div class="singleh">
                             <h3>妈妈专区</h3>
                             <p>给妈妈最贴心的呵护</p>
-                            <span><a href="#">了解更多</a></span>
+                            <span><a href="/toGoodList.do?catId=13">了解更多</a></span>
                         </div>
                     </div>
                 </div>
@@ -862,7 +862,6 @@
 <!-- Footer Area Start-->
 <jsp:include page="../../../WEB-INF/page/common/foot.jsp"/>
 <!-- Footer Area End -->
-
 <!-- JS -->
 <!-- jquery-1.11.3.min js  -->
 <script src="../../../static/js/vendor/jquery-1.11.3.min.js"></script>

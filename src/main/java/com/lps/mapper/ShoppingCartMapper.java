@@ -5,6 +5,7 @@ import com.lps.po.ShoppingCartExample;
 
 import java.util.List;
 
+import com.lps.vo.PropNameAndValue;
 import com.lps.vo.ShoppingCartGoodSku;
 import org.apache.ibatis.annotations.Param;
 
@@ -37,4 +38,5 @@ public interface ShoppingCartMapper {
 
     //    根据顾客Id查询购物车信息
     List<ShoppingCartGoodSku> selectShopCartAndSku(Integer custId);
+
 }

@@ -41,4 +41,6 @@ public interface CategoryMapper {
     List<Category> selectByCatName(Category category);
 //    查询所有类别信息
     List<Category> selectAll();
+//    查询某父类及其二级类别
+    CategoryShow selectFatherAndItsChild(Integer catId);
 }

@@ -265,22 +265,46 @@
     /*-----------------------------------------
         cart plus minus button
     --------------------------------------------*/
-    $(".cart-plus-minus-button").append('<div class="dec qtybutton">-</div><div class="inc qtybutton">+</div>');
-    $(".qtybutton").on("click", function () {
-        var $button = $(this);
-        var oldValue = $button.parent().find("input").val();
-        if ($button.text() == "+") {
-            var newVal = parseFloat(oldValue) + 1;
-        } else {
-            // Don't allow decrementing below zero
-            if (oldValue > 0) {
-                var newVal = parseFloat(oldValue) - 1;
-            } else {
-                newVal = 0;
-            }
-        }
-        $button.parent().find("input").val(newVal);
-    });
+    // $(".cart-plus-minus-button").append('<div class="dec qtybutton">-</div><div class="inc qtybutton">+</div>');
+    // $(".qtybutton").on("click", function () {
+    //     var $button = $(this);
+    //     var oldValue = $button.parent().find("input").val();
+    //     var totalMoney = 0.0;
+    //     var price = $button.parent().parent().parent().find(".td-unite").text();
+    //     price=parseFloat(price);
+    //     console.log(price);
+    //     console.log(11111111);
+    //     if ($button.text() == "+") {
+    //         var newVal = parseFloat(oldValue) + 1;
+    //         totalMoney=price*newVal;
+    //         console.log(totalMoney);
+    //     } else {
+    //         // Don't allow decrementing below zero
+    //         if (oldValue > 0) {
+    //             var newVal = parseFloat(oldValue) - 1;
+    //             totalMoney=price*newVal;
+    //             console.log(totalMoney);
+    //         } else {
+    //             newVal = 0;
+    //         }
+    //     }
+    //     $button.parent().find("input").val(newVal);
+    //     $button.parent().parent().parent().find(".td-t-amount").text(totalMoney);
+    //     // $.ajax({
+    //     //     url: "/shoppingCart/.do",
+    //     //     type: "get",
+    //     //     data: {"custId": custId},
+    //     //     dataType: "json",
+    //     //     success: function (data) {
+    //     //         var scData = {scData: data};
+    //     //         console.log(scData);
+    //     //         var strSC = template('shopCartPtl', scData);
+    //     //         var oldStr = document.getElementById('shopCart').innerHTML;
+    //     //         document.getElementById('shopCart').innerHTML = strSC + oldStr;
+    //     //
+    //     //     }
+    //     // });
+    // });
 
 
 })(jQuery);
