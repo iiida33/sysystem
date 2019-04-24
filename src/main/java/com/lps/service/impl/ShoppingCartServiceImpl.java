@@ -7,6 +7,7 @@ import com.lps.vo.ShoppingCartGoodSku;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -44,5 +45,16 @@ public class ShoppingCartServiceImpl implements IShoppingCartService {
     @Override
     public void updateCart(ShoppingCart shoppingCart) {
         shoppingCartMapper.updateByPrimaryKeySelective(shoppingCart);
+    }
+
+    @Override
+    public List<ShoppingCartGoodSku> findMasForCheckOutPage(String[] cartIds) {
+        List<ShoppingCartGoodSku> shoppingCartGoodSkus = new LinkedList<>();
+        for (String cartId : cartIds){
+            int id = Integer.parseInt(cartId);
+            ShoppingCartGoodSku shoppingCartGoodSku = shoppingCartMapper.selectByCartIdGroup(id);
+            shoppingCartGoodSkus.add(shoppingCartGoodSku);
+        }
+        return shoppingCartGoodSkus;
     }
 }

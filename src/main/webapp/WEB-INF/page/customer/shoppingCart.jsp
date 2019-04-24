@@ -238,6 +238,7 @@
             var aa = $("input[type='checkbox']").is(':checked');
             if (!aa) {
                 layer.msg("请先选择结算商品！");
+                return false;
             }
             var cartIds = new Array();
             for(var i = 0; i<$(".checkon").length; i++){

@@ -236,4 +236,17 @@
         ORDER BY cart_id DESC
     </select>
 
+    <!--根据主键组查询购物车信息-->
+    <select id="selectByCartIdGroup" parameterType="java.lang.Integer" resultMap="ShopCartGoodSkuResultMap">
+        SELECT shopping_cart.*,sku_price,sku_pic,sku_state,GROUP_CONCAT(pv_name) props,good_name,sku_price*cart_count
+        money,good_brand,sku_props
+        FROM good,prop_value,good_sku,shopping_cart
+        WHERE good_sku.good_id = good.good_id
+        and FIND_IN_SET(pv_id,sku_props)
+        and shopping_cart.sku_id=good_sku.sku_id
+        and cart_id = #{cartId,jdbcType=INTEGER}
+        GROUP BY shopping_cart.sku_id
+		ORDER BY cart_id DESC
+    </select>
+
 </mapper>

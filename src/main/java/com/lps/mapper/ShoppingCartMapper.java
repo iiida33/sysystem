@@ -39,4 +39,7 @@ public interface ShoppingCartMapper {
     //    根据顾客Id查询购物车信息
     List<ShoppingCartGoodSku> selectShopCartAndSku(Integer custId);
 
+    //    根据主键组查询购物车信息
+    public ShoppingCartGoodSku selectByCartIdGroup(Integer cartId);
+
 }

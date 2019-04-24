@@ -193,7 +193,7 @@
                                                         style="text-align:left;padding-left: 20px;line-height: 30px">
                                                         <input type="checkbox"/>
                                                         <label id="orderTime">2019-01-01</label>&nbsp;&nbsp;
-                                                        <label>订单号:</label>
+                                                        <label>订单号:201904185784510</label>
                                                         <label id="orderNum"></label>
                                                     </td>
                                                 </tr>
@@ -204,6 +204,22 @@
                                                     <td class="t4">实付款</td>
                                                     <td class="t5">交易状态</td>
                                                     <td class="t6">交易操作</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="t1">雀巢(Nestle) 婴儿配方奶粉</td>
+                                                    <td class="t2">300.0</td>
+                                                    <td class="t3">1</td>
+                                                    <td class="t4">300.0</td>
+                                                    <td class="t5">待处理</td>
+                                                    <td class="t6"><a>删除</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="t1">雀巢(Nestle 水解婴儿配方奶粉</td>
+                                                    <td class="t2">318.2</td>
+                                                    <td class="t3">1</td>
+                                                    <td class="t4">318.2</td>
+                                                    <td class="t5">待处理</td>
+                                                    <td class="t6"><a>删除</a></td>
                                                 </tr>
                                             </table>
                                         </div>

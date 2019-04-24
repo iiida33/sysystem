@@ -8,10 +8,7 @@ import com.lps.po.Category;
 import com.lps.po.Good;
 import com.lps.service.*;
 import com.lps.service.impl.GoodServiceImpl;
-import com.lps.vo.CategoryShow;
-import com.lps.vo.GoodCatSku;
-import com.lps.vo.GoodSimpleShow;
-import com.lps.vo.PropNameAndValue;
+import com.lps.vo.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,15 +34,12 @@ import java.util.zip.CheckedOutputStream;
 public class testdemo {
 
     @Autowired
-    IGoodService goodService;
-    @Autowired
-    GoodMapper goodMapper;
-    @Autowired
-    PropNameMapper propNameMapper;
+    IShoppingCartService shoppingCartService;
 
     @Test
     public void test() {
-        List<PropNameAndValue> propNameAndValues=propNameMapper.selectPropNameAndValue("2,3");
+        String[] a= {"1","3","4"};
+        List<ShoppingCartGoodSku> shoppingCartGoodSkus = shoppingCartService.findMasForCheckOutPage(a);
         return;
     }
 

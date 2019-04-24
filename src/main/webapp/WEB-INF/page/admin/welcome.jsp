@@ -19,7 +19,7 @@
     <body>
     <div class="x-body layui-anim layui-anim-up">
         <blockquote class="layui-elem-quote">欢迎管理员：
-            <span class="x-red">test</span>！<span id="date"></span></blockquote>
+            <span class="x-red">${adminName}</span>！<span id="date"></span></blockquote>
         <fieldset class="layui-elem-field">
             <legend>数据统计</legend>
             <div class="layui-field-box">

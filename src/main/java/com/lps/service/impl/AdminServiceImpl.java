@@ -59,33 +59,32 @@ public class AdminServiceImpl implements IAdminService {
 
     @Override
     public Admin findByNumAndPassword(int num, String password) throws CustomException {
-        String encode = MD5Utils.encodeByMD5(password);
-        System.out.println(encode);
         AdminExample adminExample = new AdminExample();
         AdminExample.Criteria criteria = adminExample.createCriteria();
         criteria.andAdminNumEqualTo(num);
         criteria.andAdminPasswordEqualTo(password);
         List<Admin> list = adminMapper.selectByExample(adminExample);
-        if (list.get(0)==null){
-            throw new CustomException("工号或密码错误","500");
+        if (list != null & list.size() > 0) {
+            return list.get(0);
+        } else {
+            throw new CustomException("工号或密码错误", "500");
         }
-        return list.get(0);
     }
 
-        @Override
-        public List<Admin> findByOther(Admin admin) {
-            AdminExample adminExample = new AdminExample();
-            AdminExample.Criteria criteria = adminExample.createCriteria();
-            if (admin.getIsResign() != null)
-                criteria.andIsResignEqualTo(admin.getIsResign());
-            if (admin.getAdminSex() != null)
-                criteria.andAdminSexEqualTo(admin.getAdminSex());
-            if (admin.getAdminAuthority() != null)
-                criteria.andAdminAuthorityEqualTo(admin.getAdminAuthority());
-            if (admin.getAdminName() != null)
-                criteria.andAdminNameLike(admin.getAdminName());
-            List<Admin> admins = adminMapper.selectByExample(adminExample);
-            return admins;
-        }
+    @Override
+    public List<Admin> findByOther(Admin admin) {
+        AdminExample adminExample = new AdminExample();
+        AdminExample.Criteria criteria = adminExample.createCriteria();
+        if (admin.getIsResign() != null)
+            criteria.andIsResignEqualTo(admin.getIsResign());
+        if (admin.getAdminSex() != null)
+            criteria.andAdminSexEqualTo(admin.getAdminSex());
+        if (admin.getAdminAuthority() != null)
+            criteria.andAdminAuthorityEqualTo(admin.getAdminAuthority());
+        if (admin.getAdminName() != null)
+            criteria.andAdminNameLike(admin.getAdminName());
+        List<Admin> admins = adminMapper.selectByExample(adminExample);
+        return admins;
+    }
 }
 

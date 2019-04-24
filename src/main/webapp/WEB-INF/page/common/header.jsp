@@ -17,7 +17,7 @@
                     </div>
                     <div class="htop-one">
                         <ul class="account">
-                            <li><a href="toPage.do?url=admin/index.jsp">管理员入口</a>
+                            <li><a href="/toPage.do?url=admin/login.jsp">管理员入口</a>
                             </li>
                         </ul>
                     </div>

@@ -30,8 +30,7 @@
             <a href="javascript:;">管理员</a>
             <dl class="layui-nav-child"> <!-- 二级菜单 -->
               <dd><a onclick="x_admin_show('修改密码','toPage.do?url=admin/cate.jsp')">修改密码</a></dd>
-              <dd><a onclick="x_admin_show('切换帐号','http://www.baidu.com')">切换帐号</a></dd>
-              <dd><a href="./login">退出</a></dd>
+              <dd><a href="/logoutAdmin.do">退出</a></dd>
             </dl>
           </li>
           <li class="layui-nav-item to-index"><a href="/">前台首页</a></li>

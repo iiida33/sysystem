@@ -130,7 +130,7 @@
                                     <i class="fa fa-th-large"></i>
                                 </a>
                             </li>
-                            <li class="tab-menu-li"><span>排序</span>
+                            <li class="tab-menu-li"><span></span>
                                 <select name="#" id="#">
                                     <option value="#">---</option>
                                     <option value="Lowest first">价格</option>
@@ -147,7 +147,7 @@
                                         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                             <div class="single-product">
                                                 <div class="product-image">
-                                                    <a href="#"><img src="{{good.goodImage}}" alt=""/></a>
+                                                    <a href="/toPage.do?url=customer/single-product.jsp"><img src="{{good.goodImage}}" alt=""/></a>
                                                     <div class="cart-box">
                                                         <div class="product-text">
                                                             <a href="#"><span class="heart"><i

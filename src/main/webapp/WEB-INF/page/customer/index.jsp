@@ -222,7 +222,7 @@
                                                     </div>
                                                     <a href="#"><p>小牛玩偶</p></a>
                                                     <div class="price">
-                                                        <a href=""><h5>40.37</h5></a>
+                                                        <a href=""><h5>¥40.37</h5></a>
                                                     </div>
                                                 </div>
                                                 <a href="#"><span class="leval">new</span></a>
@@ -252,9 +252,9 @@
                                                         <a href="#"><i class="fa fa-heart"></i></a>
                                                         <a href="#"><i class="fa fa-heart-o"></i></a>
                                                     </div>
-                                                    <a href="#"><p>Printed Chiffon Dress</p></a>
+                                                    <a href="#"><p>儿童图书柜</p></a>
                                                     <div class="price">
-                                                        <a href=""><h5>£ 34.37<span>£ 40.60</span></h5></a>
+                                                        <a href=""><h5>¥34.37</h5></a>
                                                     </div>
                                                 </div>
                                                 <a href="#"><span class="leval">new</span></a>
@@ -286,9 +286,9 @@
                                                     <a href="#"><i class="fa fa-heart"></i></a>
                                                     <a href="#"><i class="fa fa-heart-o"></i></a>
                                                 </div>
-                                                <a href="#"><p>Blouse</p></a>
+                                                <a href="#"><p>餐椅</p></a>
                                                 <div class="price">
-                                                    <a href=""><h5>£ 23.37</h5></a>
+                                                    <a href=""><h5>¥ 23.37</h5></a>
                                                 </div>
                                             </div>
                                             <a href="#"><span class="leval">new</span></a>
@@ -317,9 +317,9 @@
                                                     <a href="#"><i class="fa fa-heart"></i></a>
                                                     <a href="#"><i class="fa fa-heart-o"></i></a>
                                                 </div>
-                                                <a href="#"><p>Printed Chiffon Dress</p></a>
+                                                <a href="#"><p>婴儿乐婴儿床</p></a>
                                                 <div class="price">
-                                                    <a href=""><h5>£ 40.37<span>£ 44.60</span></h5></a>
+                                                    <a href=""><h5>¥ 40.37</h5></a>
                                                 </div>
                                             </div>
                                             <a href="#"><span class="leval">new</span></a>
@@ -350,11 +350,10 @@
                                                     <a href="#"><i class="fa fa-heart"></i></a>
                                                     <a href="#"><i class="fa fa-heart-o"></i></a>
                                                 </div>
-                                                <a href="#"><p>Printed Dress</p></a>
+                                                <a href="#"><p>儿童学习收纳柜</p></a>
                                                 <div class="price">
-                                                    <a href=""><h5>£ 23.37<span>£ 24.60</span></h5></a>
+                                                    <a href=""><h5>¥ 23.37</h5></a>
                                                 </div>
-                                                <span class="descount">seal</span>
                                             </div>
                                             <a href="#"><span class="leval">new</span></a>
                                         </div>
@@ -382,9 +381,9 @@
                                                     <a href="#"><i class="fa fa-heart"></i></a>
                                                     <a href="#"><i class="fa fa-heart-o"></i></a>
                                                 </div>
-                                                <a href="#"><p>Printed Dress</p></a>
+                                                <a href="#"><p>爱婴美儿童沙发</p></a>
                                                 <div class="price">
-                                                    <a href=""><h5>£ 23.37<span>£ 24.60</span></h5></a>
+                                                    <a href=""><h5>¥ 23.37</h5></a>
                                                 </div>
                                             </div>
                                             <a href="#"><span class="leval">new</span></a>
@@ -414,11 +413,10 @@
                                                     <a href="#"><i class="fa fa-heart"></i></a>
                                                     <a href="#"><i class="fa fa-heart-o"></i></a>
                                                 </div>
-                                                <a href="#"><p>Printed Chiffon Dress</p></a>
+                                                <a href="#"><p>时尚连衣裤</p></a>
                                                 <div class="price">
-                                                    <a href=""><h5>£ 23.37<span>£ 24.60</span></h5></a>
+                                                    <a href=""><h5>¥ 23.37</h5></a>
                                                 </div>
-                                                <span class="descount">5%</span>
                                             </div>
                                             <a href="#"><span class="leval">new</span></a>
                                         </div>
@@ -446,11 +444,10 @@
                                                     <a href="#"><i class="fa fa-heart"></i></a>
                                                     <a href="#"><i class="fa fa-heart-o"></i></a>
                                                 </div>
-                                                <a href="#"><p>Printed Chiffon Dress</p></a>
+                                                <a href="#"><p>粉色长毛兔子娃娃</p></a>
                                                 <div class="price">
-                                                    <a href=""><h5>£ 23.37<span>£ 24.60</span></h5></a>
+                                                    <a href=""><h5>¥ 23.37</h5></a>
                                                 </div>
-                                                <span class="descount">5%</span>
                                             </div>
                                             <a href="#"><span class="leval">new</span></a>
                                         </div>

@@ -158,34 +158,24 @@ public class LoginRegisterController {
         return "admin/adminLogin.jsp";
     }
 
-    // 获取管理员账号信息以显示
-    //    @RequestMapping(value = "/getAdminAccount.do")
-    //    @ResponseBody
-    //    public String getAdminAccount(HttpSession httpSession){
-    //        SystemManager systemManager = (SystemManager) httpSession.getAttribute("admin");
-    //        //        SystemManager manager = loginService.findSystemManagerById(id);
-    //        return systemManager.getSmAccount();
-    //    }
-
     //    管理员登录验证
     @RequestMapping("/adminLogin.do")
     @ResponseBody
-    public Map<String, String> adminLogin(Model model, HttpSession httpSession, Integer adminNum,
-                                          String adminPassword) {
+    public Map<String, String> adminLogin(String adminNum,String adminPassword,HttpSession httpSession) {
 
         HashMap<String, String> map = new HashMap<String, String>();
-
-        Admin admin = null;
+        int adminId=Integer.parseInt(adminNum);
+        Admin admin = new Admin();
         try {
-            admin = adminService.findByNumAndPassword(adminNum, adminPassword);
+            admin = adminService.findByNumAndPassword(adminId, adminPassword);
         } catch (CustomException e) {
-            model.addAttribute("msg", e.getMessage());
             map.put("msg", e.getMessage());
             map.put("status", "500");
             return map;
         }
         // 保存到session
-        httpSession.setAttribute("admin", admin);
+        httpSession.setAttribute("adminId", admin.getAdminNum());
+        httpSession.setAttribute("adminName", admin.getAdminName());
         map.put("url", "toPage.do?url=admin/index.jsp");
         map.put("msg", "成功");
         map.put("status", "200");
@@ -195,7 +185,8 @@ public class LoginRegisterController {
     // 管理员退出登录
     @RequestMapping(value = "/logoutAdmin.do")
     public String logoutAdmin(HttpSession httpSession) {
-        httpSession.removeAttribute("admin");
+        httpSession.removeAttribute("adminId");
+        httpSession.removeAttribute("adminName");
         return "redirect:/";
     }
 }

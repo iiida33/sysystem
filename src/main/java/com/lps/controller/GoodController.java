@@ -191,4 +191,11 @@ public class GoodController {
         }
         return "1";
     }
+
+//    商品详情页信息展示
+    @RequestMapping("/toGoodDetailPage.do")
+    public String toGoodDetailPage(int goodId,HttpServletRequest request){
+        GoodShowPage goodSimpleShow=goodService.findById(goodId);
+        return "customer/single-product.jsp";
+    }
 }

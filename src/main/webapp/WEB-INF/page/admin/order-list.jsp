@@ -67,8 +67,24 @@
         </thead>
         <tbody>
         <tr>
-            <td>2017009171822298053</td>
+            <td>201903211822298053</td>
             <td>广东省肇庆市端州区黄岗街道肇庆学院 梁培珊 17876253535</td>
+            <td></td>
+            <td>109</td>
+            <td>未处理</td>
+            <td>2019-03-17 18:22</td>
+            <td class="td-manage">
+                <a title="查看" onclick="x_admin_show('编辑','order-view.html')" href="javascript:;">
+                    <i class="layui-icon">&#xe63c;</i>
+                </a>
+                <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
+                    <i class="layui-icon">&#xe640;</i>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>201904181822294862</td>
+            <td>广东省肇庆市端州区黄岗街道肇庆学院 张三 17876253535</td>
             <td></td>
             <td>109</td>
             <td>未处理</td>
